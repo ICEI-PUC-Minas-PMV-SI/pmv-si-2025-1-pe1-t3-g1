@@ -1,4 +1,4 @@
-# Título do Projeto
+# Monitoramento de PANs
 
 `CURSO: Sistemas de Informação`
 
@@ -6,20 +6,23 @@
 
 `SEMESTRE: 1º`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Os Planos de Ação Nacional para Conservação de Espécies Ameaçadas de Extinção (PANs) são instrumentos fundamentais para a gestão da biodiversidade no Brasil, permitindo a definição e o acompanhamento de ações estratégicas para a preservação ambiental. No entanto, o monitoramento dessas ações ainda é realizado por meio de planilhas Excel, dificultando a visualização dos dados, a colaboração entre os envolvidos e o acesso da sociedade às informações.
+
+Este projeto tem como objetivo desenvolver uma aplicação web intuitiva e acessível, que facilite o acompanhamento das ações dos PANs por gestores, articuladores e a população em geral. Além de melhorar a experiência dos usuários responsáveis pela gestão, a plataforma também visa proporcionar mais transparência, permitindo que qualquer cidadão tenha acesso simplificado aos dados sobre a conservação da biodiversidade no Brasil. Com funcionalidades como gráficos interativos, geração de relatórios automáticos e alertas sobre prazos, o sistema busca tornar o monitoramento mais eficiente e acessível a todos.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 5
+* Alcides Angelo Oliveira Ferreira
+* Eduardo de Lyra Maranhão Chaves
+* Eduardo Henrique Martins Araújo
+* Guilherme Borges Matos Faccion
+* Saulo Pireda Fernandes
+* Tiago Castro Silva
 
 
 ## Orientador
 
-* Nome completo do professor 1
+* Hayala Nepomuceno Curto
 
 # Planejamento
 
