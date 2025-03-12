@@ -1,4 +1,4 @@
-# Monitoramento de PANs
+# Monitoria de PANs
 
 `CURSO: Sistemas de Informação`
 
