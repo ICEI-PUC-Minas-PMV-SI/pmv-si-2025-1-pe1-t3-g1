@@ -8,7 +8,13 @@ Caso deseje atribuir uma imagem a sua persona, utilize o site https://thisperson
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+Márcio, servidor do ICMBio, é responsável por conduzir o PAN Cavernas do Brasil. Durante as oficinas de monitoria encontra dificuldades em preencher as planilhas em formato XLSX. Além disso, Márcio gasta muito tempo enviando e-mails aos articuladores solicitando o preenchimento de planilhas com as informações do andamento das ações e, depois, consolidando as respostas recebidas. 
+
+Tenório, professor de universidade pública, articulador de uma ação, em um momento pré-monitoria, recebe por e-mail uma planilha XLSX para atualizar as informações pertinentes às ações de que é responsável. 
+
+Justino é diretor no ICMBio e precisa de um relatório sobre o andamento do PAN Cavernas do Brasil para apresentar em uma reunião no Ministério do Meio Ambiente.  
+
+Renê é um jornalista e precisa de informações sobre os recursos gastos nos PANS para compor os dados da sua matéria sobre porcentagem do PIB gasta em ações de conservação.
 
 Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
 
@@ -26,10 +32,13 @@ Lembre-se que você deve ser enumerar e descrever precisamente e personalizada t
 
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
+| EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE`                   | PARA ... `MOTIVO/VALOR`                    |
+|---------------------|------------------------------------------------------|--------------------------------------------|
+| Usuário do sistema  | Visualizar os dados                                  | Facilitar o acesso às informações de PAN   |
+| Usuário do sistema  | Exportar dados para PDF                              | Permitir a impressão dos dados             |
+| Usuário do sistema  | Visualizar dados em gráfico                          | Facilitar a compreensão das informações    |
+| Articulador         | Atualizar dados das ações sob minha responsabilidade | Manter os dados sempre atualizados         |
+| Administrador       | Alterar permissões                                   | Gerenciar acessos e administrar contas     |
 
 Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
 
@@ -46,18 +55,21 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade | 
-|------|-----------------------------------------|----| 
-|RF-001| A aplicação deve permitir que o usuário gerencie suas tarefas | ALTA |  
-|RF-002| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês   | MÉDIA | 
+| ID     | Descrição do Requisito | Prioridade |  
+|--------|------------------------------------------------------------|----------|  
+| RF-001 | O usuário deve poder cadastrar novos PANs.                 | BAIXA    |  
+| RF-002 | O sistema deve possuir um controle de permissões, incluindo perfis como administrador, articulador e visualizador. | BAIXA    |  
+| RF-003 | O sistema deve permitir a inserção de dados dentro dos PANs. | MÉDIA    |  
+| RF-004 | O sistema deve exibir gráficos sobre o andamento das ações, incluindo métricas como porcentagem concluída, status (no prazo, em atraso), e recursos financeiros já gastos. | MÉDIA    |  
+| RF-005 | O sistema deve permitir a espacialização das ações conforme seus recortes territoriais. | BAIXA    |  
+| RF-006 | O sistema deve possibilitar a geração e impressão de um relatório em PDF com o status do PAN. | BAIXA    |  
+| RF-007 | O sistema deve enviar notificações por e-mail alertando sobre o vencimento de prazos. | BAIXA    |  
 
+### Requisitos Não Funcionais  
 
-### Requisitos não Funcionais
-
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| A aplicação deve ser responsiva | MÉDIA | 
-|RNF-002| A aplicação deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+| ID      | Descrição do Requisito                           | Prioridade |  
+|---------|-----------------------------------------------|-----------|  
+| RNF-001 | A aplicação deve ser responsiva e adaptável a diferentes dispositivos e tamanhos de tela. | MÉDIA     |  
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
