@@ -20,7 +20,7 @@ Descreva também o contexto em que essa aplicação será usada, se  houver: emp
 
 Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
 
-**_Periodicamente estas ações são monitoradas em oficinas específicas a fim de se verificar o andamento e a implementação das ações, além de realizar alguns ajustes apontados pelos participantes. Planilhas em formato XLSX, são a solução tecnológica adotada para se realizar o acompanhamento das ações durante as oficinas de monitoria. Porém, estas planilhas não possuem uma interface de usuário que facilite os trabalhos dos usuários, sejam eles facilitadores ou participantes das oficinas. Além disso, por vezes a organização destas planilhas geram dúvidas ou podem apresentar alguma inconsistência, por conta da forma como foram construídas e pelas limitações intrínsecas desta solução tecnológica._**
+**_Periodicamente as ações dos PANs são monitoradas em oficinas específicas a fim de se verificar o andamento e a implementação das ações, além de realizar alguns ajustes apontados pelos participantes. Planilhas em formato XLSX são a solução tecnológica adotada para se realizar o acompanhamento das ações durante as oficinas de monitoria. Porém, estas planilhas não possuem uma interface de usuário que facilite os trabalhos dos usuários, sejam eles facilitadores ou participantes das oficinas. Por vezes a organização destas planilhas geram dúvidas ou podem apresentar alguma inconsistência, por conta da forma como foram construídas e pelas limitações intrínsecas desta solução tecnológica. Além disso, estas planilhas não são de fácil leitura para pessoas não inseridas no universo dos PANs_**
 
 **_Como monitorar as ações dos PANs de forma que o usuário tenha uma experiência mais agradável e tenha um panorama do andamento e sucesso dos PANs?_**
 
@@ -40,13 +40,13 @@ Apresente também alguns (pelo menos 2) objetivos específicos dependendo de ond
 
 **_Objetivo Geral_**
 
-**_Desenvolver uma aplicação WEB baseada nas linguagens HTML, CSS e JavaScript que permitirá o monitoramento das ações dos PANs oferecendo ao usuário uma interface amigável e intuitiva.
+**_Desenvolver uma aplicação WEB baseada nas linguagens HTML, CSS e JavaScript que permitirá o monitoramento das ações dos PANs oferecendo ao usuário uma interface amigável e intuitiva_**.
 
 **_Obejtivos Específicos_**
 
-* Estabelecer a estrutura da aplicação em HTML tendo como base as planilhas em formato XLSX atualmente utilizadas nas monitorias.
-* Definir e aplicar o padrão estético/design em CSS na aplicação WEB.
-* Definir e criar as funcionalidades da aplicação WEB em JavaScript.
+* **_Estabelecer a estrutura da aplicação em HTML tendo como base as planilhas em formato XLSX atualmente utilizadas nas monitorias._**
+* **_Definir e aplicar o padrão estético/design em CSS na aplicação WEB._**
+* **_Definir e criar as funcionalidades da aplicação WEB em JavaScript._**
 
 
 ## Justificativa
@@ -60,6 +60,8 @@ O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estat�
 > **Links Úteis**:
 > - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
 
+**_Diante da difícil usabilidade inerente às planilhas XLSX de monitoria dos PANs, surge a necessidade de se reverter esta situação. Uma aplicação WEB é uma boa solução tecnológica pois permite que usuários com conhecimentos básicos de informática possam acessar e/ou editar às informações bastando ter um navegador e uma conexão à internet. Além disso, a publicação dos dados do PAN por meio de uma aplicação WEB democratiza o acesso à informação atendendo ao direito constitucional de livre acesso às informações públicas._**
+
 ## Público-Alvo
 
 Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações hierárquicas, etc.
@@ -72,4 +74,4 @@ Adicione informações sobre o público-alvo por meio de uma descrição textual
 > - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
 > - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
 
-**_Pessoas da sociedade brasileira que trabalham ou estão envolvidas diretamente com os Planos de Ação ou que desejam obter informações deles._**
+**_A aplicação WEB a ser desenvolvida se destina a pessoas que trabalham ou estão envolvidas diretamente com os Planos de Ação, sejam elas coordenadores de PAN, articuladores de ações ou colaboradores em ações. Além delas, pessoas comuns da socidade brasileira que desejam obter informações sobre os PANsgit._**
