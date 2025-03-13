@@ -8,13 +8,15 @@ Caso deseje atribuir uma imagem a sua persona, utilize o site https://thisperson
 
 ## Personas
 
-Márcio, servidor do ICMBio, é responsável por conduzir o PAN Cavernas do Brasil. Durante as oficinas de monitoria encontra dificuldades em preencher as planilhas em formato XLSX. Além disso, Márcio gasta muito tempo enviando e-mails aos articuladores solicitando o preenchimento de planilhas com as informações do andamento das ações e, depois, consolidando as respostas recebidas. 
+1. Júlia, servidora do ICMBio, lotada na sede do ICMBio em Brasília, coordena todos os PANs executados pelo ICMBio. Júlia é responsável por definir quais PANs serão desenvolvidos. Júlia também precisa ter acesso aos dados de todos os PANs para tomada de decisão e, atualmente, precisa ficar abrindo as planilhas XLSX de cada PAN para acessar as informações, pois não há uma solução de tecnologia da informação que centralize tudo em uma única plataforma.
 
-Tenório, professor de universidade pública, articulador de uma ação, em um momento pré-monitoria, recebe por e-mail uma planilha XLSX para atualizar as informações pertinentes às ações de que é responsável. 
+2. Márcio, servidor do ICMBio, é responsável por conduzir o PAN Cavernas do Brasil. Durante as oficinas de monitoria encontra dificuldades em preencher as planilhas em formato XLSX. Além disso, Márcio gasta muito tempo enviando e-mails aos articuladores solicitando o preenchimento de planilhas com as informações do andamento das ações e, depois, consolidando as respostas recebidas. 
 
-Justino é diretor no ICMBio e precisa de um relatório sobre o andamento do PAN Cavernas do Brasil para apresentar em uma reunião no Ministério do Meio Ambiente.  
+3. Tenório, professor de universidade pública, é articulador de algumas ações do PAN Cavernas do Brasil. Em um momento pré-monitoria, recebe por e-mail uma planilha XLSX para atualizar as informações pertinentes às ações de que é responsável. Tenório preenche a planilha enviada por Márcio e responde ao e-mail com ela em anexo.
 
-Renê é um jornalista e precisa de informações sobre os recursos gastos nos PANS para compor os dados da sua matéria sobre porcentagem do PIB gasta em ações de conservação.
+4. Jacinta é diretora no ICMBio e precisa de um relatório sobre o andamento do PAN Cavernas do Brasil para apresentar em uma reunião no Ministério do Meio Ambiente. Para tanto, solicita à Júlia que providencie este relatório. Júlia, por sua vez, solicita a Márcio a consolidação das informações. Márcio, então, consulta a planilha para gerar o relatório.
+
+5. Alice é uma jornalista e precisa de informações sobre os recursos gastos nos PANS para compor os dados da sua matéria sobre porcentagem do PIB gasta em ações de conservação. No site do ICMBio, Alice tem que baixar todas as planilhas de todos os PANs e consultar uma a uma para fazer a consolidação dos dados.
 
 Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
 
@@ -34,11 +36,14 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 | EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE`                   | PARA ... `MOTIVO/VALOR`                    |
 |---------------------|------------------------------------------------------|--------------------------------------------|
-| Usuário do sistema  | Visualizar os dados                                  | Facilitar o acesso às informações de PAN   |
-| Usuário do sistema  | Exportar dados para PDF                              | Permitir a impressão dos dados             |
-| Usuário do sistema  | Visualizar dados em gráfico                          | Facilitar a compreensão das informações    |
-| Articulador         | Atualizar dados das ações sob minha responsabilidade | Manter os dados sempre atualizados         |
-| Administrador       | Alterar permissões                                   | Gerenciar acessos e administrar contas     |
+| Júlia               | Cadastrar novos PANs                                 | O coordenador do PAN possa cadastrar as ações                 |
+| Júlia               | Visualizar os dados dos PANs                         | Tomada de decisão enquanto coordenadora dos PANs              |
+| Márcio              | Cadastrar ações no PAN Cavernas do Brasil            | Desenvolver o PAN                                             |
+| Márcio              | Enviar e-mails os articuladores                      | Obter informações do andamento das ações                      |
+| Márcio              | Gerar relatórios                                     | Fornecer informações do andamento das ações ao seus superiores|
+| Tenório             | Prestar contas do andamento das ações que articula   | Fornecer informações do andamento das ações ao coordenador do PAN|
+| Jacinta             | Ter um panorama do andamento dos PANs                | Subsidiar tomada de decisão                |
+| Alice               | Ter um panorama do andamento dos PANs                | Escrever uma matéria jornalística          |
 
 Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
 
@@ -57,19 +62,21 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 | ID     | Descrição do Requisito | Prioridade |  
 |--------|------------------------------------------------------------|----------|  
-| RF-001 | O usuário deve poder cadastrar novos PANs.                 | BAIXA    |  
-| RF-002 | O sistema deve possuir um controle de permissões, incluindo perfis como administrador, articulador e visualizador. | BAIXA    |  
-| RF-003 | O sistema deve permitir a inserção de dados dentro dos PANs. | MÉDIA    |  
-| RF-004 | O sistema deve exibir gráficos sobre o andamento das ações, incluindo métricas como porcentagem concluída, status (no prazo, em atraso), e recursos financeiros já gastos. | MÉDIA    |  
+| RF-001 | O usuário deve poder cadastrar novos PANs.                 | MÉDIA    |  
+| RF-002 | O sistema deve possuir um controle de permissões, incluindo perfis como administrador, articulador e visualizador. | ALTA    |  
+| RF-003 | O sistema deve permitir a inserção de dados das ações dos PANs. | ALTA    |  
+| RF-004 | O sistema deve exibir gráficos sobre o andamento das ações, incluindo métricas como porcentagem concluída, status (no prazo, em atraso, excluída), e recursos financeiros já gastos. | ALTA    |  
 | RF-005 | O sistema deve permitir a espacialização das ações conforme seus recortes territoriais. | BAIXA    |  
-| RF-006 | O sistema deve possibilitar a geração e impressão de um relatório em PDF com o status do PAN. | BAIXA    |  
-| RF-007 | O sistema deve enviar notificações por e-mail alertando sobre o vencimento de prazos. | BAIXA    |  
+| RF-006 | O sistema deve possibilitar a geração e impressão de um relatório em PDF sobre o andamento do PAN. | MÉDIA    |  
+| RF-007 | O sistema deve enviar notificações por e-mail aos articuladores alertando sobre o vencimento de prazos e solicitando a atualização dos dados das ações. | MÉDIA    |
 
 ### Requisitos Não Funcionais  
 
 | ID      | Descrição do Requisito                           | Prioridade |  
 |---------|-----------------------------------------------|-----------|  
-| RNF-001 | A aplicação deve ser responsiva e adaptável a diferentes dispositivos e tamanhos de tela. | MÉDIA     |  
+| RNF-001 | A aplicação será desenvolvida em HTML, CSS E JavaScript. | ALTA     | 
+| RNF-002 | A aplicação será hospedada em ?????? | ALTA     |  
+| RNF-003 | A aplicação deve ser responsiva e adaptável a diferentes dispositivos e tamanhos de tela. | MÉDIA     |  
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
