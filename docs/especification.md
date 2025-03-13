@@ -34,16 +34,18 @@ Lembre-se que você deve ser enumerar e descrever precisamente e personalizada t
 
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
-| EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE`                   | PARA ... `MOTIVO/VALOR`                    |
-|---------------------|------------------------------------------------------|--------------------------------------------|
-| Júlia               | Cadastrar novos PANs                                 | O coordenador do PAN possa cadastrar as ações                 |
-| Júlia               | Visualizar os dados dos PANs                         | Tomada de decisão enquanto coordenadora dos PANs              |
-| Márcio              | Cadastrar ações no PAN Cavernas do Brasil            | Desenvolver o PAN                                             |
-| Márcio              | Enviar e-mails os articuladores                      | Obter informações do andamento das ações                      |
-| Márcio              | Gerar relatórios                                     | Fornecer informações do andamento das ações ao seus superiores|
-| Tenório             | Prestar contas do andamento das ações que articula   | Fornecer informações do andamento das ações ao coordenador do PAN|
-| Jacinta             | Ter um panorama do andamento dos PANs                | Subsidiar tomada de decisão                |
-| Alice               | Ter um panorama do andamento dos PANs                | Escrever uma matéria jornalística          |
+| EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE`                                    | PARA ... `MOTIVO/VALOR`                                          |
+|---------------------|-----------------------------------------------------------------------|------------------------------------------------------------------|
+| Júlia               | Definir quais PANs serão desenvolvidos                                | Planejar e priorizar ações de conservação                        |
+| Júlia               | Acessar dados consolidados de todos os PANs em um só lugar            | Tomar decisões sem precisar abrir múltiplas planilhas            |
+| Júlia               | Gerar relatórios gerenciais detalhados                                | Fornecer informações estratégicas para diretoria e ministérios   |
+| Márcio              | Cadastrar e atualizar ações no PAN Cavernas do Brasil                 | Manter atualizado o planejamento sem depender de planilhas       |
+| Márcio              | Solicitar atualizações dos articuladores via sistema                  | Automatizar o processo e reduzir tempo gasto enviando manualmente|
+| Márcio              | Visualizar e consolidar informações enviadas pelos articuladores      | Ter um panorama atualizado para prestação de contas              |
+| Tenório             | Atualizar o andamento das ações sob minha responsabilidade via sistema| Evitar o uso de e-mails e planilhas                              |
+| Jacinta             | Acessar relatórios prontos e métricas atualizadas dos PANs            | Apresentar informações estratégicas em reuniões                  |
+| Alice               | Consultar dados de forma transparente dos PANs diretamente pelo site  | Agilizar o acesso às informações para suas matérias              |
+| Alice               | Filtrar dados por PANs, período, tipo de gasto e etc.                 | Encontrar rapidamente informações relevantes para sua reportagem |
 
 Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
 
