@@ -36,16 +36,17 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 | EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE`                                    | PARA ... `MOTIVO/VALOR`                                          |
 |---------------------|-----------------------------------------------------------------------|------------------------------------------------------------------|
-| Júlia               | Definir quais PANs serão desenvolvidos                                | Planejar e priorizar ações de conservação                        |
-| Júlia               | Acessar dados consolidados de todos os PANs em um só lugar            | Tomar decisões sem precisar abrir múltiplas planilhas            |
-| Júlia               | Gerar relatórios gerenciais detalhados                                | Fornecer informações estratégicas para diretoria e ministérios   |
-| Márcio              | Cadastrar e atualizar ações no PAN Cavernas do Brasil                 | Manter atualizado o planejamento sem depender de planilhas       |
-| Márcio              | Solicitar atualizações dos articuladores via sistema                  | Automatizar o processo e reduzir tempo gasto enviando manualmente|
-| Márcio              | Visualizar e consolidar informações enviadas pelos articuladores      | Ter um panorama atualizado para prestação de contas              |
-| Tenório             | Atualizar o andamento das ações sob minha responsabilidade via sistema| Evitar o uso de e-mails e planilhas                              |
-| Jacinta             | Acessar relatórios prontos e métricas atualizadas dos PANs            | Apresentar informações estratégicas em reuniões                  |
-| Alice               | Consultar dados de forma transparente dos PANs diretamente pelo site  | Agilizar o acesso às informações para suas matérias              |
-| Alice               | Filtrar dados por PANs, período, tipo de gasto e etc.                 | Encontrar rapidamente informações relevantes para sua reportagem |
+| Administrador       | Criar, editar e desativar usuários                                    | Controlar o acesso ao sistema de forma segura                    | 
+| Coordenador         | Definir quais PANs serão desenvolvidos                                | Planejar e priorizar ações de conservação                        |
+| Coordenador         | Acessar dados consolidados de todos os PANs em um só lugar            | Tomar decisões sem precisar abrir múltiplas planilhas            |
+| Coordenador         | Gerar relatórios gerenciais detalhados                                | Fornecer informações estratégicas para diretoria e ministérios   |
+| Gestor              | Cadastrar e atualizar ações no PAN Cavernas do Brasil                 | Manter atualizado o planejamento sem depender de planilhas       |
+| Gestor              | Solicitar atualizações dos articuladores via sistema                  | Automatizar o processo e reduzir tempo gasto enviando manualmente|
+| Gestor              | Visualizar e consolidar informações enviadas pelos articuladores      | Ter um panorama atualizado para prestação de contas              |
+| Articulador         | Atualizar o andamento das ações sob minha responsabilidade via sistema| Evitar o uso de e-mails e planilhas                              |
+| Diretor             | Acessar relatórios prontos e métricas atualizadas dos PANs            | Apresentar informações estratégicas em reuniões                  |
+| Usuário do sistema  | Consultar dados de forma transparente dos PANs diretamente pelo site  | Agilizar o acesso às informações para suas matérias              |
+| Usuário do sistema  | Filtrar dados por PANs, período, tipo de gasto e etc.                 | Encontrar rapidamente informações relevantes para sua reportagem |
 
 Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
 
@@ -62,23 +63,32 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos Funcionais
 
-| ID     | Descrição do Requisito | Prioridade |  
-|--------|------------------------------------------------------------|----------|  
-| RF-001 | O usuário deve poder cadastrar novos PANs.                 | MÉDIA    |  
-| RF-002 | O sistema deve possuir um controle de permissões, incluindo perfis como administrador, articulador e visualizador. | ALTA    |  
-| RF-003 | O sistema deve permitir a inserção de dados das ações dos PANs. | ALTA    |  
-| RF-004 | O sistema deve exibir gráficos sobre o andamento das ações, incluindo métricas como porcentagem concluída, status (no prazo, em atraso, excluída), e recursos financeiros já gastos. | ALTA    |  
-| RF-005 | O sistema deve permitir a espacialização das ações conforme seus recortes territoriais. | BAIXA    |  
-| RF-006 | O sistema deve possibilitar a geração e impressão de um relatório em PDF sobre o andamento do PAN. | MÉDIA    |  
-| RF-007 | O sistema deve enviar notificações por e-mail aos articuladores alertando sobre o vencimento de prazos e solicitando a atualização dos dados das ações. | MÉDIA    |
+| ID     | Descrição do Requisito                                                                                                                                                                | Prioridade |  
+|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|  
+| RF-001 |  O usuário deve poder cadastrar novos PANs.                                                                                                                                           |   ALTA     |
+| RF-002 |  O sistema deve possuir um controle de permissões, incluindo perfis como administrador, coordenador, gestor, articulador, diretor e usuário comum.                                    |   ALTA     |
+| RF-003 |  O sistema deve permitir que os responsáveis registrem e atualizem informações sobre as ações realizadas.                                                                             |   ALTA     |
+| RF-004 |  O sistema deve apresentar dados sobre o andamento das ações, incluindo métricas como porcentagem concluída, status (no prazo, em atraso, excluída), e recursos financeiros já gastos.|   ALTA     |
+| RF-005 |  O sistema deve permitir a espacialização das ações conforme seus recortes territoriais.                                                                                              |   BAIXA    |
+| RF-006 |  O sistema deve possibilitar a geração de relatórios sobre o andamento do PAN com opção de exportação para PDF.                                                                       |   MÉDIA    |
+| RF-007 |  O sistema deve enviar notificações aos articuladores alertando sobre o vencimento de prazos e solicitando a atualização dos dados das ações.                                         |   MÉDIA    |
+| RF-008 |  O sistema deve permitir a importação e exportação de dados para facilitar a atualização e compartilhamento de informações.        	                                                 |   MÉDIA    |
+| RF-009 |  O sistema deve permitir que os usuários filtrem as informações dos PANs por período, tipo de gasto, status e outros critérios.	                                                     |   ALTA     |
+| RF-010 |  O sistema deve permitir que os gestores visualizem um painel consolidado com os dados das ações cadastradas.	                                                                       |   ALTA     |
+| RF-011 |  O sistema deve permitir que os articuladores atualizem o status das ações sob sua responsabilidade diretamente na plataforma.	                                                       |   ALTA     |
+| RF-012 |  O sistema deve permitir que os coordenadores acessem um histórico de alterações feitas nos dados dos PANs.	                                                                         |   MÉDIA    |
+| RF-013 |  O sistema deve permitir a pesquisa por palavras-chave nos dados dos PANs.	                                                                                                           |   MÉDIA    |
+| RF-014 |  O sistema deve armazenar os dados temporariamente no dispositivo do usuário para possibilitar acesso offline.                                                                        |   MÉDIA    |
+| RF-015 |  O sistema deve permitir a exportação de relatórios detalhados em formatos como CSV e PDF.	                                                                                           |   MÉDIA    |
+| RF-016 |  O sistema deve disponibilizar indicadores de desempenho das ações, como número de atividades concluídas e recursos utilizados.	                                                     |   MÉDIA    |
 
 ### Requisitos Não Funcionais  
 
-| ID      | Descrição do Requisito                           | Prioridade |  
-|---------|-----------------------------------------------|-----------|  
-| RNF-001 | A aplicação será desenvolvida em HTML, CSS E JavaScript. | ALTA     | 
-| RNF-002 | A aplicação será hospedada em ?????? | ALTA     |  
-| RNF-003 | A aplicação deve ser responsiva e adaptável a diferentes dispositivos e tamanhos de tela. | MÉDIA     |  
+| ID      | Descrição do Requisito                                                                    | Prioridade |  
+|---------|--------------------------------------------------------------------------------------------|-----------|  
+| RNF-001 | A aplicação será desenvolvida em HTML, CSS E JavaScript.                                  | ALTA       | 
+| RNF-002 | A aplicação será hospedada em ??????                                                      | ALTA       |  
+| RNF-003 | A aplicação deve ser responsiva e adaptável a diferentes dispositivos e tamanhos de tela. | MÉDIA      |  
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
