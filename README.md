@@ -16,7 +16,6 @@ Este projeto tem como objetivo desenvolver uma aplicação web intuitiva e acess
 * Eduardo de Lyra Maranhão Chaves
 * Eduardo Henrique Martins Araújo
 * Guilherme Borges Matos Faccion
-* Saulo Pireda Fernandes
 * Tiago Castro Silva
 
 
