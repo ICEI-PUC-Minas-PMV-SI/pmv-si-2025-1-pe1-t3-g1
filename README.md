@@ -12,7 +12,6 @@ Este projeto tem como objetivo desenvolver uma aplicação web intuitiva e acess
 
 ## Integrantes
 
-* Alcides Angelo Oliveira Ferreira
 * Eduardo de Lyra Maranhão Chaves
 * Eduardo Henrique Martins Araújo
 * Guilherme Borges Matos Faccion
