@@ -53,7 +53,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 | RF-014 |  O sistema deve armazenar os dados temporariamente no dispositivo do usuário para possibilitar acesso offline.                                                                        |   MÉDIA    |
 | RF-015 |  O sistema deve permitir a exportação de relatórios detalhados em formatos como CSV e PDF.	                                                                                           |   MÉDIA    |
 | RF-016 |  O sistema deve disponibilizar indicadores de desempenho das ações, como número de atividades concluídas e recursos utilizados.	                                                     |   MÉDIA    |
-| RF-005 |  O sistema deve permitir a espacialização das ações conforme seus recortes territoriais.                                                                                              |   BAIXA    |
+| RF-017 |  O sistema deve permitir a espacialização das ações conforme seus recortes territoriais.                                                                                              |   BAIXA    |
 
 ### Requisitos Não Funcionais  
 
