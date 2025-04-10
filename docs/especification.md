@@ -42,18 +42,18 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 | RF-002 |  O sistema deve possuir um controle de permissões, incluindo perfis como administrador, coordenador, articulador e usuário do sistema.                                    |   ALTA     |
 | RF-003 |  O sistema deve permitir que os responsáveis registrem e atualizem informações sobre as ações realizadas.                                                                             |   ALTA     |
 | RF-004 |  O sistema deve apresentar dados sobre o andamento das ações, incluindo métricas como porcentagem concluída, status (no prazo, em atraso, excluída), e recursos financeiros já gastos.|   ALTA     |
-| RF-009 |  O sistema deve permitir que os usuários filtrem as informações dos PANs por período, tipo de gasto, status e outros critérios.	                                                     |   ALTA     |
-| RF-010 |  O sistema deve permitir que o administrador e o coordenador visualizem um painel consolidado com os dados das ações cadastradas.	                                                                       |   ALTA     |
-| RF-011 |  O sistema deve permitir que os articuladores atualizem o status das ações sob sua responsabilidade diretamente na plataforma.	                                                       |   ALTA     |
-| RF-006 |  O sistema deve possibilitar a geração de relatórios sobre o andamento do PAN com opção de exportação para PDF.                                                                       |   MÉDIA    |
-| RF-007 |  O sistema deve enviar notificações aos articuladores alertando sobre o vencimento de prazos e solicitando a atualização dos dados das ações.                                         |   MÉDIA    |
-| RF-008 |  O sistema deve permitir a importação e exportação de dados para facilitar a atualização e compartilhamento de informações.        	                                                 |   MÉDIA    |
-| RF-012 |  O sistema deve permitir que o administrador e o coordenador acessem um histórico de alterações feitas nos dados dos PANs.	                                                                         |   MÉDIA    |
-| RF-013 |  O sistema deve permitir a pesquisa por palavras-chave nos dados dos PANs.	                                                                                                           |   MÉDIA    |
-| RF-014 |  O sistema deve armazenar os dados temporariamente no dispositivo do usuário para possibilitar acesso offline.                                                                        |   MÉDIA    |
-| RF-015 |  O sistema deve permitir a exportação de relatórios detalhados em formatos como CSV e PDF.	                                                                                           |   MÉDIA    |
-| RF-016 |  O sistema deve disponibilizar indicadores de desempenho das ações, como número de atividades concluídas e recursos utilizados.	                                                     |   MÉDIA    |
-| RF-017 |  O sistema deve permitir a espacialização das ações conforme seus recortes territoriais.                                                                                              |   BAIXA    |
+| RF-005 |  O sistema deve permitir que os usuários filtrem as informações dos PANs por período, tipo de gasto, status e outros critérios.	                                                     |   ALTA     |
+| RF-006 |  O sistema deve permitir que o administrador e o coordenador visualizem um painel consolidado com os dados das ações cadastradas.	                                                                       |   ALTA     |
+| RF-007 |  O sistema deve permitir que os articuladores atualizem o status das ações sob sua responsabilidade diretamente na plataforma.	                                                       |   ALTA     |
+| RF-008 |  O sistema deve possibilitar a geração de relatórios sobre o andamento do PAN com opção de exportação para PDF.                                                                       |   MÉDIA    |
+| RF-009 |  O sistema deve enviar notificações aos articuladores alertando sobre o vencimento de prazos e solicitando a atualização dos dados das ações.                                         |   MÉDIA    |
+| RF-010 |  O sistema deve permitir a importação e exportação de dados para facilitar a atualização e compartilhamento de informações.        	                                                 |   MÉDIA    |
+| RF-011 |  O sistema deve permitir que o administrador e o coordenador acessem um histórico de alterações feitas nos dados dos PANs.	                                                                         |   MÉDIA    |
+| RF-012 |  O sistema deve permitir a pesquisa por palavras-chave nos dados dos PANs.	                                                                                                           |   MÉDIA    |
+| RF-013 |  O sistema deve armazenar os dados temporariamente no dispositivo do usuário para possibilitar acesso offline.                                                                        |   MÉDIA    |
+| RF-014 |  O sistema deve permitir a exportação de relatórios detalhados em formatos como CSV e PDF.	                                                                                           |   MÉDIA    |
+| RF-015 |  O sistema deve disponibilizar indicadores de desempenho das ações, como número de atividades concluídas e recursos utilizados.	                                                     |   MÉDIA    |
+| RF-016 |  O sistema deve permitir a espacialização das ações conforme seus recortes territoriais.                                                                                              |   BAIXA    |
 
 ### Requisitos Não Funcionais  
 
