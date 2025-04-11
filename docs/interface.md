@@ -2,11 +2,10 @@
 
 O *user flow* e o *wireframe* da aplicação foram construídos colaborativamente na plataforma Miro e podem ser visualizados clicando [aqui](https://miro.com/welcomeonboard/VVo2TkJaaHIzVmh3c1M1THZZS3ltdDNwbE0xZFJHNEQwQWlYd1A4dUh6L1dpK1hXZTRyOG55ck1FMWhjTjBxVzdLN0ZCNFNWTmNEY2NGWHl5djRUeWxqd1ZON2U3TnVOWE12QXVnRTU2aytXTlV5NElwY3FtYXZpdFZRN25pMURhWWluRVAxeXRuUUgwWDl3Mk1qRGVRPT0hdjE=?share_link_id=852268613612).
 
-Dentro do sistema, teremos fluxos diferentes de acordo com o nível de permissão que o usuário tem. Para saber mais sobre as [personas](especification.md#personas) e sobre as [histórias de usuário](especification.md#histórias-de-usuários), consulte a documentação específica.
+Dentro do sistema, teremos fluxos diferentes de acordo com o nível de permissão que o usuário tiver. Para saber mais sobre as [personas](especification.md#personas) e sobre as [histórias de usuário](especification.md#histórias-de-usuários), consulte a documentação específica.
 
 
 ### User Flow
-Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapear todo o fluxo de telas do site ou app. Essa técnica funciona para alinhar os caminhos e as possíveis ações que o usuário pode fazer junto com os membros de sua equipe.
 
 O fluxo de usuário na aplicação dependerá do perfil de acesso atribuído a ele. Nesta aplicação, haverá os seguintes perfis: Administrador, Coordenador, Articulador e Usuário Comum. As funcionalidades da aplicação estarão disponíveis de forma aninhada, dando ao Administrador acesso total às funcionalidades, que decrescerão em número no seguinte sentido: Coordenador, Articulador e Usuário Comum, que será o perfil com a menor quantidade de funcionalidades.
 

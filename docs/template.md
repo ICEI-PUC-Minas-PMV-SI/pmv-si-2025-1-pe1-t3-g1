@@ -1,6 +1,6 @@
 # Template padrão do site
 
-O layout padrão da nossa aplicação foi construído a partir da linguagem de marcação HTML e da linguagem de estilos CSS. A combinação destas linguagens possibilitará a concepção de um website responsivo. Os elementos padrões das páginas serão o `header` e o `footer`, conforme descrito na documentação da [interface](./interface.md) na seção *wireframe*.
+O layout padrão da nossa aplicação foi construído a partir da linguagem de marcação HTML e da linguagem de estilos CSS. A combinação destas linguagens possibilitará a concepção de um website responsivo. Os elementos padrões das páginas serão o `header` e o `footer`, conforme descrito na documentação da [interface](./interface.md#wireframes) na seção *wireframe*.
 
 ![esqueleto](img/esqueleto.png)
 
@@ -25,4 +25,4 @@ A fonte padrão que consta no Manual Visual do ICMBio não foi encontrada para u
 
 ## Iconografia
 
-Serão usados os ícones disponibilizados pelo [Google](https://fonts.google.com/icons) de livre uso.
+Serão usados os ícones de livre uso disponibilizados pelo Google. Eles serão importados do [Google Fonts](https://fonts.google.com/icons) diretamente nas folhas de estilo CSS.
