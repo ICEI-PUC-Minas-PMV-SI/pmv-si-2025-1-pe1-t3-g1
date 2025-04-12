@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+
+/*Fontes Roboto e Noto Sans*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+/*Variáveis de cor e fonte*/
+:root {
+
+    /* Cores do projeto */
+    --cor1: rgb(204, 204, 51);
+    --cor2: rgb(102, 153, 51);
+    --cor3: #339966;
+    --cor4: #006633;
+    --cor5: #CCCCCC;
+    --cor6: #999999;
+    --cor7: #666666;
+    --cor8: #000000;   
+    
+    /*Fontes*/
+    --fonte-padrao: "Roboto", sans-serif;
+    --fonte-secundaria: "Noto Sans", sans-serif;
+}
+
+
+/*Reset das configurações padrão dos navegadores*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-padrao);
+}
+
+
+header {
+    height: 11vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 35px 0px 35px;    
+    background-color:  rgb(102, 153, 51,0.41);
+}
+
+
+div#cabecalho-left {
+    display: flex;
+    align-items: center;    
+    /*border: 1px dotted rgb(0, 0, 0);*/
+}
+
+
+header nav ul {
+    /*border: 1px dotted black;*/    
+    display: flex; 
+    list-style: none;     
+}
+
+
+header nav ul li,a {
+    /*border: 1px dotted black;*/ 
+    text-decoration: none;
+    margin: 10px;
+    font-size: 1.05em;
+    color: var(--cor4);
+    font-weight: 500;
+}
+
+
+a#login {
+    background-color: var(--cor3);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;    
+}
+
+
+header a:hover {
+    color: var(--cor2);
+    font-weight: 900;
+}
+
+
+header img {
+    height: 100px;
+    padding-right: 60px;
+    flex-shrink: 1;
+}
+
+
+main {
+    width: 100vw;
+    height: 83.75vh;
+    background-color: var(--cor5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:  center;
+    flex-wrap: nowrap;
+    
+    
+}
+
+section#graficos {
+    background-color: white;
+    height: 30%;
+    width: 70%;  
+    
+}
+
+section#painel-pans {
+    background-color: rgb(148, 148, 148);
+    height: 60%;
+    width: 70%;  
+    
+}
+
+footer {
+    height: 5vh;
+    background-color: var(--cor4);
+    display: flex;
+    align-items: center;
+}
+
+
+footer img {
+    height: 50px;
+    margin: 10px;
+    margin-left: 30px;
+}
+
+
+footer a {
+    font-size: 0.8em;
+    color: white;
+    font-weight: 300;
+}
+
+
+footer a:hover {
+    color: var(--cor1);
+    font-size: 0.85em;
+}
+
+
+
+
+
+
+
+
