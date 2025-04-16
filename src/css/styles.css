@@ -1,3 +1,26 @@
+:root {
+    --color-primary: #CCCC33;
+    --color-secondary: #669933;
+    --color-light-green: #339966;
+    --color-dark-green: #006633;
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.bg-secondary {
+    background-color: var(--color-secondary);
+}
+
+.bg-light-green {
+    background-color: var(--color-light-green);
+}
+
+.bg-dark-green {
+    background-color: var(--color-dark-green);
+}
+
 html, body {
     height: 100%;
     margin: 0;

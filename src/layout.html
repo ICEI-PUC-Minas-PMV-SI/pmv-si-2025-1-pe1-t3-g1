@@ -4,21 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#339966',
-                        secondary: '#669933',
-                        accent: '#CCCC33',
-                        dark: '#006633',
-                        light: '#CCCCCC',
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="css/styles.css">
     <script src="js/storage.js" defer></script>
     <script src="js/auth.js" defer></script>
     <title>Monitoria de PAN</title>
@@ -31,15 +17,15 @@
                     <img src="img/logo-monitoria-pan-pq.png" alt="LOGO" class="h-12">
                     <nav>
                         <ul class="flex space-x-6">
-                            <li><a href="index.html" class="text-dark hover:text-secondary font-medium transition-colors">Início</a></li>
-                            <li><a href="#" class="text-dark hover:text-secondary font-medium transition-colors">Gerenciar PANs</a></li>
+                            <li><a href="index.html" class="text-[var(--color-dark-green)] hover:text-[var(--color-secondary)] font-medium transition-colors">Início</a></li>
+                            <li><a href="gerenciar-pans.html" class="text-[var(--color-dark-green)] hover:text-[var(--color-secondary)] font-medium transition-colors">Gerenciar PANs</a></li>
                         </ul>
                     </nav>
                 </div>
                 
                 <div class="relative" id="user-dropdown">
                     <a href="login.html" id="auth-button" 
-                       class="inline-flex items-center justify-center px-6 py-2 bg-primary hover:bg-dark text-white font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md">
+                       class="inline-flex items-center justify-center px-6 py-2 bg-primary hover:bg-[var(--color-dark-green)] text-white font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md">
                         <span>LOGIN</span>
                     </a>
                     <div id="dropdown-content" 
@@ -55,7 +41,7 @@
         </div>
     </main>
 
-    <footer class="bg-dark text-white py-4 w-full mt-auto">
+    <footer class="bg-dark-green text-white py-4 w-full mt-auto">
         <div class="container mx-auto px-4 flex items-center justify-start space-x-4">
             <img src="img/Logo_ICMBio_2011_Branca.png" alt="Logo ICMBio" class="h-8">
             <a href="https://www.gov.br/icmbio/pt-br" target="_blank" 
@@ -65,4 +51,4 @@
         </div>
     </footer>
 </body>
-</html> 
+</html>

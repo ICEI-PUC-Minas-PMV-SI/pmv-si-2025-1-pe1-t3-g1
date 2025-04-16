@@ -5,21 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#339966',
-                        secondary: '#669933',
-                        accent: '#CCCC33',
-                        dark: '#006633',
-                        light: '#CCCCCC',
-                    }
-                }
-            }
-        }
-    </script>
     <script src="js/storage.js"></script>
     <script src="js/auth.js"></script>
     <style>
@@ -154,30 +139,30 @@
     <div id="page-content" class="hidden">
         <div class="main-content">
             <section class="bg-white rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl mb-8">
-                <h2 class="text-xl font-bold text-dark mb-6 flex items-center">
-                    <svg class="w-6 h-6 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <h2 class="text-xl font-bold text-[var(--color-dark-green)] mb-6 flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                     </svg>
                     Gráficos de Monitoramento
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="monitoring-card">
-                        <h3 class="text-base font-semibold text-dark mb-4 flex items-center">
-                            <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <h3 class="text-base font-semibold text-[var(--color-dark-green)] mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5M8 8v8m8-16l4 4-4 4m-4-8l4 4-4 4m-4-8l4 4-4 4"/>
                             </svg>
                             Progresso Geral
                         </h3>
                         <div class="flex items-center justify-center mb-2">
                             <div class="progress-ring" data-progress="15">
-                                <span class="text-2xl font-bold text-primary relative">15%</span>
+                                <span class="text-2xl font-bold text-[var(--color-primary)] relative">15%</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="monitoring-card">
-                        <h3 class="text-base font-semibold text-dark mb-4 flex items-center">
-                            <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <h3 class="text-base font-semibold text-[var(--color-dark-green)] mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                             </svg>
                             Status das Ações
@@ -199,8 +184,8 @@
                     </div>
 
                     <div class="monitoring-card">
-                        <h3 class="text-base font-semibold text-dark mb-4 flex items-center">
-                            <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <h3 class="text-base font-semibold text-[var(--color-dark-green)] mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                             </svg>
                             Total de PANs
@@ -208,7 +193,7 @@
                         <div class="flex items-center justify-center h-[120px]">
                             <div class="text-center">
                                 <div class="flex items-center justify-center space-x-3">
-                                    <span class="text-5xl font-bold text-primary">1</span>
+                                    <span class="text-5xl font-bold text-[var(--color-primary)]">1</span>
                                     <div class="text-left">
                                         <span class="block text-sm font-medium text-gray-600">PAN</span>
                                         <span class="block text-sm font-medium text-green-600">Ativo</span>
@@ -223,8 +208,8 @@
             <div class="monitoring-section">
                 <section class="monitoring-panel">
                     <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-xl font-bold text-dark flex items-center">
-                            <svg class="w-6 h-6 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <h2 class="text-xl font-bold text-[var(--color-dark-green)] flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                             </svg>
                             Painel de PANs
@@ -261,7 +246,7 @@
                                 </div>
                             </div>
                             <div class="p-5">
-                                <h3 class="font-semibold text-lg text-dark mb-3">PAN Cavernas do Brasil</h3>
+                                <h3 class="font-semibold text-lg text-[var(--color-dark-green)] mb-3">PAN Cavernas do Brasil</h3>
                                 <p class="text-gray-600 text-sm mb-4 line-clamp-2">Plano de Ação Nacional para a Conservação do Patrimônio Espeleológico Brasileiro.</p>
                                 <div class="flex justify-between items-center mt-auto">
                                     <div class="flex items-center space-x-2">
@@ -272,7 +257,7 @@
                                             15% Concluído
                                         </span>
                                     </div>
-                                    <button onclick="abrirDetalhesPAN()" class="text-dark hover:text-primary text-sm font-medium transition-colors duration-300 flex items-center group">
+                                    <button onclick="abrirDetalhesPAN()" class="text-[var(--color-dark-green)] hover:text-[var(--color-primary)] text-sm font-medium transition-colors duration-300 flex items-center group">
                                         Ver detalhes
                                         <svg class="w-4 h-4 ml-1 transition-transform duration-300 transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -295,7 +280,7 @@
                 </svg>
             </button>
 
-            <h2 class="text-2xl font-bold text-dark mb-6">PAN Cavernas do Brasil</h2>
+            <h2 class="text-2xl font-bold text-[var(--color-dark-green)] mb-6">PAN Cavernas do Brasil</h2>
 
             <div class="step-dots">
                 <div class="step-dot active" onclick="mostrarEtapa(0)"></div>
@@ -304,13 +289,13 @@
             </div>
 
             <div class="step active">
-                <h3 class="text-xl font-semibold text-dark mb-4">Andamento Geral do PAN</h3>
+                <h3 class="text-xl font-semibold text-[var(--color-dark-green)] mb-4">Andamento Geral do PAN</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                        <h4 class="text-lg font-semibold text-dark mb-4">Progresso das Ações</h4>
+                        <h4 class="text-lg font-semibold text-[var(--color-dark-green)] mb-4">Progresso das Ações</h4>
                         <div class="flex items-center justify-center mb-4">
                             <div class="progress-ring" data-progress="35">
-                                <span class="text-2xl font-bold text-primary relative">35%</span>
+                                <span class="text-2xl font-bold text-[var(--color-primary)] relative">35%</span>
                             </div>
                         </div>
                         <div class="text-sm text-gray-600 text-center">
@@ -318,9 +303,9 @@
                         </div>
                     </div>
                     <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                        <h4 class="text-lg font-semibold text-dark mb-4">Período de Vigência</h4>
+                        <h4 class="text-lg font-semibold text-[var(--color-dark-green)] mb-4">Período de Vigência</h4>
                         <div class="text-center">
-                            <span class="text-4xl font-bold text-primary block mb-2">2023-2028</span>
+                            <span class="text-4xl font-bold text-[var(--color-primary)] block mb-2">2023-2028</span>
                             <span class="text-sm text-gray-600">5 anos de duração</span>
                         </div>
                     </div>
@@ -328,7 +313,7 @@
             </div>
 
             <div class="step">
-                <h3 class="text-xl font-semibold text-dark mb-4">Objetivo Geral</h3>
+                <h3 class="text-xl font-semibold text-[var(--color-dark-green)] mb-4">Objetivo Geral</h3>
                 <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
                     <p class="text-gray-700">
                         Aperfeiçoar a gestão e manejo do patrimônio espeleológico brasileiro, promovendo o uso público sustentável e a conservação de cavernas e sua biodiversidade associada.
@@ -337,10 +322,10 @@
             </div>
 
             <div class="step">
-                <h3 class="text-xl font-semibold text-dark mb-4">Objetivos Específicos</h3>
+                <h3 class="text-xl font-semibold text-[var(--color-dark-green)] mb-4">Objetivos Específicos</h3>
                 <div class="space-y-6">
                     <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                        <h4 class="font-semibold text-dark mb-2">Objetivo 1</h4>
+                        <h4 class="font-semibold text-[var(--color-dark-green)] mb-2">Objetivo 1</h4>
                         <p class="text-gray-700 mb-4">Aprimorar o conhecimento sobre o patrimônio espeleológico brasileiro.</p>
                         <div class="pl-4 space-y-2">
                             <p class="text-sm text-gray-600">• Ação 1.1: Realizar levantamentos espeleológicos</p>
@@ -350,7 +335,7 @@
                     </div>
 
                     <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                        <h4 class="font-semibold text-dark mb-2">Objetivo 2</h4>
+                        <h4 class="font-semibold text-[var(--color-dark-green)] mb-2">Objetivo 2</h4>
                         <p class="text-gray-700 mb-4">Fortalecer a proteção e o manejo sustentável das cavernas.</p>
                         <div class="pl-4 space-y-2">
                             <p class="text-sm text-gray-600">• Ação 2.1: Implementar medidas de proteção</p>
@@ -360,7 +345,7 @@
                     </div>
 
                     <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                        <h4 class="font-semibold text-dark mb-2">Objetivo 3</h4>
+                        <h4 class="font-semibold text-[var(--color-dark-green)] mb-2">Objetivo 3</h4>
                         <p class="text-gray-700 mb-4">Promover a educação e conscientização sobre o patrimônio espeleológico.</p>
                         <div class="pl-4 space-y-2">
                             <p class="text-sm text-gray-600">• Ação 3.1: Desenvolver programas educativos</p>
@@ -373,7 +358,7 @@
 
             <div class="flex justify-between mt-6">
                 <button onclick="etapaAnterior()" class="px-4 py-2 text-gray-600 hover:text-gray-900">← Anterior</button>
-                <button onclick="proximaEtapa()" class="px-4 py-2 text-primary hover:text-dark">Próxima →</button>
+                <button onclick="proximaEtapa()" class="px-4 py-2 text-[var(--color-primary)] hover:text-[var(--color-dark-green)]">Próxima →</button>
             </div>
         </div>
     </div>
@@ -382,6 +367,8 @@
         fetch('layout.html')
             .then(response => response.text())
             .then(html => {
+                const temp = document.createElement('div');
+                temp.innerHTML = html;
                 document.getElementById('layout-content').innerHTML = html;
                 const pageContent = document.getElementById('page-content');
                 const layoutContent = document.getElementById('content');
