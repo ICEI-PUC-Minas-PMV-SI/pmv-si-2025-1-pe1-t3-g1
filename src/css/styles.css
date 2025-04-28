@@ -273,25 +273,31 @@ footer {
     display: block;
 }
 
-.step-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin: 20px 0;
-}
-
-.step-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #e5e7eb;
-    cursor: pointer;
+#pan-search-input {
+    min-width: 250px;
     transition: all 0.3s ease;
 }
 
-.step-dot.active {
-    background: #339966;
-    transform: scale(1.2);
+#pan-search-input:focus {
+    box-shadow: 0 0 0 3px var(--color-primary);
+}
+
+.pan-card {
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.pan-card.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.flex.justify-between {
+    position: relative;
+}
+
+#etapa-anterior.hidden + #proxima-etapa {
+    margin-left: auto;
 }
 
 @media (max-width: 640px) {
