@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
             allPans = data.pans;
             localStorage.setItem('pansData', JSON.stringify(data));
             renderPanCards(allPans);
+            updateMonitoringCharts(allPans);
         })
         .catch(error => {
             console.error('Erro ao carregar o JSON:', error);
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (storedData) {
                 allPans = JSON.parse(storedData).pans;
                 renderPanCards(allPans);
+                updateMonitoringCharts(allPans);
             }
         });
 });
@@ -26,6 +28,14 @@ function renderPanCards(pans) {
     container.innerHTML = '';
     
     pans.forEach(pan => {
+        const panStatus = calculatePanStatus(pan);
+
+        pan.status = panStatus.status;
+        pan.statusColor = panStatus.statusColor;
+        pan.tag2 = panStatus.tag2;
+        pan.tag2Color = panStatus.tag2Color;
+        pan.progress = panStatus.progress;
+
         const panCard = document.createElement('div');
         panCard.className = 'pan-card';
         panCard.innerHTML = `
@@ -34,9 +44,9 @@ function renderPanCards(pans) {
                      alt="${pan.title}" 
                      class="w-full h-full object-cover">
                 <div class="absolute top-0 right-0 m-4">
-                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-${pan.statusColor}-100 text-${pan.statusColor}-800">
-                        <span class="w-2 h-2 mr-2 bg-${pan.statusColor}-500 rounded-full"></span>
-                        ${pan.status}
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-${panStatus.statusColor}-100 text-${panStatus.statusColor}-800">
+                        <span class="w-2 h-2 mr-2 bg-${panStatus.statusColor}-500 rounded-full"></span>
+                        ${panStatus.status}
                     </span>
                 </div>
             </div>
@@ -48,8 +58,8 @@ function renderPanCards(pans) {
                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${pan.tag1Color}-100 text-${pan.tag1Color}-800">
                             ${pan.tag1}
                         </span>
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${pan.tag2Color}-100 text-${pan.tag2Color}-800">
-                            ${pan.tag2}
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${panStatus.tag2Color}-100 text-${panStatus.tag2Color}-800">
+                            ${panStatus.tag2}
                         </span>
                     </div>
                     <button onclick="abrirDetalhesPAN(${pan.id})" class="text-[var(--color-dark-green)] hover:text-[var(--color-primary)] text-sm font-medium transition-colors duration-300 flex items-center group">
@@ -73,6 +83,7 @@ function filtrarPANs() {
         
         if (!searchTerm) {
             renderPanCards(allPans);
+            updateMonitoringCharts(allPans);
             return;
         }
         
@@ -85,13 +96,17 @@ function filtrarPANs() {
                 pan.tag2.toLowerCase().includes(searchTerm) ||
                 (pan.specificObjectives && pan.specificObjectives.some(obj => 
                     obj.title.toLowerCase().includes(searchTerm) || 
-                    obj.description.toLowerCase().includes(searchTerm)
+                    obj.description.toLowerCase().includes(searchTerm) ||
+                    obj.actions.some(action => 
+                        action.description.toLowerCase().includes(searchTerm)
+                    )
                 ))
             );
         });
         
         renderPanCards(filteredPans);
-    }, 300); 
+        updateMonitoringCharts(filteredPans);
+    }, 300);
 }
 
 function abrirDetalhesPAN(panId) {
@@ -111,20 +126,13 @@ function abrirDetalhesPAN(panId) {
 
     document.querySelector('#modal-detalhes h2').textContent = currentPan.title;
 
-    const stepDotsContainer = document.querySelector('#modal-detalhes .step-dots');
+    const stepDotsContainer = document.querySelector('#modal-detalhes .flex.justify-center.gap-2');
     stepDotsContainer.innerHTML = '';
     for (let i = 0; i < totalSteps; i++) {
-        const dot = document.createElement('div');
-        dot.className = `step-dot w-3 h-3 rounded-full cursor-pointer ${i === 0 ? 'bg-[var(--color-primary)]' : 'bg-gray-300'}`;
+        const dot = document.createElement('button');
+        dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === 0 ? 'bg-[var(--color-primary)] scale-125' : 'bg-gray-300'}`;
         dot.onclick = () => mostrarEtapa(i);
         stepDotsContainer.appendChild(dot);
-    }
-
-    if (currentPan.statusReason) {
-        const statusInfo = document.createElement('p');
-        statusInfo.className = 'text-sm text-gray-500 mt-2';
-        statusInfo.textContent = `Motivo: ${currentPan.statusReason}`;
-        document.querySelector('#modal-detalhes h2').insertAdjacentElement('afterend', statusInfo);
     }
 
     preencherConteudoModal();
@@ -133,7 +141,49 @@ function abrirDetalhesPAN(panId) {
     mostrarEtapa(0);
 }
 
+function calculateObjectiveProgress(objective) {
+    let totalActions = objective.actions.length;
+    let completedActions = objective.actions.filter(action => action.status === 'completed').length;
+    return Math.round((completedActions / totalActions) * 100);
+}
+
 function preencherConteudoModal() {
+    let totalActions = 0;
+    let actionsInProgress = 0;
+    let completedActions = 0;
+    
+    currentPan.specificObjectives.forEach(obj => {
+        if (obj.actions) {
+            obj.actions.forEach(action => {
+                totalActions++;
+                if (typeof action === 'object') {
+                    if (action.status === 'in_progress') {
+                        actionsInProgress++;
+                    } else if (action.status === 'completed') {
+                        completedActions++;
+                    }
+                }
+            });
+        }
+    });
+
+    const progress = totalActions > 0 ? Math.round((completedActions / totalActions) * 100) : 0;
+
+    currentPan.progress = progress;
+    
+    function getActionStatusText(total, inProgress, completed) {
+        if (completed === total) {
+            return `${total} ações concluídas`;
+        } else if (inProgress === 0 && completed === 0) {
+            return `${total} ações não iniciadas`;
+        } else {
+            const remaining = total - completed;
+            return `${inProgress} em execução, ${completed} concluídas, ${remaining} restantes`;
+        }
+    }
+
+    const statusText = getActionStatusText(totalActions, actionsInProgress, completedActions);
+    
     const stepContent = document.querySelector('#modal-detalhes .step-content');
     stepContent.innerHTML = `
         <div class="step active">
@@ -175,16 +225,16 @@ function preencherConteudoModal() {
                                     fill="none"
                                     stroke="var(--color-primary)"
                                     stroke-width="3"
-                                    stroke-dasharray="${currentPan.progress}, 100"
+                                    stroke-dasharray="${progress}, 100"
                                 />
                             </svg>
                             <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-[var(--color-primary)]">
-                                ${currentPan.progress}%
+                                ${progress}%
                             </span>
                         </div>
                     </div>
                     <div class="text-sm text-gray-600 text-center">
-                        ${Math.round(currentPan.progress * 20 / 100)} de 20 ações em execução
+                        ${statusText}
                     </div>
                 </div>
                 <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
@@ -207,35 +257,29 @@ function preencherConteudoModal() {
         <div class="step hidden">
             <h3 class="text-xl font-semibold text-[var(--color-dark-green)] mb-4">Objetivos Específicos</h3>
             <div class="space-y-6">
-                ${currentPan.specificObjectives.map(obj => `
+                ${currentPan.specificObjectives.map(obj => {
+                    const objectiveProgress = calculateObjectiveProgress(obj);
+                    return `
                     <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
                         <div class="flex justify-between items-start">
                             <div>
                                 <h4 class="font-semibold text-[var(--color-dark-green)] mb-2">${obj.title}</h4>
                                 <p class="text-gray-700 mb-4">${obj.description}</p>
                             </div>
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${obj.progress === 100 ? 'green' : 'blue'}-100 text-${obj.progress === 100 ? 'green' : 'blue'}-800">
-                                ${obj.progress}% Concluído
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${objectiveProgress === 100 ? 'green' : 'blue'}-100 text-${objectiveProgress === 100 ? 'green' : 'blue'}-800">
+                                ${objectiveProgress}% Concluído
                             </span>
                         </div>
                         <div class="pl-4 space-y-2">
                             ${obj.actions.map(action => `
-                                <p class="text-sm text-gray-600 flex items-center">
-                                    ${action.includes('(concluído)') ? `
-                                        <svg class="w-4 h-4 mr-1 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                        </svg>
-                                    ` : `
-                                        <svg class="w-4 h-4 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                    `}
-                                    ${action.replace('(concluído)', '')}
+                                <p class="text-sm ${getStatusClass(action.status)} flex items-center">
+                                    ${getStatusIcon(action.status)}
+                                    ${action.description}
                                 </p>
                             `).join('')}
                         </div>
                     </div>
-                `).join('')}
+                `}).join('')}
             </div>
         </div>
     `;
@@ -265,6 +309,14 @@ function mostrarEtapa(etapa) {
         } else {
             dot.classList.add('bg-gray-300');
             dot.classList.remove('bg-[var(--color-primary)]');
+        }
+    });
+
+    document.querySelectorAll('#modal-detalhes .flex.justify-center.gap-2 button').forEach((dot, index) => {
+        if (index === etapa) {
+            dot.className = 'w-2.5 h-2.5 rounded-full bg-[var(--color-primary)] scale-125 transition-all duration-300';
+        } else {
+            dot.className = 'w-2.5 h-2.5 rounded-full bg-gray-300 transition-all duration-300';
         }
     });
 
@@ -299,4 +351,154 @@ function fecharDetalhesPAN() {
     document.getElementById('modal-detalhes').classList.add('hidden');
     currentPan = null;
     currentStep = 0;
+}
+
+function updateMonitoringCharts(pans) {
+    const totalActions = pans.reduce((total, pan) => {
+        return total + pan.specificObjectives.reduce((objTotal, obj) => {
+            return objTotal + obj.actions.length;
+        }, 0);
+    }, 0);
+
+    const actionCounts = pans.reduce((counts, pan) => {
+        pan.specificObjectives.forEach(obj => {
+            obj.actions.forEach(action => {
+                switch (action.status) {
+                    case 'completed':
+                        counts.completed++;
+                        break;
+                    case 'in_progress':
+                        counts.inProgress++;
+                        break;
+                    case 'not_started':
+                        counts.notStarted++;
+                        break;
+                }
+            });
+        });
+        return counts;
+    }, { completed: 0, inProgress: 0, notStarted: 0 });
+
+    const overallProgress = Math.round((actionCounts.completed / totalActions) * 100) || 0;
+
+    const progressRing = document.querySelector('.progress-ring');
+    const progressColor = getProgressColor(overallProgress);
+    progressRing.setAttribute('data-progress', overallProgress);
+    progressRing.style.background = `conic-gradient(${progressColor} ${overallProgress}%, #f3f4f6 0%)`;
+    progressRing.querySelector('span').textContent = `${overallProgress}%`;
+    progressRing.querySelector('span').style.color = progressColor;
+
+    const bars = document.querySelectorAll('.bar');
+
+    bars[0].style.height = `${(actionCounts.inProgress / totalActions) * 100}%`;
+    bars[0].querySelector('.bar-value').textContent = actionCounts.inProgress;
+
+    bars[1].style.height = `${(actionCounts.completed / totalActions) * 100}%`;
+    bars[1].querySelector('.bar-value').textContent = actionCounts.completed;
+
+    bars[2].style.height = `${(actionCounts.notStarted / totalActions) * 100}%`;
+    bars[2].querySelector('.bar-value').textContent = actionCounts.notStarted;
+
+    const totalPansElement = document.querySelector('.text-5xl.font-bold');
+    if (totalPansElement) {
+        totalPansElement.textContent = pans.length;
+    }
+}
+
+function getProgressColor(percentage) {
+    if (percentage >= 100) return '#22c55e';
+    if (percentage >= 70) return '#22c55e';
+    if (percentage >= 40) return '#eab308';
+    if (percentage >= 20) return '#f97316';
+    return '#ef4444';
+}
+
+function getStatusIcon(status) {
+    switch (status) {
+        case 'completed':
+            return `<svg class="w-4 h-4 mr-1 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>`;
+        case 'in_progress':
+            return `<svg class="w-4 h-4 mr-1 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>`;
+        default:
+            return `<svg class="w-4 h-4 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                    </svg>`;
+    }
+}
+
+function getStatusClass(status) {
+    switch (status) {
+        case 'completed':
+            return 'text-green-600';
+        case 'in_progress':
+            return 'text-yellow-600';
+        default:
+            return 'text-gray-600';
+    }
+}
+
+function calculatePanStatus(pan) {
+    let totalActions = 0;
+    let completedActions = 0;
+    let inProgressActions = 0;
+    let notStartedActions = 0;
+
+    pan.specificObjectives.forEach(objective => {
+        objective.actions.forEach(action => {
+            totalActions++;
+            switch (action.status) {
+                case 'completed':
+                    completedActions++;
+                    break;
+                case 'in_progress':
+                    inProgressActions++;
+                    break;
+                case 'not_started':
+                    notStartedActions++;
+                    break;
+            }
+        });
+    });
+
+    const progressPercentage = Math.round((completedActions / totalActions) * 100);
+
+    let status, statusColor, tag2Color;
+
+    if (completedActions === totalActions) {
+        status = "Concluído";
+        statusColor = "green";
+    } else if (inProgressActions > 0) {
+        status = "Ativo";
+        statusColor = "blue";
+    } else if (completedActions > 0) {
+        status = "Parado";
+        statusColor = "red";
+    } else {
+        status = "Não Iniciado";
+        statusColor = "gray";
+    }
+
+    if (progressPercentage === 100) {
+        tag2Color = "green";
+    } else if (progressPercentage >= 70) {
+        tag2Color = "green-500";
+    } else if (progressPercentage >= 40) {
+        tag2Color = "yellow";
+    } else if (progressPercentage >= 20) {
+        tag2Color = "orange";
+    } else {
+        tag2Color = "red";
+    }
+
+    return {
+        status,
+        statusColor,
+        tag2: `${progressPercentage}% Concluído`,
+        tag2Color,
+        progress: progressPercentage
+    };
 }

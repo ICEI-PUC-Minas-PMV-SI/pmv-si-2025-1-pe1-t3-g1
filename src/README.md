@@ -28,10 +28,23 @@ O site em HTML/CSS/JS é um projeto estático, podendo ser utilizado em servidor
 
 ## Histórico de versões
 
-### [1.0.0] - 14/04/2025
-#### Adicionado
+## [1.0.0] - 14/04/2025
+### Adicionado
 - Sistema de autenticação com diferentes níveis de acesso
 - Dashboard principal com gráficos de progresso
 - Painel administrativo para gestão de usuários
 - Interface responsiva com Tailwind CSS
 - Visualização detalhada do PAN Cavernas
+
+## [1.0.1] - 27/04/2025
+### Adicionado
+- Exibição dinâmica dos cards de PANs via JavaScript, utilizando dados de um arquivo JSON.
+
+## [1.0.2] - 29/04/2025
+### Alterado
+- Cálculo da porcentagem de conclusão dos objetivos agora baseado nos status das ações.
+- Exibição dos gráficos atualizada para coletar dinamicamente os dados dos PANs a partir do JSON, removendo o código estático.
+
+### Adicionado
+- Status individual para cada ação.
+- Definição dinâmica da tag dos PANs conforme o progresso.
