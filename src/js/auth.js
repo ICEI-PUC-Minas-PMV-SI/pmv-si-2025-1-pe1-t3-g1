@@ -30,26 +30,30 @@ function inicializarUsuarios() {
 }
 
 function login(email, senha) {
-    const usuarios = window.loadFromServer('users') || [];
-    const usuario = usuarios.find(u => {
-        if (u.email === email && u.status === 'ativo') {
-            try {
-                const senhaArmazenada = atob(u.senha);
-                return senhaArmazenada === senha;
-            } catch (e) {
-                console.error('Erro ao descriptografar senha:', e);
-                return false;
+    return new Promise((resolve) => {
+        const usuarios = window.loadFromServer('users') || [];
+        const usuario = usuarios.find(u => {
+            if (u.email === email && u.status === 'ativo') {
+                try {
+                    const senhaArmazenada = atob(u.senha);
+                    return senhaArmazenada === senha;
+                } catch (e) {
+                    console.error('Erro ao descriptografar senha:', e);
+                    return false;
+                }
             }
+            return false;
+        });
+        
+        if (usuario) {
+            const { senha, ...usuarioSemSenha } = usuario;
+            localStorage.setItem('currentUser', JSON.stringify(usuarioSemSenha));
+            resolve(true);
+        } else {
+            localStorage.removeItem('currentUser');
+            resolve(false);
         }
-        return false;
     });
-    
-    if (usuario) {
-        const { senha, ...usuarioSemSenha } = usuario;
-        localStorage.setItem('currentUser', JSON.stringify(usuarioSemSenha));
-        return true;
-    }
-    return false;
 }
 
 function logout() {
