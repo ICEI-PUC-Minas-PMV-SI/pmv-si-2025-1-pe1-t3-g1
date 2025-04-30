@@ -9,6 +9,8 @@
             "tag1Color": "blue",
             "period": "2023-2028",
             "duration": "5 anos de duração",
+            "statusReason": "",
+            "statusColor": "gray",
             "generalObjective": "Aperfeiçoar a gestão e manejo do patrimônio espeleológico brasileiro, promovendo o uso público sustentável e a conservação de cavernas e sua biodiversidade associada.",
             "specificObjectives": [
                 {
@@ -76,6 +78,8 @@
             "tag1Color": "orange",
             "period": "2022-2027",
             "duration": "5 anos de duração",
+            "statusReason": "",
+            "statusColor": "gray",
             "generalObjective": "Proteger e conservar as espécies de mamíferos aquáticos ameaçadas de extinção no território brasileiro.",
             "specificObjectives": [
                 {
@@ -126,6 +130,7 @@
             "period": "2020-2025",
             "duration": "5 anos de duração",
             "statusReason": "Suspenso temporariamente devido à necessidade de revisão das estratégias após reintrodução da espécie na natureza",
+            "statusColor": "red",
             "generalObjective": "Recuperar e conservar populações viáveis de Ararinha-azul em seu habitat natural, garantindo a proteção a longo prazo da espécie.",
             "specificObjectives": [
                 {
@@ -194,6 +199,7 @@
             "period": "2018-2023",
             "duration": "5 anos de duração",
             "statusReason": "Plano concluído com sucesso, atingindo todas as metas estabelecidas",
+            "statusColor": "green",
             "generalObjective": "Proteger e conservar os ecossistemas coralíneos brasileiros, com ênfase nas espécies ameaçadas de extinção.",
             "specificObjectives": [
                 {
