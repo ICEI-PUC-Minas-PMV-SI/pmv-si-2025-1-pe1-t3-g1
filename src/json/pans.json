@@ -1,0 +1,262 @@
+{
+    "pans": [
+        {
+            "id": 1,
+            "title": "PAN Cavernas do Brasil",
+            "description": "Plano de Ação Nacional para a Conservação do Patrimônio Espeleológico Brasileiro.",
+            "image": "img/logo-pan-cavernas.png",
+            "tag1": "Em Execução",
+            "tag1Color": "blue",
+            "period": "2023-2028",
+            "duration": "5 anos de duração",
+            "statusReason": "",
+            "statusColor": "gray",
+            "generalObjective": "Aperfeiçoar a gestão e manejo do patrimônio espeleológico brasileiro, promovendo o uso público sustentável e a conservação de cavernas e sua biodiversidade associada.",
+            "specificObjectives": [
+                {
+                    "title": "Objetivo 1",
+                    "description": "Aprimorar o conhecimento sobre o patrimônio espeleológico brasileiro.",
+                    "actions": [
+                        {
+                            "description": "Realizar levantamentos espeleológicos",
+                            "status": "not_started"
+                        },
+                        {
+                            "description": "Mapear áreas prioritárias",
+                            "status": "in_progress"
+                        },
+                        {
+                            "description": "Estudar a biodiversidade cavernícola",
+                            "status": "completed"
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 2",
+                    "description": "Fortalecer a proteção e o manejo sustentável das cavernas.",
+                    "actions": [
+                        {
+                            "description": "Implementar medidas de proteção",
+                            "status": "not_started"
+                        },
+                        {
+                            "description": "Desenvolver protocolos de manejo",
+                            "status": "in_progress"
+                        },
+                        {
+                            "description": "Monitorar impactos ambientais",
+                            "status": "completed"
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 3",
+                    "description": "Promover a educação e conscientização sobre o patrimônio espeleológico.",
+                    "actions": [
+                        {
+                            "description": "Desenvolver programas educativos",
+                            "status": "not_started"
+                        },
+                        {
+                            "description": "Capacitar guias e gestores",
+                            "status": "in_progress"
+                        },
+                        {
+                            "description": "Promover o turismo sustentável",
+                            "status": "completed"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "PAN Mamíferos Aquáticos",
+            "description": "Plano de Ação Nacional para a Conservação dos Mamíferos Aquáticos Amazônicos.",
+            "image": "img/logo-mamiferos-aquaticos.png",
+            "tag1": "Aguardando Coordenador",
+            "tag1Color": "orange",
+            "period": "2022-2027",
+            "duration": "5 anos de duração",
+            "statusReason": "",
+            "statusColor": "gray",
+            "generalObjective": "Proteger e conservar as espécies de mamíferos aquáticos ameaçadas de extinção no território brasileiro.",
+            "specificObjectives": [
+                {
+                    "title": "Objetivo 1",
+                    "description": "Reduzir as ameaças diretas às populações de mamíferos aquáticos.",
+                    "actions": [
+                        {
+                            "description": "Combate à pesca incidental",
+                            "status": "in_progress"
+                        },
+                        {
+                            "description": "Redução da poluição marinha",
+                            "status": "not_started"
+                        },
+                        {
+                            "description": "Controle do tráfego de embarcações",
+                            "status": "completed"
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 2",
+                    "description": "Ampliar o conhecimento científico sobre as espécies.",
+                    "actions": [
+                        {
+                            "description": "Monitoramento populacional",
+                            "status": "not_started"
+                        },
+                        {
+                            "description": "Pesquisas sobre comportamento",
+                            "status": "in_progress"
+                        },
+                        {
+                            "description": "Estudos genéticos",
+                            "status": "completed"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "PAN Ararinha Azul",
+            "description": "Plano de Ação Nacional para Conservação da Ararinha-azul (Cyanopsitta spixii).",
+            "image": "img/logo-pan-ararinha-azul.png",
+            "tag1": "Suspenso",
+            "tag1Color": "red",
+            "period": "2020-2025",
+            "duration": "5 anos de duração",
+            "statusReason": "Suspenso temporariamente devido à necessidade de revisão das estratégias após reintrodução da espécie na natureza",
+            "statusColor": "red",
+            "generalObjective": "Recuperar e conservar populações viáveis de Ararinha-azul em seu habitat natural, garantindo a proteção a longo prazo da espécie.",
+            "specificObjectives": [
+                {
+                    "title": "Objetivo 1",
+                    "description": "Estabelecer populações selvagens viáveis através de programas de reintrodução.",
+                    "actions": [
+                        {
+                            "description": "Monitoramento dos indivíduos reintroduzidos",
+                            "status": "in_progress"
+                        },
+                        {
+                            "description": "Avaliação de habitat para soltura",
+                            "status": "not_started"
+                        },
+                        {
+                            "description": "Programa de reprodução em cativeiro",
+                            "status": "completed"
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 2",
+                    "description": "Proteger e restaurar o habitat natural da espécie.",
+                    "actions": [
+                        {
+                            "description": "Mapeamento de áreas prioritárias",
+                            "status": "not_started"
+                        },
+                        {
+                            "description": "Parcerias com proprietários de terras",
+                            "status": "in_progress"
+                        },
+                        {
+                            "description": "Controle de espécies invasoras",
+                            "status": "completed"
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 3",
+                    "description": "Reduzir as ameaças à espécie através de ações de fiscalização e educação ambiental.",
+                    "actions": [
+                        {
+                            "description": "Campanhas contra o tráfico de animais",
+                            "status": "not_started"
+                        },
+                        {
+                            "description": "Programa de educação ambiental",
+                            "status": "in_progress"
+                        },
+                        {
+                            "description": "Fortalecimento da fiscalização",
+                            "status": "completed"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "title": "PAN Corais",
+            "description": "Plano de Ação Nacional para Conservação de Ambientes Coralíneos.",
+            "image": "img/logo-pan-corais.jpeg",
+            "tag1": "Finalizado",
+            "tag1Color": "green",
+            "period": "2018-2023",
+            "duration": "5 anos de duração",
+            "statusReason": "Plano concluído com sucesso, atingindo todas as metas estabelecidas",
+            "statusColor": "green",
+            "generalObjective": "Proteger e conservar os ecossistemas coralíneos brasileiros, com ênfase nas espécies ameaçadas de extinção.",
+            "specificObjectives": [
+                {
+                    "title": "Objetivo 1",
+                    "description": "Reduzir as ameaças diretas aos recifes de coral.",
+                    "actions": [
+                        {
+                            "description": "Controle do turismo predatório",
+                            "status": "completed"
+                        },
+                        {
+                            "description": "Redução da poluição marinha",
+                            "status": "completed"
+                        },
+                        {
+                            "description": "Regulamentação da pesca",
+                            "status": "completed"
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 2",
+                    "description": "Ampliar o conhecimento científico sobre os ecossistemas coralíneos.",
+                    "actions": [
+                        {
+                            "description": "Mapeamento completo dos recifes",
+                            "status": "completed"
+                        },
+                        {
+                            "description": "Monitoramento contínuo",
+                            "status": "completed"
+                        },
+                        {
+                            "description": "Estudos sobre mudanças climáticas",
+                            "status": "completed"
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 3",
+                    "description": "Implementar medidas de restauração de áreas degradadas.",
+                    "actions": [
+                        {
+                            "description": "Projeto piloto de restauração",
+                            "status": "completed"
+                        },
+                        {
+                            "description": "Banco de genótipos",
+                            "status": "completed"
+                        },
+                        {
+                            "description": "Protocolos de manejo",
+                            "status": "completed"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
