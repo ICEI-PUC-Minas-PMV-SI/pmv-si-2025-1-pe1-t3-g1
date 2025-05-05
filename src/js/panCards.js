@@ -23,6 +23,66 @@ let currentStep = 0;
 const totalSteps = 3;
 let timeoutId;
 
+document.addEventListener('panDataUpdated', () => {
+    const storedData = JSON.parse(localStorage.getItem('pansData'));
+    renderPanCards(storedData.pans);
+});
+
+function removerPan(id) {
+    const pansAtualizados = storedData.pans.filter((pan) => pan.id !== id);
+
+    localStorage.setItem("pansData", JSON.stringify({ pans: pansAtualizados }));
+
+    document.dispatchEvent(new Event("panDataUpdated"));
+}
+
+function editarPan(id) {
+    const panForm = document.getElementById("pan-form");
+    const stored = JSON.parse(localStorage.getItem("pansData")) || { pans: [] };
+    const pan = stored.pans.find((p) => p.id === id);
+    if (!pan) return alert("PAN não encontrado.");
+
+    panForm.elements["editingId"].value = pan.id;
+    panForm.elements["title"].value = pan.title;
+    panForm.elements["description"].value = pan.description;
+    panForm.elements["image"].value = pan.image || "";
+    panForm.elements["tag1"].value = pan.tag1;
+    panForm.elements["tag1Color"].value = pan.tag1Color;
+    panForm.elements["period"].value = pan.period;
+    panForm.elements["duration"].value = pan.duration;
+    panForm.elements["generalObjective"].value = pan.generalObjective;
+
+    const container = document.getElementById("specific-objectives-container");
+    container.innerHTML = "";
+
+    pan.specificObjectives.forEach((obj, i) => {
+        const template = document
+        .getElementById("objective-template")
+        .content.cloneNode(true);
+        template.querySelector(".objective-number").textContent = i + 1;
+        template.querySelector('input[name$="[title]"]').value = obj.title;
+        template.querySelector('textarea[name$="[description]"]').value =
+        obj.description;
+
+        const actionsContainer = template.querySelector(".actions-container");
+        const actionGroup = actionsContainer.querySelector(".action-group");
+        actionsContainer.innerHTML = "";
+
+        obj.actions.forEach((action) => {
+        const clone = actionGroup.cloneNode(true);
+        clone.querySelector('input[name$="[description]"]').value =
+            action.description;
+        clone.querySelector('select[name$="[status]"]').value = action.status;
+        actionsContainer.appendChild(clone);
+        });
+
+        container.appendChild(template);
+    });
+
+    document.querySelector("#pan-modal h3").textContent = "Editar PAN";
+    document.getElementById("pan-modal").classList.remove("hidden");
+}
+
 function renderPanCards(pans) {
     const container = document.getElementById('pan-cards-container');
     container.innerHTML = '';
@@ -40,7 +100,7 @@ function renderPanCards(pans) {
         panCard.className = 'pan-card';
         panCard.innerHTML = `
             <div class="pan-card-image">
-                <img src="${pan.image}" 
+                <img src="${pan?.image ?? 'img/default.webp'}" 
                      alt="${pan.title}" 
                      class="w-full h-full object-cover">
                 <div class="absolute top-0 right-0 m-4">
@@ -53,20 +113,26 @@ function renderPanCards(pans) {
             <div class="p-5">
                 <h3 class="font-semibold text-lg text-[var(--color-dark-green)] mb-3">${pan.title}</h3>
                 <p class="text-gray-600 text-sm mb-4 line-clamp-2">${pan.description}</p>
-                <div class="flex justify-between items-center mt-auto">
-                    <div class="flex items-center space-x-2">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${pan.tag1Color}-100 text-${pan.tag1Color}-800">
-                            ${pan.tag1}
-                        </span>
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${panStatus.tag2Color}-100 text-${panStatus.tag2Color}-800">
-                            ${panStatus.tag2}
-                        </span>
-                    </div>
+                <div class="flex items-center space-x-2 mb-2">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${pan.tag1Color}-100 text-${pan.tag1Color}-800">
+                        ${pan.tag1}
+                    </span>
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${panStatus.tag2Color}-100 text-${panStatus.tag2Color}-800">
+                        ${panStatus.tag2}
+                    </span>
+                </div>
+                <div class="flex items-center space-x-4">
                     <button onclick="abrirDetalhesPAN(${pan.id})" class="text-[var(--color-dark-green)] hover:text-[var(--color-primary)] text-sm font-medium transition-colors duration-300 flex items-center group">
+                        <span class="material-icons text-base mr-1">visibility</span>
                         Ver detalhes
-                        <svg class="w-4 h-4 ml-1 transition-transform duration-300 transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
+                    </button>
+                    <button onclick="removerPan(${pan.id})" class="text-red-600 hover:text-red-800 text-sm font-medium transition-colors duration-300 flex items-center group">
+                        <span class="material-icons text-base mr-1">delete</span>
+                        Remover
+                    </button>
+                    <button onclick="editarPan(${pan.id})" class="text-yellow-600 hover:text-yellow-800 text-sm font-medium transition-colors duration-300 flex items-center group">
+                        <span class="material-icons text-base mr-1">edit</span>
+                        Editar
                     </button>
                 </div>
             </div>
