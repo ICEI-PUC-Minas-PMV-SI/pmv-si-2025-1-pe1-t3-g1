@@ -126,13 +126,13 @@ function renderPanCards(pans) {
                         <span class="material-icons text-base mr-1">visibility</span>
                         Ver detalhes
                     </button>
-                    <button onclick="removerPan(${pan.id})" class="text-red-600 hover:text-red-800 text-sm font-medium transition-colors duration-300 flex items-center group">
-                        <span class="material-icons text-base mr-1">delete</span>
-                        Remover
-                    </button>
                     <button onclick="editarPan(${pan.id})" class="text-yellow-600 hover:text-yellow-800 text-sm font-medium transition-colors duration-300 flex items-center group">
                         <span class="material-icons text-base mr-1">edit</span>
                         Editar
+                    </button>
+                    <button onclick="removerPan(${pan.id})" class="text-red-600 hover:text-red-800 text-sm font-medium transition-colors duration-300 flex items-center group">
+                        <span class="material-icons text-base mr-1">delete</span>
+                        Remover
                     </button>
                 </div>
             </div>
