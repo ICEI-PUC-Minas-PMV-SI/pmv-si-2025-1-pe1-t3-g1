@@ -7,6 +7,7 @@
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="js/storage.js"></script>
     <script src="js/auth.js"></script>
     <style>
@@ -217,15 +218,18 @@
                             Painel de PANs
                         </h2>
                         <div class="flex space-x-3">
+                            <button id="add-pan-button" class="flex items-center justify-center w-10 h-10 rounded-full bg-light-green hover:bg-[var(--color-dark-green)] text-white text-xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-400">
+                                <span class="material-icons text-2xl">add</span>
+                            </button>
                             <div class="relative">
                                 <input type="search" 
                                        id="pan-search-input"
                                        placeholder="Buscar PAN..." 
                                        class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-all duration-300"
                                        oninput="filtrarPANs()">
-                                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                </svg>
+                                <span class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                    search
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -280,8 +284,134 @@
             </div>
         </div>
     </div>
+
+    <div id="pan-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-4">
+            <h3 class="text-2xl font-bold text-gray-800">Adicionar Novo PAN</h3>
+            <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                <span class="material-icons text-3xl">close</span>
+            </button>
+            </div>
+            
+            <form id="pan-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input type="hidden" name="editingId" value="">
+                <div class="space-y-4">
+                    <div>
+                    <label class="block text-sm font-medium text-gray-700">Título*</label>
+                    <input type="text" name="title" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                    </div>
+                    
+                    <div>
+                    <label class="block text-sm font-medium text-gray-700">Descrição*</label>
+                    <textarea name="description" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+                    </div>
+                    
+                    <div>
+                    <label class="block text-sm font-medium text-gray-700">URL da Imagem</label>
+                    <input type="text" name="image" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="img/logo-pan-exemplo.png">
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Tag 1</label>
+                        <input type="text" name="tag1" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="Em Execução">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Cor da Tag</label>
+                        <select name="tag1Color" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                        <option value="blue">Azul</option>
+                        <option value="green">Verde</option>
+                        <option value="red">Vermelho</option>
+                        <option value="yellow">Amarelo</option>
+                        <option value="gray">Cinza</option>
+                        </select>
+                    </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Período</label>
+                        <input type="text" name="period" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="2023-2028">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Duração</label>
+                        <input type="text" name="duration" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="5 anos de duração">
+                    </div>
+                    </div>
+                    
+                    <div>
+                    <label class="block text-sm font-medium text-gray-700">Objetivo Geral*</label>
+                    <textarea name="generalObjective" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-2">
+                    <h4 class="text-lg font-medium text-gray-800 mb-4">Objetivos Específicos</h4>
+                    <div id="specific-objectives-container" class="space-y-6">
+                    </div>
+                    <button type="button" id="add-objective" class="mt-4 px-4 py-2 bg-blue-100 text-blue-600 rounded-md hover:bg-blue-200">
+                    + Adicionar Objetivo
+                    </button>
+                </div>
+                
+                <div class="md:col-span-2 flex justify-end space-x-4 pt-4 border-t">
+                    <button type="button" id="cancel-form" class="px-6 py-2 border border-gray-300 rounded-md">
+                    Cancelar
+                    </button>
+                    <button type="submit" class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                    Salvar PAN
+                    </button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    
+    <template id="objective-template">
+        <div class="objective-group border rounded-lg p-4 bg-gray-50">
+        <div class="flex justify-between items-center mb-3">
+            <h5 class="font-medium text-gray-700">Objetivo <span class="objective-number">1</span></h5>
+            <button type="button" class="remove-objective text-red-500 hover:text-red-700">
+            <span class="material-icons">delete</span>
+            </button>
+        </div>
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Título</label>
+            <input type="text" name="specificObjectives[][title]" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+        </div>
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Descrição</label>
+            <textarea name="specificObjectives[][description]" rows="2" class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+        </div>
+        
+        <div class="actions-container space-y-2">
+            <div class="action-group flex items-center space-x-2">
+            <input type="text" name="specificObjectives[][actions][][description]" placeholder="Descrição da ação" class="flex-1 border border-gray-300 rounded-md p-2">
+            <select name="specificObjectives[][actions][][status]" class="border border-gray-300 rounded-md p-2">
+                <option value="not_started">Não iniciado</option>
+                <option value="in_progress">Em progresso</option>
+                <option value="completed">Completo</option>
+            </select>
+            <button type="button" class="remove-action text-red-500 hover:text-red-700">
+                <span class="material-icons">close</span>
+            </button>
+            </div>
+        </div>
+        
+        <button type="button" class="add-action mt-2 px-3 py-1 bg-gray-200 text-gray-700 rounded-md text-sm hover:bg-gray-300">
+            + Adicionar Ação
+        </button>
+        </div>
+    </template>
     
     <script src="js/panCards.js"></script>
+    <script src="js/addPan.js" defer></script>
     <script>
         fetch('layout.html')
             .then(response => response.text())
