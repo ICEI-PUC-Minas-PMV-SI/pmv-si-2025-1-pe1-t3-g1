@@ -67,17 +67,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const actionContainer = objectiveGroup.querySelector(".actions-container");
     const newAction = document.createElement("div");
     newAction.className = "action-group flex items-center space-x-2";
+    
     newAction.innerHTML = `
-        <input type="text" name="specificObjectives[][actions][][description]" placeholder="Descrição da ação" class="flex-1 border border-gray-300 rounded-md p-2">
-        <select name="specificObjectives[][actions][][status]" class="border border-gray-300 rounded-md p-2">
-          <option value="not_started">Não iniciado</option>
-          <option value="in_progress">Em progresso</option>
-          <option value="completed">Completo</option>
+        <input type="text" name="specificObjectives[][actions][][description]" 
+               placeholder="Descrição da ação" 
+               class="flex-1 border border-gray-300 rounded-md p-2">
+        <select name="specificObjectives[][actions][][articulador]" 
+            class="border border-gray-300 rounded-md p-2">
+            <option value="">Selecione um articulador</option>
+        </select>
+        <select name="specificObjectives[][actions][][status]" 
+                class="border border-gray-300 rounded-md p-2">
+            <option value="not_started">Não iniciado</option>
+            <option value="in_progress">Em progresso</option>
+            <option value="completed">Completo</option>
         </select>
         <button type="button" class="remove-action text-red-500 hover:text-red-700">
-          <span class="material-icons">close</span>
+            <span class="material-icons">close</span>
         </button>
-      `;
+    `;
+
+    const articulatorSelect = newAction.querySelector('select[name$="[articulador]"]');
+    loadArticulators(articulatorSelect);
 
     const removeBtn = newAction.querySelector(".remove-action");
     removeBtn.addEventListener("click", function () {
@@ -99,67 +110,92 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(panForm);
     const editingId = formData.get('editingId');
+
+    const highestId = storedData.pans.reduce((maxId, pan) => 
+        Math.max(maxId, pan.id), 0);
+    
     const panData = {
-      id: storedData.pans.length + 1,
-      title: formData.get("title"),
-      description: formData.get("description"),
-      image: formData.get("image") || "img/default.webp",
-      tag1: formData.get("tag1"),
-      tag1Color: formData.get("tag1Color"),
-      period: formData.get("period"),
-      duration: formData.get("duration"),
-      generalObjective: formData.get("generalObjective"),
-      specificObjectives: [],
+        id: editingId ? parseInt(editingId) : highestId + 1,
+        title: formData.get("title"),
+        description: formData.get("description"),
+        image: formData.get("image") || "img/default.webp",
+        tag1: formData.get("tag1"),
+        tag1Color: formData.get("tag1Color"),
+        period: formData.get("period"),
+        duration: formData.get("duration"),
+        generalObjective: formData.get("generalObjective"),
+        coordenador: formData.get("coordenador"),
+        specificObjectives: [],
     };
 
-    const objectiveGroups =
-      objectivesContainer.querySelectorAll(".objective-group");
+    const objectiveGroups = objectivesContainer.querySelectorAll(".objective-group");
     objectiveGroups.forEach((group) => {
-      const title = group.querySelector('input[name$="[title]"]').value;
-      const description = group.querySelector(
-        'textarea[name$="[description]"]'
-      ).value;
+        const title = group.querySelector('input[name$="[title]"]').value;
+        const description = group.querySelector('textarea[name$="[description]"]').value;
 
-      const actions = [];
-      const actionGroups = group.querySelectorAll(".action-group");
-      actionGroups.forEach((actionGroup) => {
-        const actionDesc = actionGroup.querySelector(
-          'input[name$="[description]"]'
-        ).value;
-        const actionStatus = actionGroup.querySelector(
-          'select[name$="[status]"]'
-        ).value;
-        actions.push({
-          description: actionDesc,
-          status: actionStatus,
+        const actions = [];
+        const actionGroups = group.querySelectorAll(".action-group");
+        actionGroups.forEach((actionGroup) => {
+            actions.push({
+                description: actionGroup.querySelector('input[name$="[description]"]').value,
+                status: actionGroup.querySelector('select[name$="[status]"]').value,
+                articulador: actionGroup.querySelector('select[name$="[articulador]"]').value
+            });
         });
-      });
 
-      panData.specificObjectives.push({
-        title,
-        description,
-        actions,
-      });
+        panData.specificObjectives.push({
+            title,
+            description,
+            actions,
+        });
     });
 
     if (editingId) {
         const index = storedData.pans.findIndex(p => p.id == editingId);
         if (index !== -1) {
+            panData.id = parseInt(editingId);
             storedData.pans[index] = panData;
         }
     } else {
         storedData.pans.push(panData);
-    }    
+    }
 
     localStorage.setItem("pansData", JSON.stringify(storedData));
 
     document.dispatchEvent(new Event("panDataUpdated"));
-
     closeModal();
-    panForm.reset();
-    objectivesContainer.innerHTML = "";
-    panForm.elements["editingId"].value = "";
   });
 
   addObjective();
+  document.getElementById('add-pan-button').addEventListener('click', function() {
+    const coordinatorSelect = document.getElementById('pan-coordinators');
+    loadCoordinators(coordinatorSelect);
+    document.getElementById('pan-modal').classList.remove('hidden');
+  });
+  
+  document.getElementById('add-objective')?.addEventListener('click', function() {
+    const template = document.getElementById('objective-template').content.cloneNode(true);
+    const articulatorSelect = template.querySelector('select[name$="[articulador]"]');
+    loadArticulators(articulatorSelect);
+  });
 });
+window.addAction = addAction;
+
+function loadArticulators(selectElement) {
+    const users = window.loadFromServer('users') || [];
+    const articulators = users.filter(user => 
+        user.papel === 'articulador' && 
+        user.status === 'ativo'
+    );
+
+    selectElement.innerHTML = '<option value="">Selecione um articulador</option>';
+    
+    articulators.forEach(articulator => {
+        const option = document.createElement('option');
+        option.value = articulator.id;
+        option.textContent = articulator.nome;
+        selectElement.appendChild(option);
+    });
+}
+
+window.loadArticulators = loadArticulators;

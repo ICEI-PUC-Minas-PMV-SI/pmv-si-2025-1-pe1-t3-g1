@@ -26,6 +26,7 @@ let timeoutId;
 document.addEventListener('panDataUpdated', () => {
     const storedData = JSON.parse(localStorage.getItem('pansData'));
     renderPanCards(storedData.pans);
+    loadCoordinators();
 });
 
 function removerPan(id) {
@@ -52,28 +53,63 @@ function editarPan(id) {
     panForm.elements["duration"].value = pan.duration;
     panForm.elements["generalObjective"].value = pan.generalObjective;
 
+    loadCoordinators();
+    const coordinatorSelect = document.getElementById('pan-coordinators');
+    if (coordinatorSelect && pan.coordenador) {
+        coordinatorSelect.value = pan.coordenador;
+    }
+
     const container = document.getElementById("specific-objectives-container");
     container.innerHTML = "";
 
     pan.specificObjectives.forEach((obj, i) => {
         const template = document
-        .getElementById("objective-template")
-        .content.cloneNode(true);
+            .getElementById("objective-template")
+            .content.cloneNode(true);
+        
         template.querySelector(".objective-number").textContent = i + 1;
         template.querySelector('input[name$="[title]"]').value = obj.title;
-        template.querySelector('textarea[name$="[description]"]').value =
-        obj.description;
+        template.querySelector('textarea[name$="[description]"]').value = obj.description;
 
         const actionsContainer = template.querySelector(".actions-container");
-        const actionGroup = actionsContainer.querySelector(".action-group");
         actionsContainer.innerHTML = "";
 
         obj.actions.forEach((action) => {
-        const clone = actionGroup.cloneNode(true);
-        clone.querySelector('input[name$="[description]"]').value =
-            action.description;
-        clone.querySelector('select[name$="[status]"]').value = action.status;
-        actionsContainer.appendChild(clone);
+            const actionDiv = document.createElement('div');
+            actionDiv.className = "action-group flex items-center space-x-2";
+            actionDiv.innerHTML = `
+                <input type="text" 
+                       name="specificObjectives[][actions][][description]" 
+                       value="${action.description}"
+                       class="flex-1 border border-gray-300 rounded-md p-2">
+                <select name="specificObjectives[][actions][][articulador]" 
+                        class="border border-gray-300 rounded-md p-2">
+                    <option value="">Selecione um articulador</option>
+                </select>
+                <select name="specificObjectives[][actions][][status]" 
+                        class="border border-gray-300 rounded-md p-2">
+                    <option value="not_started">Não iniciado</option>
+                    <option value="in_progress">Em progresso</option>
+                    <option value="completed">Completo</option>
+                </select>
+                <button type="button" class="remove-action text-red-500 hover:text-red-700">
+                    <span class="material-icons">close</span>
+                </button>
+            `;
+
+            actionDiv.querySelector('select[name$="[status]"]').value = action.status;
+
+            const articulatorSelect = actionDiv.querySelector('select[name$="[articulador]"]');
+            loadArticulators(articulatorSelect);
+            if (action.articulador) {
+                articulatorSelect.value = action.articulador;
+            }
+
+            actionDiv.querySelector('.remove-action').addEventListener('click', function() {
+                this.closest('.action-group').remove();
+            });
+
+            actionsContainer.appendChild(actionDiv);
         });
 
         container.appendChild(template);
@@ -83,11 +119,62 @@ function editarPan(id) {
     document.getElementById("pan-modal").classList.remove("hidden");
 }
 
+function loadCoordinators() {
+    const users = window.loadFromServer('users') || [];
+    const coordinatorSelect = document.getElementById('pan-coordinators');
+    coordinatorSelect.innerHTML = '<option value="">Selecione um coordenador</option>';
+    const coordinators = users.filter(user => 
+        user.papel === 'coordenador' && 
+        user.status === 'ativo'
+    );
+
+    coordinators.forEach(coordinator => {
+        const option = document.createElement('option');
+        option.value = coordinator.id;
+        option.textContent = coordinator.nome;
+        coordinatorSelect.appendChild(option);
+    });
+}
+
+function loadArticulators(selectElement) {
+    const users = window.loadFromServer('users') || [];
+    const articulators = users.filter(user => 
+        user.papel === 'articulador' && 
+        user.status === 'ativo'
+    );
+
+    selectElement.innerHTML = '<option value="">Selecione um articulador</option>';
+    
+    articulators.forEach(articulator => {
+        const option = document.createElement('option');
+        option.value = articulator.id;
+        option.textContent = articulator.nome;
+        selectElement.appendChild(option);
+    });
+}
+
 function renderPanCards(pans) {
+    if (!pans || !Array.isArray(pans)) {
+        console.error('Dados dos PANs inválidos:', pans);
+        return;
+    }
+
     const container = document.getElementById('pan-cards-container');
+    if (!container) {
+        console.error('Container de cards não encontrado');
+        return;
+    }
+
     container.innerHTML = '';
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     
     pans.forEach(pan => {
+        const isAdmin = currentUser?.papel === 'admin';
+        const isCoordinator = currentUser?.papel === 'coordenador';
+        const isPanCoordinator = pan.coordenador === currentUser?.id;
+        const canEdit = isAdmin || (isCoordinator && isPanCoordinator);
+        
         const panStatus = calculatePanStatus(pan);
 
         pan.status = panStatus.status;
@@ -95,6 +182,12 @@ function renderPanCards(pans) {
         pan.tag2 = panStatus.tag2;
         pan.tag2Color = panStatus.tag2Color;
         pan.progress = panStatus.progress;
+
+        pan.specificObjectives.forEach(obj => {
+            obj.actions.forEach(action => {
+                action.canEdit = canEditAction(action);
+            });
+        });
 
         const panCard = document.createElement('div');
         panCard.className = 'pan-card';
@@ -126,19 +219,35 @@ function renderPanCards(pans) {
                         <span class="material-icons text-base mr-1">visibility</span>
                         Ver detalhes
                     </button>
-                    <button onclick="removerPan(${pan.id})" class="text-red-600 hover:text-red-800 text-sm font-medium transition-colors duration-300 flex items-center group">
-                        <span class="material-icons text-base mr-1">delete</span>
-                        Remover
-                    </button>
-                    <button onclick="editarPan(${pan.id})" class="text-yellow-600 hover:text-yellow-800 text-sm font-medium transition-colors duration-300 flex items-center group">
-                        <span class="material-icons text-base mr-1">edit</span>
-                        Editar
-                    </button>
+                    
+                    ${canEdit ? `
+                        <button onclick="editarPan(${pan.id})" class="text-yellow-600 hover:text-yellow-800 text-sm font-medium transition-colors duration-300 flex items-center group">
+                            <span class="material-icons text-base mr-1">edit</span>
+                            Editar
+                        </button>
+                    ` : ''}
+                    
+                    ${isAdmin ? `
+                        <button onclick="removerPan(${pan.id})" class="text-red-600 hover:text-red-800 text-sm font-medium transition-colors duration-300 flex items-center group">
+                            <span class="material-icons text-base mr-1">delete</span>
+                            Remover
+                        </button>
+                    ` : ''}
                 </div>
             </div>
         `;
+        
         container.appendChild(panCard);
     });
+    
+    if (currentUser?.papel === 'admin') {
+        const addButton = document.createElement('button');
+        addButton.id = 'add-pan-button';
+        addButton.className = 'fixed bottom-8 right-8 flex items-center justify-center w-14 h-14 rounded-full bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white text-xl shadow-lg transition-colors duration-200';
+        addButton.innerHTML = '<span class="material-icons">add</span>';
+        addButton.onclick = () => window.location.href = 'adicionar-pan.html';
+        document.body.appendChild(addButton);
+    }
 }
 
 function filtrarPANs() {
@@ -337,12 +446,25 @@ function preencherConteudoModal() {
                             </span>
                         </div>
                         <div class="pl-4 space-y-2">
-                            ${obj.actions.map(action => `
-                                <p class="text-sm ${getStatusClass(action.status)} flex items-center">
-                                    ${getStatusIcon(action.status)}
-                                    ${action.description}
-                                </p>
-                            `).join('')}
+                            ${obj.actions.map(action => {
+                                const canEditAction = action.canEdit;
+                                return `
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-sm ${getStatusClass(action.status)} flex items-center">
+                                            ${getStatusIcon(action.status)}
+                                            ${action.description}
+                                        </p>
+                                        ${canEditAction ? `
+                                            <select class="ml-2 text-sm border rounded" 
+                                                    onchange="updateActionStatus(${pan.id}, ${obj.index}, ${action.index}, this.value)">
+                                                <option value="not_started" ${action.status === 'not_started' ? 'selected' : ''}>Não iniciado</option>
+                                                <option value="in_progress" ${action.status === 'in_progress' ? 'selected' : ''}>Em progresso</option>
+                                                <option value="completed" ${action.status === 'completed' ? 'selected' : ''}>Completo</option>
+                                            </select>
+                                        ` : ''}
+                                    </div>
+                                `;
+                            }).join('')}
                         </div>
                     </div>
                 `}).join('')}
@@ -567,4 +689,49 @@ function calculatePanStatus(pan) {
         tag2Color,
         progress: progressPercentage
     };
+}
+
+function addAction(objectiveGroup) {
+    const actionContainer = objectiveGroup.querySelector(".actions-container");
+    const newAction = document.createElement("div");
+    newAction.className = "action-group flex items-center space-x-2";
+    newAction.innerHTML = `
+        <input type="text" name="specificObjectives[][actions][][description]" 
+               placeholder="Descrição da ação" 
+               class="flex-1 border border-gray-300 rounded-md p-2">
+        <select name="specificObjectives[][actions][][articulador]" 
+                class="border border-gray-300 rounded-md p-2">
+            <option value="">Selecione um articulador</option>
+        </select>
+        <select name="specificObjectives[][actions][][status]" 
+                class="border border-gray-300 rounded-md p-2">
+            <option value="not_started">Não iniciado</option>
+            <option value="in_progress">Em progresso</option>
+            <option value="completed">Completo</option>
+        </select>
+        <button type="button" class="remove-action text-red-500 hover:text-red-700">
+            <span class="material-icons">close</span>
+        </button>
+    `;
+
+    const articulatorSelect = newAction.querySelector('select[name$="[articulador]"]');
+    loadArticulators(articulatorSelect);
+
+    const removeBtn = newAction.querySelector(".remove-action");
+    removeBtn.addEventListener("click", function () {
+        this.closest(".action-group").remove();
+    });
+
+    actionContainer.appendChild(newAction);
+}
+
+function canEditAction(action) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) return false;
+    
+    if (currentUser.papel === 'admin' || currentUser.papel === 'coordenador') {
+        return true;
+    }
+    
+    return currentUser.papel === 'articulador' && action.articulador === currentUser.id;
 }

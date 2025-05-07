@@ -3,6 +3,7 @@
         {
             "id": 1,
             "title": "PAN Cavernas do Brasil",
+            "coordenador": 2,
             "description": "Plano de Ação Nacional para a Conservação do Patrimônio Espeleológico Brasileiro.",
             "image":  "img/logo-pan-cavernas.png",
             "tag1": "Em Execução",
@@ -19,15 +20,18 @@
                     "actions": [
                         {
                             "description": "Realizar levantamentos espeleológicos",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3
                         },
                         {
                             "description": "Mapear áreas prioritárias",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3
                         },
                         {
                             "description": "Estudar a biodiversidade cavernícola",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         }
                     ]
                 },
@@ -37,15 +41,18 @@
                     "actions": [
                         {
                             "description": "Implementar medidas de proteção",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3
                         },
                         {
                             "description": "Desenvolver protocolos de manejo",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3
                         },
                         {
                             "description": "Monitorar impactos ambientais",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         }
                     ]
                 },
@@ -55,15 +62,18 @@
                     "actions": [
                         {
                             "description": "Desenvolver programas educativos",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3
                         },
                         {
                             "description": "Capacitar guias e gestores",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3
                         },
                         {
                             "description": "Promover o turismo sustentável",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         }
                     ]
                 }
@@ -72,6 +82,7 @@
         {
             "id": 2,
             "title": "PAN Mamíferos Aquáticos",
+            "coordenador": 2,
             "description": "Plano de Ação Nacional para a Conservação dos Mamíferos Aquáticos Amazônicos.",
             "image": "img/logo-mamiferos-aquaticos.png",
             "tag1": "Aguardando Coordenador",
@@ -88,15 +99,18 @@
                     "actions": [
                         {
                             "description": "Combate à pesca incidental",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3
                         },
                         {
                             "description": "Redução da poluição marinha",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3
                         },
                         {
                             "description": "Controle do tráfego de embarcações",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         }
                     ]
                 },
@@ -106,15 +120,18 @@
                     "actions": [
                         {
                             "description": "Monitoramento populacional",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3
                         },
                         {
                             "description": "Pesquisas sobre comportamento",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3
                         },
                         {
                             "description": "Estudos genéticos",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         }
                     ]
                 }
@@ -123,6 +140,7 @@
         {
             "id": 3,
             "title": "PAN Ararinha Azul",
+            "coordenador": 2,
             "description": "Plano de Ação Nacional para Conservação da Ararinha-azul (Cyanopsitta spixii).",
             "image": "img/logo-pan-ararinha-azul.png",
             "tag1": "Suspenso",
@@ -139,15 +157,18 @@
                     "actions": [
                         {
                             "description": "Monitoramento dos indivíduos reintroduzidos",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3
                         },
                         {
                             "description": "Avaliação de habitat para soltura",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3
                         },
                         {
                             "description": "Programa de reprodução em cativeiro",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         }
                     ]
                 },
@@ -157,15 +178,18 @@
                     "actions": [
                         {
                             "description": "Mapeamento de áreas prioritárias",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3
                         },
                         {
                             "description": "Parcerias com proprietários de terras",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3
                         },
                         {
                             "description": "Controle de espécies invasoras",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         }
                     ]
                 },
@@ -175,15 +199,18 @@
                     "actions": [
                         {
                             "description": "Campanhas contra o tráfico de animais",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3
                         },
                         {
                             "description": "Programa de educação ambiental",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3
                         },
                         {
                             "description": "Fortalecimento da fiscalização",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         }
                     ]
                 }
@@ -192,6 +219,7 @@
         {
             "id": 4,
             "title": "PAN Corais",
+            "coordenador": 2,
             "description": "Plano de Ação Nacional para Conservação de Ambientes Coralíneos.",
             "image": "img/logo-pan-corais.jpeg",
             "tag1": "Finalizado",
@@ -208,15 +236,18 @@
                     "actions": [
                         {
                             "description": "Controle do turismo predatório",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         },
                         {
                             "description": "Redução da poluição marinha",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         },
                         {
                             "description": "Regulamentação da pesca",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         }
                     ]
                 },
@@ -226,15 +257,18 @@
                     "actions": [
                         {
                             "description": "Mapeamento completo dos recifes",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         },
                         {
                             "description": "Monitoramento contínuo",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         },
                         {
                             "description": "Estudos sobre mudanças climáticas",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         }
                     ]
                 },
@@ -244,15 +278,18 @@
                     "actions": [
                         {
                             "description": "Projeto piloto de restauração",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         },
                         {
                             "description": "Banco de genótipos",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         },
                         {
                             "description": "Protocolos de manejo",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3
                         }
                     ]
                 }

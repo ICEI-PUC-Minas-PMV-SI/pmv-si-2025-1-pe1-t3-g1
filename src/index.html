@@ -326,6 +326,7 @@
                         <option value="blue">Azul</option>
                         <option value="green">Verde</option>
                         <option value="red">Vermelho</option>
+                        <option value="orange">Laranja</option>
                         <option value="yellow">Amarelo</option>
                         <option value="gray">Cinza</option>
                         </select>
@@ -347,6 +348,18 @@
                     <label class="block text-sm font-medium text-gray-700">Objetivo Geral*</label>
                     <textarea name="generalObjective" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
                     </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="pan-coordinators" class="block text-sm font-medium text-[var(--color-dark-green)]">
+                        Coordenador:
+                    </label>
+                    <select id="pan-coordinators" 
+                            name="coordenador"
+                            required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
+                        <option value="">Selecione um coordenador</option>
+                    </select>
                 </div>
                 
                 <div class="md:col-span-2">
@@ -390,9 +403,12 @@
             <textarea name="specificObjectives[][description]" rows="2" class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
         </div>
         
-        <div class="actions-container space-y-2">
+        <div class="actions-container space-y-4">
             <div class="action-group flex items-center space-x-2">
             <input type="text" name="specificObjectives[][actions][][description]" placeholder="Descrição da ação" class="flex-1 border border-gray-300 rounded-md p-2">
+            <select name="specificObjectives[][actions][][articulador]" class="border border-gray-300 rounded-md p-2">
+                <option value="">Selecione um articulador</option>
+            </select>
             <select name="specificObjectives[][actions][][status]" class="border border-gray-300 rounded-md p-2">
                 <option value="not_started">Não iniciado</option>
                 <option value="in_progress">Em progresso</option>

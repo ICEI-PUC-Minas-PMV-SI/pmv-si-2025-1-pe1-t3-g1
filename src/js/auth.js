@@ -1,5 +1,6 @@
 const usuariosIniciais = [
     {
+        id: 1,
         email: 'master@icmbio.com',
         senha: btoa('pucprojetos'),
         nome: 'Master',
@@ -9,6 +10,36 @@ const usuariosIniciais = [
             {
                 data: new Date().toLocaleString('pt-BR'),
                 acao: 'Usuário criado como administrador master',
+                por: 'sistema'
+            }
+        ]
+    },
+    {
+        id: 2,
+        nome: "Coordenador",
+        email: "coordenador@email.com",
+        senha: btoa("coord123"),
+        papel: "coordenador",
+        status: "ativo",
+        historico: [
+            {
+                data: new Date().toLocaleString('pt-BR'),
+                acao: 'Usuário criado',
+                por: 'sistema'
+            }
+        ]
+    },
+    {
+        id: 3,
+        nome: "Articulador",
+        email: "articulador@email.com",
+        senha: btoa("art123"),
+        papel: "articulador",
+        status: "ativo",
+        historico: [
+            {
+                data: new Date().toLocaleString('pt-BR'),
+                acao: 'Usuário criado',
                 por: 'sistema'
             }
         ]
@@ -79,6 +110,7 @@ async function registrarUsuario(email, senha, nome, papel = 'colaborador') {
     }
     
     const novoUsuario = {
+        id: usuarios.length + 1,
         email,
         senha: btoa(senha),
         nome,
@@ -262,6 +294,27 @@ function setupDropdownListeners() {
             }
         });
     }
+}
+
+function isUserAdmin() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return currentUser?.papel === PAPEIS.ADMIN;
+}
+
+function isUserCoordinator() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return currentUser?.papel === PAPEIS.COORDENADOR;
+}
+
+function isPanCoordinator(panId) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const pans = window.loadFromServer('pans');
+    const pan = pans.find(p => p.id === panId);
+    return pan?.coordenador?.includes(currentUser?.id);
+}
+
+function canEditPan(panId) {
+    return isUserAdmin() || isPanCoordinator(panId);
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
