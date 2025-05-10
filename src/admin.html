@@ -5,107 +5,241 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/favicon-64x64.png">
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/storage.js" defer></script>
     <script src="js/auth.js" defer></script>
     <title>Administração - Monitoria de PAN</title>
+    <style>
+        .material-icons {
+            font-size: 20px;
+            vertical-align: middle;
+        }
+        .filter-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .filter-dropdown select {
+            appearance: none;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding-left: 2.5rem;
+            padding-right: 2rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 180px;
+        }
+        .filter-dropdown select:hover {
+            border-color: var(--color-primary);
+        }
+        .filter-dropdown select:focus {
+            outline: none;
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 0 2px var(--color-primary);
+            --tw-shadow: 0 0 #0000;
+            box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+            border-color: transparent;
+        }
+        .filter-dropdown .material-icons {
+            position: absolute;
+            left: 0.75rem;
+            top: 0.625rem;
+            color: #9ca3af;
+            pointer-events: none;
+        }
+        .filter-dropdown::after {
+            content: '';
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid #9ca3af;
+            pointer-events: none;
+        }
+        
+        /* Estilo para os inputs do formulário */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        select:focus {
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 0 2px var(--color-primary);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            border-color: transparent;
+        }
+
+        /* Estilo para os labels do formulário */
+        label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Estilo para os cards de estatísticas */
+        .monitoring-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-left-width: 4px;
+            transition: box-shadow 0.2s;
+        }
+
+        .monitoring-card:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo para o sidenav */
+        .form-field-outline {
+            position: relative;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-field-outline:focus-within {
+            border-color: var(--color-primary);
+        }
+
+        .form-field-outline:focus-within label {
+            color: var(--color-primary);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-50">
     <div id="layout-content">
 
     </div>
 
     <div id="page-content" class="hidden">
-        <div class="max-w-7xl mx-auto py-6 space-y-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[var(--color-primary)]">
-                    <h3 class="text-lg font-semibold text-gray-600">Total de Usuários</h3>
-                    <p class="text-3xl font-bold text-dark mt-2" id="total-users">0</p>
+        <div class="p-4 md:p-6 min-h-screen">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6">
+                <div class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-[var(--color-primary)] hover:shadow-lg transition-shadow">
+                    <div class="flex items-center space-x-3">
+                        <span class="material-icons text-[var(--color-primary)]">group</span>
+                        <h3 class="text-base md:text-lg font-semibold text-gray-600">Total de Usuários</h3>
+                    </div>
+                    <p class="text-2xl md:text-3xl font-bold text-dark mt-2" id="total-users">0</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
-                    <h3 class="text-lg font-semibold text-gray-600">Usuários Ativos</h3>
-                    <p class="text-3xl font-bold text-green-600 mt-2" id="active-users">0</p>
+                <div class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-green-500 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center space-x-3">
+                        <span class="material-icons text-green-500">check_circle</span>
+                        <h3 class="text-base md:text-lg font-semibold text-gray-600">Usuários Ativos</h3>
+                    </div>
+                    <p class="text-2xl md:text-3xl font-bold text-green-600 mt-2" id="active-users">0</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500">
-                    <h3 class="text-lg font-semibold text-gray-600">Usuários Inativos</h3>
-                    <p class="text-3xl font-bold text-red-600 mt-2" id="inactive-users">0</p>
+                <div class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-red-500 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center space-x-3">
+                        <span class="material-icons text-red-500">cancel</span>
+                        <h3 class="text-base md:text-lg font-semibold text-gray-600">Usuários Inativos</h3>
+                    </div>
+                    <p class="text-2xl md:text-3xl font-bold text-red-600 mt-2" id="inactive-users">0</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-accent">
-                    <h3 class="text-lg font-semibold text-gray-600">Administradores</h3>
-                    <p class="text-3xl font-bold text-accent mt-2" id="admin-users">0</p>
+                <div class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition-shadow">
+                    <div class="flex items-center space-x-3">
+                        <span class="material-icons text-accent">admin_panel_settings</span>
+                        <h3 class="text-base md:text-lg font-semibold text-gray-600">Administradores</h3>
+                    </div>
+                    <p class="text-2xl md:text-3xl font-bold text-accent mt-2" id="admin-users">0</p>
                 </div>
             </div>
 
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+            <div class="bg-white p-4 md:p-6 rounded-xl shadow-md">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0 mb-6">
                     <div>
-                        <h1 class="text-2xl font-bold text-dark">Gerenciamento de Usuários</h1>
-                        <p class="text-gray-600 mt-1">Gerencie todos os usuários do sistema</p>
+                        <h1 class="text-xl md:text-2xl font-bold text-dark flex items-center">
+                            <span class="material-icons mr-2 text-[var(--color-primary)]">manage_accounts</span>
+                            Gerenciamento de Usuários
+                        </h1>
+                        <p class="text-sm md:text-base text-gray-600 mt-1">Gerencie todos os usuários do sistema</p>
                     </div>
-                    <div class="flex space-x-4">
-                        <div class="relative">
+                    <div class="flex items-center gap-3 w-full lg:w-auto">
+                        <div class="relative flex-1 lg:flex-none">
+                            <div class="relative flex items-center">
+                                <span class="material-icons absolute left-3 text-gray-400">search</span>
                             <input type="text" 
                                    id="search-users" 
                                    placeholder="Buscar usuários..."
-                                   class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
-                            <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
+                                       class="w-full lg:w-80 pl-10 pr-4 h-10 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
+                            </div>
                         </div>
-                        <select id="filter-status" 
-                                class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
-                            <option value="">Todos os Status</option>
-                            <option value="ativo">Ativo</option>
-                            <option value="inativo">Inativo</option>
-                        </select>
-                        <select id="filter-papel" 
-                                class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
-                            <option value="">Todos os Papéis</option>
-                            <option value="admin">Administrador</option>
-                            <option value="coordenador">Coordenador</option>
-                            <option value="articulador">Articulador</option>
-                            <option value="colaborador">Colaborador</option>
-                        </select>
+                        <button onclick="toggleFilterSidenav()" 
+                                class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-all duration-200 shadow-sm hover:shadow-md">
+                            <span class="material-icons">filter_list</span>
+                        </button>
                         <button onclick="openUserModal()" 
-                                class="flex items-center bg-[var(--color-primary)] hover:bg-dark text-white px-4 py-2 rounded-md transition-colors">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                            </svg>
-                            Novo Usuário
+                                class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white transition-all duration-200 shadow-sm hover:shadow-md">
+                            <span class="material-icons">add</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="overflow-x-auto bg-white rounded-lg shadow-md">
-                    <table class="min-w-full table-fixed">
+                <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200">
                         <thead>
-                            <tr class="bg-gray-50 border-b border-gray-200">
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-1/3">Nome</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-1/4">Email</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-1/6">Papel</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-1/6">Status</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ações</th>
+                            <tr class="bg-gray-50">
+                                <th class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="material-icons text-gray-400 text-base">person</span>
+                                        <span>Nome</span>
+                                    </div>
+                                </th>
+                                <th class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="material-icons text-gray-400 text-base">email</span>
+                                        <span>Email</span>
+                                    </div>
+                                </th>
+                                <th class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="material-icons text-gray-400 text-base">badge</span>
+                                        <span>Papel</span>
+                                    </div>
+                                </th>
+                                <th class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="material-icons text-gray-400 text-base">radio_button_checked</span>
+                                        <span>Status</span>
+                                    </div>
+                                </th>
+                                <th class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="material-icons text-gray-400 text-base">settings</span>
+                                        <span>Ações</span>
+                                    </div>
+                                </th>
                             </tr>
                         </thead>
                         <tbody id="users-table-body" class="divide-y divide-gray-100">
-                            
                         </tbody>
                     </table>
                     <div id="no-results" class="hidden py-12">
                         <div class="text-center">
-                            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                      d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
+                            <span class="material-icons text-gray-400 text-5xl mb-2">search_off</span>
                             <h3 class="mt-2 text-sm font-medium text-gray-900">Nenhum usuário encontrado</h3>
                             <p class="mt-1 text-sm text-gray-500">Não foram encontrados usuários com os filtros aplicados.</p>
                             <div class="mt-6">
                                 <button onclick="limparFiltros()" 
-                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[var(--color-primary)] hover:bg-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-primary)]">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                                    </svg>
+                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[var(--color-primary)] hover:bg-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-primary)] transition-all duration-200">
+                                    <span class="material-icons mr-2">refresh</span>
                                     Limpar Filtros
                                 </button>
                             </div>
@@ -117,54 +251,68 @@
     </div>
 
     <div id="user-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
-        <div class="relative top-20 mx-auto p-8 border w-[40%] shadow-lg rounded-lg bg-white">
+        <div class="relative top-20 mx-auto p-4 md:p-8 border w-[95%] max-w-4xl shadow-lg rounded-xl bg-white">
             <div class="absolute top-4 right-4">
-                <button onclick="closeUserModal()" class="text-gray-400 hover:text-gray-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
+                <button onclick="closeUserModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <span class="material-icons">close</span>
                 </button>
             </div>
             <div>
-                <h3 class="text-2xl font-bold text-dark mb-6" id="modal-title">Novo Usuário</h3>
-                <form id="user-form" class="space-y-6 grid grid-cols-2 gap-6">
+                <h3 class="text-xl md:text-2xl font-bold text-dark mb-6 flex items-center" id="modal-title">
+                    <span class="material-icons mr-2 text-[var(--color-primary)]">person_add</span>
+                    Novo Usuário
+                </h3>
+                <form id="user-form" class="space-y-6">
                     <input type="hidden" id="user-email-original">
-                    <div class="col-span-2 grid grid-cols-subgrid gap-4">
-                        <div>
-                            <label for="user-name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                            <label for="user-name" class="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
+                            <div class="relative">
+                                <span class="material-icons absolute left-3 top-2.5 text-gray-400">person</span>
                             <input type="text" id="user-name" required
-                                   class="w-full px-4 py-2 rounded-md border-gray-300 focus:border-[var(--color-primary)] focus:ring-[var(--color-primary)]">
+                                       class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200">
+                            </div>
                         </div>
-                        <div>
-                            <label for="user-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                            <label for="user-email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <div class="relative">
+                                <span class="material-icons absolute left-3 top-2.5 text-gray-400">email</span>
                             <input type="email" id="user-email" required
-                                   class="w-full px-4 py-2 rounded-md border-gray-300 focus:border-[var(--color-primary)] focus:ring-[var(--color-primary)]">
+                                       class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200">
+                            </div>
                         </div>
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                            <label for="user-password" class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                            <div class="relative">
+                                <span class="material-icons absolute left-3 top-2.5 text-gray-400">lock</span>
+                                <input type="password" id="user-password" required minlength="8"
+                                       class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200">
                     </div>
-                    <div class="col-span-2 grid grid-cols-subgrid gap-4">
-                        <div>
-                            <label for="user-password" class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
-                            <input type="password" id="user-password" required minlength="8"
-                                   class="w-full px-4 py-2 rounded-md border-gray-300 focus:border-[var(--color-primary)] focus:ring-[var(--color-primary)]">
                         </div>
-                        <div>
-                            <label for="user-role" class="block text-sm font-medium text-gray-700 mb-1">Papel</label>
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                            <label for="user-role" class="block text-sm font-medium text-gray-700 mb-2">Papel</label>
+                            <div class="relative">
+                                <span class="material-icons absolute left-3 top-2.5 text-gray-400">badge</span>
                             <select id="user-role" required
-                                    class="w-full px-4 py-2 rounded-md border-gray-300 focus:border-[var(--color-primary)] focus:ring-[var(--color-primary)]">
+                                        class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200 appearance-none">
                                 <option value="admin">Administrador</option>
                                 <option value="coordenador">Coordenador</option>
-                                <option value="articulator">Articulador</option>
-                                <option value="collaborator">Colaborador</option>
+                                    <option value="articulador">Articulador</option>
+                                    <option value="colaborador">Colaborador</option>
                             </select>
+                                <span class="absolute right-3 top-2.5 text-gray-400 material-icons pointer-events-none">expand_more</span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex justify-end space-x-4 mt-8">
                         <button type="button" onclick="closeUserModal()"
-                                class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors">
+                                class="flex items-center px-4 py-2 border border-gray-300 rounded-xl text-gray-700 bg-white hover:bg-gray-50 transition-all duration-200">
+                            <span class="material-icons mr-1 text-base">close</span>
                             Cancelar
                         </button>
                         <button type="submit"
-                                class="px-6 py-2 bg-[var(--color-primary)] hover:bg-dark text-white rounded-md transition-colors">
+                                class="flex items-center px-4 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white rounded-xl transition-all duration-200 hover:shadow-lg">
+                            <span class="material-icons mr-1 text-base">save</span>
                             Salvar
                         </button>
                     </div>
@@ -174,41 +322,102 @@
     </div>
 
     <div id="history-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
-        <div class="relative top-20 mx-auto p-8 border w-[800px] shadow-lg rounded-lg bg-white">
+        <div class="relative top-20 mx-auto p-4 md:p-8 border w-[95%] max-w-4xl shadow-lg rounded-xl bg-white">
             <div class="absolute top-4 right-4">
-                <button onclick="closeHistoryModal()" class="text-gray-400 hover:text-gray-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
+                <button onclick="closeHistoryModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <span class="material-icons">close</span>
                 </button>
             </div>
             <div>
-                <h3 class="text-2xl font-bold text-dark mb-6">Histórico do Usuário</h3>
-                
-                <div class="mb-4 relative">
+                <h3 class="text-xl md:text-2xl font-bold text-dark mb-6 flex items-center">
+                    <span class="material-icons mr-2 text-[var(--color-primary)]">history</span>
+                    Histórico de Alterações
+                </h3>
+                <div class="mb-4">
+                    <div class="relative">
+                        <span class="material-icons absolute left-3 top-2.5 text-gray-400">search</span>
                     <input type="text" 
-                           id="search-history" 
+                               id="history-search" 
                            placeholder="Buscar no histórico..."
-                           class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
-                    <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
+                               class="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
                 </div>
-
-                <div id="no-history-results" class="hidden py-8 text-center">
-                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                              d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <h3 class="mt-2 text-sm font-medium text-gray-900">Nenhum registro encontrado</h3>
-                    <p class="mt-1 text-sm text-gray-500">Não foram encontrados registros com o termo buscado.</p>
                 </div>
-
-                <div id="history-content" class="space-y-4 max-h-[60vh] overflow-y-auto pr-4">
+                <div id="history-content" class="space-y-4 max-h-[60vh] overflow-y-auto">
+                    <!-- O conteúdo do histórico será inserido aqui -->
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Sidenav de Filtros -->
+    <div id="filter-sidenav" class="fixed right-0 top-0 h-full w-full md:w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+        <div class="flex flex-col h-full">
+            <div class="flex items-center justify-between p-4 border-b">
+                <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+                    <span class="material-icons mr-2">filter_list</span>
+                    Filtros
+                </h3>
+                <button onclick="toggleFilterSidenav()" class="text-gray-500 hover:text-gray-700">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            
+            <div class="p-4 flex-1 overflow-y-auto">
+                <div class="space-y-6">
+                    <div class="form-field">
+                        <label class="text-sm font-medium text-gray-700 mb-2 block">Status</label>
+                        <div class="relative">
+                            <div class="form-field-outline">
+                                <select id="filter-status" class="w-full h-14 px-4 pt-4 pb-1 border border-gray-300 rounded-lg bg-transparent peer focus:outline-none focus:border-[var(--color-primary)] focus:ring-0 appearance-none">
+                                    <option value="">Todos</option>
+                                    <option value="ativo">Ativo</option>
+                                    <option value="inativo">Inativo</option>
+                                </select>
+                                <label class="absolute left-4 top-4 text-gray-500 text-sm transition-all peer-focus:text-xs peer-focus:top-1.5 peer-focus:text-[var(--color-primary)] peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:top-1.5">
+                                    Status
+                                </label>
+                                <span class="material-icons absolute right-4 top-4 text-gray-400 pointer-events-none">
+                                    expand_more
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label class="text-sm font-medium text-gray-700 mb-2 block">Papel</label>
+                        <div class="relative">
+                            <div class="form-field-outline">
+                                <select id="filter-papel" class="w-full h-14 px-4 pt-4 pb-1 border border-gray-300 rounded-lg bg-transparent peer focus:outline-none focus:border-[var(--color-primary)] focus:ring-0 appearance-none">
+                                    <option value="">Todos</option>
+                                    <option value="admin">Administrador</option>
+                                    <option value="coordenador">Coordenador</option>
+                                    <option value="articulador">Articulador</option>
+                                    <option value="colaborador">Colaborador</option>
+                                </select>
+                                <label class="absolute left-4 top-4 text-gray-500 text-sm transition-all peer-focus:text-xs peer-focus:top-1.5 peer-focus:text-[var(--color-primary)] peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:top-1.5">
+                                    Papel
+                                </label>
+                                <span class="material-icons absolute right-4 top-4 text-gray-400 pointer-events-none">
+                                    expand_more
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4 border-t">
+                <button onclick="aplicarFiltros()" 
+                        class="w-full flex items-center justify-center px-4 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white rounded-xl transition-all duration-200">
+                    <span class="material-icons mr-2">check</span>
+                    Aplicar Filtros
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay do Sidenav -->
+    <div id="sidenav-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="toggleFilterSidenav()"></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', async function() {
@@ -284,7 +493,7 @@
         function openHistoryModal(user) {
             const modal = document.getElementById('history-modal');
             const content = document.getElementById('history-content');
-            const searchInput = document.getElementById('search-history');
+            const searchInput = document.getElementById('history-search');
             const noResults = document.getElementById('no-history-results');
 
             searchInput.value = '';
@@ -326,23 +535,38 @@
             const content = document.getElementById('history-content');
             
             content.innerHTML = historico.map(entry => `
-                <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors">
+                <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors shadow-sm">
                     <div class="flex justify-between items-center mb-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="material-icons text-[var(--color-primary)]">event</span>
                         <span class="text-sm font-medium text-[var(--color-primary)]">${entry.data}</span>
-                        <span class="text-sm text-gray-600">por ${entry.por}</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-gray-600">
+                            <span class="material-icons text-gray-400">person</span>
+                            <span>${entry.por}</span>
+                        </div>
                     </div>
+                    <div class="flex items-start space-x-2">
+                        <span class="material-icons text-gray-400 mt-0.5">info</span>
+                        <div>
                     <div class="text-gray-900">${entry.acao}</div>
                     ${entry.alteracoes ? `
                         <div class="mt-2 text-sm text-gray-600">
-                            <span class="font-medium">Alterações:</span> ${entry.alteracoes}
+                                    <span class="font-medium flex items-center space-x-1">
+                                        <span class="material-icons text-gray-400 text-base">edit_note</span>
+                                        <span>Alterações:</span>
+                                    </span>
+                                    <div class="mt-1 ml-6">${entry.alteracoes}</div>
                         </div>` : ''}
+                        </div>
+                    </div>
                 </div>
             `).join('');
         }
 
         function closeHistoryModal() {
             document.getElementById('history-modal').classList.add('hidden');
-            document.getElementById('search-history').value = '';
+            document.getElementById('history-search').value = '';
             document.getElementById('no-history-results').classList.add('hidden');
             document.getElementById('history-content').classList.remove('hidden');
         }
@@ -409,7 +633,7 @@
                 
                 return `
                 <tr class="hover:bg-gray-50 transition-colors">
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-4 md:px-6 py-3 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="h-10 w-10 flex-shrink-0 mr-3">
                                 <div class="h-10 w-10 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-dark flex items-center justify-center shadow-sm">
@@ -422,59 +646,50 @@
                             </div>
                         </div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-4 md:px-6 py-3 whitespace-nowrap">
+                        <div class="flex items-center space-x-2">
+                            <span class="material-icons text-gray-400 text-base">email</span>
                         <div class="text-sm text-gray-900">${usuario.email}</div>
+                        </div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-3 py-1.5 inline-flex text-xs leading-5 font-semibold rounded-full shadow-sm
+                    <td class="px-4 md:px-6 py-3 whitespace-nowrap">
+                        <span class="px-3 py-1.5 inline-flex items-center text-xs leading-5 font-semibold rounded-full shadow-sm
                                    ${getCorPapel(usuario.papel)}" data-papel="${usuario.papel}">
+                            <span class="material-icons text-base mr-1">${getIconePapel(usuario.papel)}</span>
                             ${getNomePapel(usuario.papel)}
                         </span>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-3 py-1.5 inline-flex text-xs leading-5 font-semibold rounded-full shadow-sm
+                    <td class="px-4 md:px-6 py-3 whitespace-nowrap">
+                        <span class="px-3 py-1.5 inline-flex items-center text-xs leading-5 font-semibold rounded-full shadow-sm
                                    ${statusClasses}"
                                   data-status="${usuario.status}">
+                            <span class="material-icons text-base mr-1">${usuario.status === 'ativo' ? 'check_circle' : 'cancel'}</span>
                             ${usuario.status === 'ativo' ? 'Ativo' : 'Inativo'}
                         </span>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td class="px-4 md:px-6 py-3 whitespace-nowrap text-sm font-medium">
                         <div class="flex space-x-3">
                             ${usuario.email === 'master@icmbio.com' ? `
                                 <button onclick='openHistoryModal(${JSON.stringify(usuario).replace(/'/g, "&#39;")})'
                                         class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
+                                    <span class="material-icons text-base mr-1">history</span>
                                     <span>Histórico</span>
                                 </button>
                             ` : `
                                 <button onclick='openUserModal(${JSON.stringify(usuario).replace(/'/g, "&#39;")})'
                                         class="inline-flex items-center text-[var(--color-primary)] hover:text-dark transition-colors">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                    </svg>
+                                    <span class="material-icons text-base mr-1">edit</span>
                                     <span>Editar</span>
                                 </button>
                                 <button onclick='alternarStatusUsuario("${usuario.email}")'
                                         class="inline-flex items-center text-${usuario.status === 'ativo' ? 'red' : 'green'}-600 
                                                hover:text-${usuario.status === 'ativo' ? 'red' : 'green'}-900 transition-colors">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                              d="${usuario.status === 'ativo' ? 
-                                                  'M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636' : 
-                                                  'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'}"/>
-                                    </svg>
+                                    <span class="material-icons text-base mr-1">${usuario.status === 'ativo' ? 'block' : 'check_circle'}</span>
                                     <span>${usuario.status === 'ativo' ? 'Inativar' : 'Ativar'}</span>
                                 </button>
                                 <button onclick='openHistoryModal(${JSON.stringify(usuario).replace(/'/g, "&#39;")})'
                                         class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
+                                    <span class="material-icons text-base mr-1">history</span>
                                     <span>Histórico</span>
                                 </button>
                             `}
@@ -506,6 +721,16 @@
                 colaborador: 'bg-emerald-100 text-emerald-800 border border-emerald-200'
             };
             return cores[papel] || 'bg-gray-100 text-gray-800 border border-gray-200';
+        }
+
+        function getIconePapel(papel) {
+            const icones = {
+                admin: 'admin_panel_settings',
+                coordenador: 'supervisor_account',
+                articulador: 'hub',
+                colaborador: 'person'
+            };
+            return icones[papel] || 'person';
         }
 
         async function alternarStatusUsuario(email) {
@@ -546,6 +771,26 @@
                 alert(resultado.mensagem);
             }
         });
+
+        function toggleFilterSidenav() {
+            const sidenav = document.getElementById('filter-sidenav');
+            const overlay = document.getElementById('sidenav-overlay');
+            
+            if (sidenav.classList.contains('translate-x-full')) {
+                sidenav.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                sidenav.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        function aplicarFiltros() {
+            toggleFilterSidenav();
+            filtrarUsuarios();
+        }
     </script>
 </body>
 </html> 

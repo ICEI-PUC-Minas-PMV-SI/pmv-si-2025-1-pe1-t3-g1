@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="js/storage.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/panCards.js" defer></script>
+    <script src="js/addPan.js" defer></script>
     <style>
         body, html {
             height: 100vh;
@@ -78,6 +80,7 @@
             color: #4a5568;
             font-size: 0.875rem;
             white-space: nowrap;
+            width: max-content;
         }
 
         .bar-value {
@@ -89,6 +92,7 @@
             color: #2d3748;
             font-weight: 600;
             font-size: 0.875rem;
+            width: max-content;
         }
 
         @media (max-width: 640px) {
@@ -131,6 +135,232 @@
             background: #339966;
             transform: scale(1.2);
         }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .cost-chart {
+            display: flex;
+            align-items: flex-end;
+            height: 120px;
+            padding: 20px 0;
+            margin-bottom: 80px;
+            justify-content: center;
+        }
+
+        .cost-chart .bar {
+            flex: 1;
+            transition: height 0.3s ease;
+            min-width: 40px;
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .cost-chart .bar-label {
+            bottom: -65px;
+        }
+
+        .cost-chart .bar-value {
+            bottom: -45px;
+            white-space: nowrap;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 640px) {
+            .cost-chart {
+                height: 100px;
+                margin-bottom: 100px;
+            }
+        }
+
+        /* Estilos para o select múltiplo */
+        #status-filter {
+            min-height: 120px;
+            background-color: white;
+        }
+
+        #status-filter option {
+            padding: 8px 12px;
+            margin: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #status-filter option:checked {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        #status-filter option:hover {
+            background-color: #f3f4f6;
+        }
+
+        /* Estilos para os selects com busca */
+        select option.search-option {
+            font-style: italic;
+            color: #6B7280;
+            background-color: #F3F4F6;
+            padding: 8px 12px;
+        }
+
+        select option {
+            padding: 8px 12px;
+        }
+
+        select option:not([disabled]):hover {
+            background-color: #E5E7EB;
+        }
+
+        /* Estilo para quando o select está focado */
+        select:focus option.search-option {
+            background-color: #F3F4F6;
+        }
+
+        /* Garante que a opção de busca sempre fique no topo */
+        select option.search-option:first-child {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        /* Estilos para o wrapper do select com busca */
+        .select-search-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .select-search-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            background-color: white;
+            z-index: 2;
+            outline: none;
+        }
+
+        .select-search-wrapper select {
+            width: 100%;
+            padding: 8px 12px;
+            padding-top: 40px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .select-search-wrapper.focused .select-search-input {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.2);
+        }
+
+        .select-search-wrapper.focused select {
+            border-color: var(--color-primary);
+        }
+
+        .select-search-wrapper select option {
+            padding: 8px 12px;
+        }
+
+        .select-search-wrapper select option:hover {
+            background-color: #F3F4F6;
+        }
+
+        /* Estilos para o select personalizado */
+        .custom-select-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-select-button {
+            width: 100%;
+            padding: 8px 12px;
+            min-height: 42px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            background-color: white;
+            text-align: left;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .custom-select-button:hover {
+            border-color: var(--color-primary);
+        }
+
+        .custom-select-button.placeholder {
+            color: #6B7280;
+        }
+
+        .custom-select-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            margin-top: 4px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .custom-select-dropdown.active {
+            display: block;
+        }
+
+        .custom-select-search {
+            padding: 8px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .custom-select-search input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .custom-select-search input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.2);
+        }
+
+        .custom-select-options {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .custom-select-option {
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .custom-select-option:hover {
+            background-color: #F3F4F6;
+        }
     </style>
     <title>Monitoria de PAN</title>
 </head>
@@ -148,7 +378,7 @@
                     </svg>
                     Gráficos de Monitoramento
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="monitoring-card">
                         <h3 class="text-base font-semibold text-[var(--color-dark-green)] mb-4 flex items-center">
                             <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -205,32 +435,58 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="monitoring-card">
+                        <h3 class="text-base font-semibold text-[var(--color-dark-green)] mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Custos e Gastos
+                        </h3>
+                        <div class="bar-chart">
+                            <div class="bar h-0 bg-blue-500">
+                                <div class="bar-value cost-value-previsto">R$ 0</div>
+                                <div class="bar-label">Previsto</div>
+                            </div>
+                            <div class="bar h-0 bg-green-500">
+                                <div class="bar-value cost-value-gasto">R$ 0</div>
+                                <div class="bar-label">Gasto</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <div class="monitoring-section">
                 <section class="monitoring-panel">
-                    <div class="flex justify-between items-center mb-6">
+                    <div class="flex justify-between items-center mb-8">
                         <h2 class="text-xl font-bold text-[var(--color-dark-green)] flex items-center">
                             <svg class="w-6 h-6 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2"/>
                             </svg>
                             Painel de PANs
                         </h2>
-                        <div class="flex space-x-3">
-                            <button id="add-pan-button" class="flex items-center justify-center w-10 h-10 rounded-full bg-light-green hover:bg-[var(--color-dark-green)] text-white text-xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-400">
-                                <span class="material-icons text-2xl">add</span>
-                            </button>
+                        
+                        <div class="flex-1 max-w-xl mx-8">
                             <div class="relative">
                                 <input type="search" 
                                        id="pan-search-input"
                                        placeholder="Buscar PAN..." 
-                                       class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-all duration-300"
-                                       oninput="filtrarPANs()">
+                                       class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-all duration-300">
                                 <span class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                                     search
                                 </span>
                             </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <button onclick="toggleFilterSidenav()" 
+                                    class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-all duration-200 shadow-sm hover:shadow-md">
+                                <span class="material-icons">filter_list</span>
+                            </button>
+                            <button id="add-pan-button" class="flex items-center justify-center w-10 h-10 rounded-full bg-light-green hover:bg-[var(--color-dark-green)] text-white text-xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-400">
+                                <span class="material-icons text-2xl">add</span>
+                            </button>
                         </div>
                     </div>
                     
@@ -285,149 +541,298 @@
         </div>
     </div>
 
-    <div id="pan-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-4">
-            <h3 class="text-2xl font-bold text-gray-800">Adicionar Novo PAN</h3>
-            <button id="close-modal" class="text-gray-500 hover:text-gray-700">
-                <span class="material-icons text-3xl">close</span>
-            </button>
+    <!-- Novo modal de endereço -->
+    <div id="modal-endereco" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[60] overflow-hidden flex items-center justify-center p-6">
+        <div class="bg-white rounded-lg w-full max-w-5xl flex flex-col max-h-[80vh]">
+            <div class="px-6 py-4 border-b border-gray-200 flex-shrink-0">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-bold text-[var(--color-dark-green)]">Detalhes do Endereço</h2>
+                    <button onclick="fecharModalEndereco()" class="text-gray-400 hover:text-gray-500 transition-colors">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </div>
             
-            <form id="pan-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input type="hidden" name="editingId" value="">
+            <div class="p-6 flex-1 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-4">
                     <div>
-                    <label class="block text-sm font-medium text-gray-700">Título*</label>
-                    <input type="text" name="title" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                        <label class="block text-sm font-medium text-gray-700">Rua</label>
+                        <p id="modal-rua" class="mt-1 p-2 w-full bg-gray-50 border border-gray-200 rounded-md"></p>
                     </div>
-                    
                     <div>
-                    <label class="block text-sm font-medium text-gray-700">Descrição*</label>
-                    <textarea name="description" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+                        <label class="block text-sm font-medium text-gray-700">Número</label>
+                        <p id="modal-numero" class="mt-1 p-2 w-full bg-gray-50 border border-gray-200 rounded-md"></p>
                     </div>
-                    
                     <div>
-                    <label class="block text-sm font-medium text-gray-700">URL da Imagem</label>
-                    <input type="text" name="image" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="img/logo-pan-exemplo.png">
+                        <label class="block text-sm font-medium text-gray-700">Bairro</label>
+                        <p id="modal-bairro" class="mt-1 p-2 w-full bg-gray-50 border border-gray-200 rounded-md"></p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">CEP</label>
+                        <p id="modal-cep" class="mt-1 p-2 w-full bg-gray-50 border border-gray-200 rounded-md"></p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Cidade</label>
+                        <p id="modal-cidade" class="mt-1 p-2 w-full bg-gray-50 border border-gray-200 rounded-md"></p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Estado</label>
+                        <p id="modal-estado" class="mt-1 p-2 w-full bg-gray-50 border border-gray-200 rounded-md"></p>
                     </div>
                 </div>
-                
-                <div class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Tag 1</label>
-                        <input type="text" name="tag1" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="Em Execução">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Cor da Tag</label>
-                        <select name="tag1Color" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
-                        <option value="blue">Azul</option>
-                        <option value="green">Verde</option>
-                        <option value="red">Vermelho</option>
-                        <option value="orange">Laranja</option>
-                        <option value="yellow">Amarelo</option>
-                        <option value="gray">Cinza</option>
-                        </select>
-                    </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Período</label>
-                        <input type="text" name="period" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="2023-2028">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Duração</label>
-                        <input type="text" name="duration" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="5 anos de duração">
-                    </div>
-                    </div>
-                    
-                    <div>
-                    <label class="block text-sm font-medium text-gray-700">Objetivo Geral*</label>
-                    <textarea name="generalObjective" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
-                    </div>
+                <div class="h-[400px] bg-gray-100 rounded-lg relative">
+                    <div id="map" class="w-full h-full rounded-lg"></div>
                 </div>
-
-                <div class="space-y-2">
-                    <label for="pan-coordinators" class="block text-sm font-medium text-[var(--color-dark-green)]">
-                        Coordenador:
-                    </label>
-                    <select id="pan-coordinators" 
-                            name="coordenador"
-                            required
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
-                        <option value="">Selecione um coordenador</option>
-                    </select>
-                </div>
-                
-                <div class="md:col-span-2">
-                    <h4 class="text-lg font-medium text-gray-800 mb-4">Objetivos Específicos</h4>
-                    <div id="specific-objectives-container" class="space-y-6">
-                    </div>
-                    <button type="button" id="add-objective" class="mt-4 px-4 py-2 bg-blue-100 text-blue-600 rounded-md hover:bg-blue-200">
-                    + Adicionar Objetivo
-                    </button>
-                </div>
-                
-                <div class="md:col-span-2 flex justify-end space-x-4 pt-4 border-t">
-                    <button type="button" id="cancel-form" class="px-6 py-2 border border-gray-300 rounded-md">
-                    Cancelar
-                    </button>
-                    <button type="submit" class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
-                    Salvar PAN
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
+    </div>
+
+    <div id="pan-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[9999]">
+        <div class="bg-white rounded-2xl shadow-2xl w-[1200px] max-h-[800px] flex flex-col">
+            <div class="px-8 py-6 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-2xl font-bold text-[var(--color-dark-green)] modal-title">PAN</h3>
+                    <button id="close-modal" class="text-gray-500 hover:text-gray-700 transition-colors">
+                        <span class="material-icons text-3xl">close</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-8 overflow-y-auto flex-1">
+                <form id="pan-form" class="space-y-6">
+                    <input type="hidden" name="editingId" value="">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Título*</label>
+                                <input type="text" name="title" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Descrição*</label>
+                                <textarea name="description" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">URL da Imagem</label>
+                                <input type="text" name="image" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="img/logo-pan-exemplo.png">
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Status do PAN*</label>
+                                    <select name="tag1" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
+                                        <option value=""></option>
+                                        <option value="Não Iniciado">Não Iniciado</option>
+                                        <option value="Em Execução">Em Execução</option>
+                                        <option value="Suspenso">Suspenso</option>
+                                        <option value="Finalizado">Finalizado</option>
+                                        <option value="Aguardando Coordenador">Aguardando Coordenador</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Cor do Status*</label>
+                                    <select name="tag1Color" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
+                                        <option value=""></option>
+                                        <option value="gray">Cinza</option>
+                                        <option value="blue">Azul</option>
+                                        <option value="red">Vermelho</option>
+                                        <option value="orange">Laranja</option>
+                                        <option value="green">Verde</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Período*</label>
+                                    <input type="text" name="period" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="2023-2028">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Duração*</label>
+                                    <input type="text" name="duration" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="5 anos de duração">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Objetivo Geral*</label>
+                                <textarea name="generalObjective" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <label for="pan-coordinators" class="block text-sm font-medium text-[var(--color-dark-green)]">
+                            Coordenador*
+                        </label>
+                        <div class="relative">
+                            <select id="pan-coordinators" 
+                                    name="coordenador"
+                                    required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent bg-white">
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t pt-6">
+                        <h4 class="text-lg font-medium text-gray-800 mb-4">Objetivos Específicos</h4>
+                        <div id="specific-objectives-container" class="space-y-6">
+                        </div>
+                        <button type="button" id="add-objective" class="mt-4 px-4 py-2 bg-blue-100 text-blue-600 rounded-md hover:bg-blue-200">
+                            + Adicionar Objetivo
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="px-8 py-6 border-t border-gray-200">
+                <div class="flex justify-end space-x-4">
+                    <button type="button" id="cancel-form" class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                        Cancelar
+                    </button>
+                    <button type="submit" form="pan-form" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        Salvar PAN
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     
     <template id="objective-template">
-        <div class="objective-group border rounded-lg p-4 bg-gray-50">
-        <div class="flex justify-between items-center mb-3">
-            <h5 class="font-medium text-gray-700">Objetivo <span class="objective-number">1</span></h5>
-            <button type="button" class="remove-objective text-red-500 hover:text-red-700">
-            <span class="material-icons">delete</span>
-            </button>
-        </div>
-        
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700">Título</label>
-            <input type="text" name="specificObjectives[][title]" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
-        </div>
-        
-        <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700">Descrição</label>
-            <textarea name="specificObjectives[][description]" rows="2" class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
-        </div>
-        
-        <div class="actions-container space-y-4">
-            <div class="action-group flex items-center space-x-2">
-            <input type="text" name="specificObjectives[][actions][][description]" placeholder="Descrição da ação" class="flex-1 border border-gray-300 rounded-md p-2">
-            <select name="specificObjectives[][actions][][articulador]" class="border border-gray-300 rounded-md p-2">
-                <option value="">Selecione um articulador</option>
-            </select>
-            <select name="specificObjectives[][actions][][status]" class="border border-gray-300 rounded-md p-2">
-                <option value="not_started">Não iniciado</option>
-                <option value="in_progress">Em progresso</option>
-                <option value="completed">Completo</option>
-            </select>
-            <button type="button" class="remove-action text-red-500 hover:text-red-700">
-                <span class="material-icons">close</span>
-            </button>
+        <div class="objective-group border rounded-lg p-6 bg-gray-50">
+            <div class="flex justify-between items-center mb-4">
+                <h5 class="text-lg font-medium text-gray-700">Objetivo <span class="objective-number">1</span></h5>
+                <button type="button" class="remove-objective text-red-500 hover:text-red-700">
+                    <span class="material-icons">delete</span>
+                </button>
             </div>
-        </div>
-        
-        <button type="button" class="add-action mt-2 px-3 py-1 bg-gray-200 text-gray-700 rounded-md text-sm hover:bg-gray-300">
-            + Adicionar Ação
-        </button>
+            
+            <div class="grid grid-cols-1 gap-4 mb-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Título*</label>
+                    <input type="text" name="specificObjectives[][title]" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Descrição*</label>
+                    <textarea name="specificObjectives[][description]" required rows="2" class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+                </div>
+            </div>
+            
+            <div class="actions-container space-y-6">
+                <div class="action-group bg-white rounded-lg p-4 border">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Descrição da Ação*</label>
+                            <input type="text" name="specificObjectives[][actions][][description]" required
+                                   class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Articulador*</label>
+                            <div class="relative">
+                                <select name="specificObjectives[][actions][][articulador]" required
+                                        class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Status*</label>
+                            <select name="specificObjectives[][actions][][status]" required
+                                    class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
+                                <option value="">Selecione um status</option>
+                                <option value="not_started">Não iniciado</option>
+                                <option value="in_progress">Em progresso</option>
+                                <option value="completed">Completo</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Custo Previsto</label>
+                            <input type="text" name="specificObjectives[][actions][][custo_previsto]" 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Valor Gasto</label>
+                            <input type="text" name="specificObjectives[][actions][][valor_gasto]" 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <h6 class="text-sm font-medium text-gray-700">Endereço</h6>
+                            <button type="button" class="toggle-address text-blue-500 hover:text-blue-700">
+                                <span class="material-icons">expand_more</span>
+                            </button>
+                        </div>
+                        <div class="address-fields hidden">
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">CEP*</label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <input type="text" name="specificObjectives[][actions][][endereco][cep]" required
+                                               maxlength="9"
+                                               class="flex-1 border border-gray-300 rounded-l-md p-2 focus:ring-2 focus:ring-blue-200 focus:border-blue-400 transition-all"
+                                               placeholder="00000-000">
+                                        <button type="button" 
+                                               class="buscar-cep inline-flex items-center px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-r-md hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-sm">
+                                           <span class="material-icons text-lg mr-1">search</span>
+                                           Buscar
+                                       </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Rua*</label>
+                                    <input type="text" name="specificObjectives[][actions][][endereco][rua]" required
+                                           class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Número</label>
+                                    <input type="text" name="specificObjectives[][actions][][endereco][numero]" 
+                                           class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Bairro*</label>
+                                    <input type="text" name="specificObjectives[][actions][][endereco][bairro]" required
+                                           class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Cidade*</label>
+                                    <input type="text" name="specificObjectives[][actions][][endereco][cidade]" required
+                                           class="mt-1 block w-full border border-gray-300 rounded-md p-2" readonly>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Estado*</label>
+                                    <input type="text" name="specificObjectives[][actions][][endereco][estado]" required
+                                           class="mt-1 block w-full border border-gray-300 rounded-md p-2" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end mt-4">
+                        <button type="button" class="remove-action text-red-500 hover:text-red-700">
+                            <span class="material-icons">delete</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="button" class="add-action mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+                + Adicionar Ação
+            </button>
         </div>
     </template>
     
-    <script src="js/panCards.js"></script>
-    <script src="js/addPan.js" defer></script>
     <script>
         fetch('layout.html')
             .then(response => response.text())
@@ -446,5 +851,67 @@
         const totalEtapas = 3;
 
     </script>
+
+    <!-- Sidenav de Filtros -->
+    <div id="filter-sidenav" class="fixed right-0 top-0 h-full w-full md:w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+        <div class="flex flex-col h-full">
+            <div class="flex items-center justify-between p-4 border-b">
+                <h3 class="text-lg font-semibold text-[var(--color-dark-green)] flex items-center">
+                    <span class="material-icons mr-2">filter_list</span>
+                    Filtros
+                </h3>
+                <button onclick="toggleFilterSidenav()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            
+            <div class="p-4 space-y-4 flex-1">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Status do PAN</label>
+                    <div class="relative">
+                        <button type="button" 
+                                id="status-dropdown-button"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
+                            <span id="status-selected-text">Todos</span>
+                            <span class="material-icons">arrow_drop_down</span>
+                        </button>
+                        <div id="status-dropdown-menu" 
+                             class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg hidden">
+                            <div class="p-2 space-y-2">
+                                <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                    <input type="checkbox" value="todos" class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]" checked>
+                                    <span class="ml-2 text-sm text-gray-700">Todos</span>
+                                </label>
+                                <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                    <input type="checkbox" value="Concluído" class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
+                                    <span class="ml-2 text-sm text-gray-700">Concluído</span>
+                                </label>
+                                <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                    <input type="checkbox" value="Ativo" class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
+                                    <span class="ml-2 text-sm text-gray-700">Ativo</span>
+                                </label>
+                                <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                    <input type="checkbox" value="Parado" class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
+                                    <span class="ml-2 text-sm text-gray-700">Parado</span>
+                                </label>
+                                <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
+                                    <input type="checkbox" value="Não Iniciado" class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
+                                    <span class="ml-2 text-sm text-gray-700">Não Iniciado</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4 border-t">
+                <button onclick="limparFiltros()" 
+                        class="w-full py-2 px-4 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center">
+                    <span class="material-icons mr-2 text-sm">clear</span>
+                    Limpar Filtros
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
