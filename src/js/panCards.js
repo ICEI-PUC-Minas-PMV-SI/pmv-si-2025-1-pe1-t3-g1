@@ -29,6 +29,7 @@ document.addEventListener('panDataUpdated', () => {
 });
 
 function removerPan(id) {
+    const storedData = JSON.parse(localStorage.getItem('pansData'));
     const pansAtualizados = storedData.pans.filter((pan) => pan.id !== id);
 
     localStorage.setItem("pansData", JSON.stringify({ pans: pansAtualizados }));
