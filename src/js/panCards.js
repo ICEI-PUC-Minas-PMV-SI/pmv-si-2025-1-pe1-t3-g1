@@ -552,8 +552,7 @@ function renderPanCards(pans) {
                     <button onclick="abrirDetalhesPAN(${pan.id})" class="text-[var(--color-dark-green)] hover:text-[var(--color-primary)] text-sm font-medium transition-colors duration-300 flex items-center group">
                         <span class="material-icons text-base mr-1">visibility</span>
                         Ver detalhes
-                    </button>
-                    
+                    </button>                    
                     ${canEdit ? `
                         <button onclick="editarPan(${pan.id})" class="text-yellow-600 hover:text-yellow-800 text-sm font-medium transition-colors duration-300 flex items-center group">
                             <span class="material-icons text-base mr-1">edit</span>
