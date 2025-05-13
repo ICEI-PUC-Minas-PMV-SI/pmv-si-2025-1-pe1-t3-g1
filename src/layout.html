@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="js/auth.js" defer></script>
     <title>Monitoria de PAN</title>
 </head>
+
 <body class="flex flex-col min-h-screen">
     <header class="bg-white shadow-md">
         <div class="container mx-auto px-4">
@@ -17,22 +19,27 @@
                     <img src="img/logo-monitoria-pan-pq.png" alt="LOGO" class="h-12">
                     <nav>
                         <ul class="flex space-x-6">
-                            <li><a href="index.html" class="text-[var(--color-dark-green)] hover:text-[var(--color-secondary)] font-medium transition-colors">Início</a></li>
-                            <li><a href="gerenciar-pans.html" class="text-[var(--color-dark-green)] hover:text-[var(--color-secondary)] font-medium transition-colors">Gerenciar PANs</a></li>
+                            <li><a href="index.html"
+                                    class="text-[var(--color-dark-green)] hover:text-[var(--color-secondary)] font-medium transition-colors">Início</a>
+                            </li>
+                            <li><a href="gerenciar-pans.html"
+                                    class="text-[var(--color-dark-green)] hover:text-[var(--color-secondary)] font-medium transition-colors">Gerenciar
+                                    PANs</a></li>
                         </ul>
                     </nav>
                 </div>
-                
+
                 <div class="relative" id="user-dropdown">
-                    <a href="login.html" id="auth-button" 
-                       class="inline-flex items-center justify-center px-6 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white font-medium rounded-lg transition-all duration-200 shadow-sm hover:shadow-md space-x-2">
+                    <a href="login.html" id="auth-button"
+                        class="inline-flex items-center justify-center px-6 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white font-medium rounded-lg transition-all duration-200 shadow-sm hover:shadow-md space-x-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                         <span class="text-sm">Entrar</span>
                     </a>
-                    <div id="dropdown-content" 
-                         class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50">
+                    <div id="dropdown-content"
+                        class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50">
                     </div>
                 </div>
             </div>
@@ -47,11 +54,12 @@
     <footer class="bg-dark-green text-white py-4 w-full mt-auto">
         <div class="container mx-auto px-4 flex items-center justify-start space-x-4">
             <img src="img/Logo_ICMBio_2011_Branca.png" alt="Logo ICMBio" class="h-8">
-            <a href="https://www.gov.br/icmbio/pt-br" target="_blank" 
-               class="text-sm hover:text-accent transition-colors">
+            <a href="https://www.gov.br/icmbio/pt-br" target="_blank"
+                class="text-sm hover:text-accent transition-colors">
                 Instituto Chico Mendes de Conservação da Biodiversidade
             </a>
         </div>
     </footer>
 </body>
+
 </html>

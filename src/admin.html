@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +16,12 @@
             font-size: 20px;
             vertical-align: middle;
         }
+
         .filter-dropdown {
             position: relative;
             display: inline-block;
         }
+
         .filter-dropdown select {
             appearance: none;
             border: 1px solid #e5e7eb;
@@ -31,9 +34,11 @@
             transition: all 0.2s;
             min-width: 180px;
         }
+
         .filter-dropdown select:hover {
             border-color: var(--color-primary);
         }
+
         .filter-dropdown select:focus {
             outline: none;
             --tw-ring-offset-shadow: 0 0 #0000;
@@ -42,6 +47,7 @@
             box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
             border-color: transparent;
         }
+
         .filter-dropdown .material-icons {
             position: absolute;
             left: 0.75rem;
@@ -49,6 +55,7 @@
             color: #9ca3af;
             pointer-events: none;
         }
+
         .filter-dropdown::after {
             content: '';
             position: absolute;
@@ -60,7 +67,7 @@
             border-top: 4px solid #9ca3af;
             pointer-events: none;
         }
-        
+
         /* Estilo para os inputs do formulário */
         input[type="text"],
         input[type="email"],
@@ -72,7 +79,7 @@
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
             transition: all 0.2s;
         }
-        
+
         input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="password"]:focus,
@@ -124,6 +131,7 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-50">
     <div id="layout-content">
 
@@ -132,28 +140,32 @@
     <div id="page-content" class="hidden">
         <div class="p-4 md:p-6 min-h-screen">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6">
-                <div class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-[var(--color-primary)] hover:shadow-lg transition-shadow">
+                <div
+                    class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-[var(--color-primary)] hover:shadow-lg transition-shadow">
                     <div class="flex items-center space-x-3">
                         <span class="material-icons text-[var(--color-primary)]">group</span>
                         <h3 class="text-base md:text-lg font-semibold text-gray-600">Total de Usuários</h3>
                     </div>
                     <p class="text-2xl md:text-3xl font-bold text-dark mt-2" id="total-users">0</p>
                 </div>
-                <div class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-green-500 hover:shadow-lg transition-shadow">
+                <div
+                    class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-green-500 hover:shadow-lg transition-shadow">
                     <div class="flex items-center space-x-3">
                         <span class="material-icons text-green-500">check_circle</span>
                         <h3 class="text-base md:text-lg font-semibold text-gray-600">Usuários Ativos</h3>
                     </div>
                     <p class="text-2xl md:text-3xl font-bold text-green-600 mt-2" id="active-users">0</p>
                 </div>
-                <div class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-red-500 hover:shadow-lg transition-shadow">
+                <div
+                    class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-red-500 hover:shadow-lg transition-shadow">
                     <div class="flex items-center space-x-3">
                         <span class="material-icons text-red-500">cancel</span>
                         <h3 class="text-base md:text-lg font-semibold text-gray-600">Usuários Inativos</h3>
                     </div>
                     <p class="text-2xl md:text-3xl font-bold text-red-600 mt-2" id="inactive-users">0</p>
                 </div>
-                <div class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition-shadow">
+                <div
+                    class="bg-white p-4 md:p-6 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition-shadow">
                     <div class="flex items-center space-x-3">
                         <span class="material-icons text-accent">admin_panel_settings</span>
                         <h3 class="text-base md:text-lg font-semibold text-gray-600">Administradores</h3>
@@ -163,7 +175,8 @@
             </div>
 
             <div class="bg-white p-4 md:p-6 rounded-xl shadow-md">
-                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0 mb-6">
+                <div
+                    class="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0 mb-6">
                     <div>
                         <h1 class="text-xl md:text-2xl font-bold text-dark flex items-center">
                             <span class="material-icons mr-2 text-[var(--color-primary)]">manage_accounts</span>
@@ -175,18 +188,16 @@
                         <div class="relative flex-1 lg:flex-none">
                             <div class="relative flex items-center">
                                 <span class="material-icons absolute left-3 text-gray-400">search</span>
-                            <input type="text" 
-                                   id="search-users" 
-                                   placeholder="Buscar usuários..."
-                                       class="w-full lg:w-80 pl-10 pr-4 h-10 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
+                                <input type="text" id="search-users" placeholder="Buscar usuários..."
+                                    class="w-full lg:w-80 pl-10 pr-4 h-10 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
                             </div>
                         </div>
-                        <button onclick="toggleFilterSidenav()" 
-                                class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-all duration-200 shadow-sm hover:shadow-md">
+                        <button onclick="toggleFilterSidenav()"
+                            class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-all duration-200 shadow-sm hover:shadow-md">
                             <span class="material-icons">filter_list</span>
                         </button>
-                        <button onclick="openUserModal()" 
-                                class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white transition-all duration-200 shadow-sm hover:shadow-md">
+                        <button onclick="openUserModal()"
+                            class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white transition-all duration-200 shadow-sm hover:shadow-md">
                             <span class="material-icons">add</span>
                         </button>
                     </div>
@@ -196,31 +207,36 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead>
                             <tr class="bg-gray-50">
-                                <th class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                <th
+                                    class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
                                     <div class="flex items-center space-x-2">
                                         <span class="material-icons text-gray-400 text-base">person</span>
                                         <span>Nome</span>
                                     </div>
                                 </th>
-                                <th class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                <th
+                                    class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
                                     <div class="flex items-center space-x-2">
                                         <span class="material-icons text-gray-400 text-base">email</span>
                                         <span>Email</span>
                                     </div>
                                 </th>
-                                <th class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                <th
+                                    class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
                                     <div class="flex items-center space-x-2">
                                         <span class="material-icons text-gray-400 text-base">badge</span>
                                         <span>Papel</span>
                                     </div>
                                 </th>
-                                <th class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                <th
+                                    class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
                                     <div class="flex items-center space-x-2">
                                         <span class="material-icons text-gray-400 text-base">radio_button_checked</span>
                                         <span>Status</span>
                                     </div>
                                 </th>
-                                <th class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                                <th
+                                    class="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider">
                                     <div class="flex items-center space-x-2">
                                         <span class="material-icons text-gray-400 text-base">settings</span>
                                         <span>Ações</span>
@@ -235,10 +251,11 @@
                         <div class="text-center">
                             <span class="material-icons text-gray-400 text-5xl mb-2">search_off</span>
                             <h3 class="mt-2 text-sm font-medium text-gray-900">Nenhum usuário encontrado</h3>
-                            <p class="mt-1 text-sm text-gray-500">Não foram encontrados usuários com os filtros aplicados.</p>
+                            <p class="mt-1 text-sm text-gray-500">Não foram encontrados usuários com os filtros
+                                aplicados.</p>
                             <div class="mt-6">
-                                <button onclick="limparFiltros()" 
-                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[var(--color-primary)] hover:bg-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-primary)] transition-all duration-200">
+                                <button onclick="limparFiltros()"
+                                    class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[var(--color-primary)] hover:bg-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-primary)] transition-all duration-200">
                                     <span class="material-icons mr-2">refresh</span>
                                     Limpar Filtros
                                 </button>
@@ -266,52 +283,55 @@
                     <input type="hidden" id="user-email-original">
                     <div class="grid grid-cols-1 gap-6">
                         <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                            <label for="user-name" class="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
+                            <label for="user-name" class="block text-sm font-medium text-gray-700 mb-2">Nome
+                                Completo</label>
                             <div class="relative">
                                 <span class="material-icons absolute left-3 top-2.5 text-gray-400">person</span>
-                            <input type="text" id="user-name" required
-                                       class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200">
+                                <input type="text" id="user-name" required
+                                    class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200">
                             </div>
                         </div>
                         <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
                             <label for="user-email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
                             <div class="relative">
                                 <span class="material-icons absolute left-3 top-2.5 text-gray-400">email</span>
-                            <input type="email" id="user-email" required
-                                       class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200">
+                                <input type="email" id="user-email" required
+                                    class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200">
                             </div>
                         </div>
                         <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                            <label for="user-password" class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                            <label for="user-password"
+                                class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
                             <div class="relative">
                                 <span class="material-icons absolute left-3 top-2.5 text-gray-400">lock</span>
                                 <input type="password" id="user-password" required minlength="8"
-                                       class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200">
-                    </div>
+                                    class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200">
+                            </div>
                         </div>
                         <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
                             <label for="user-role" class="block text-sm font-medium text-gray-700 mb-2">Papel</label>
                             <div class="relative">
                                 <span class="material-icons absolute left-3 top-2.5 text-gray-400">badge</span>
-                            <select id="user-role" required
-                                        class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200 appearance-none">
-                                <option value="admin">Administrador</option>
-                                <option value="coordenador">Coordenador</option>
+                                <select id="user-role" required
+                                    class="w-full pl-10 pr-4 py-2 bg-white rounded-xl border border-gray-300 focus:border-[var(--color-primary)] focus:ring focus:ring-[var(--color-primary)] focus:ring-opacity-50 transition-all duration-200 appearance-none">
+                                    <option value="admin">Administrador</option>
+                                    <option value="coordenador">Coordenador</option>
                                     <option value="articulador">Articulador</option>
                                     <option value="colaborador">Colaborador</option>
-                            </select>
-                                <span class="absolute right-3 top-2.5 text-gray-400 material-icons pointer-events-none">expand_more</span>
+                                </select>
+                                <span
+                                    class="absolute right-3 top-2.5 text-gray-400 material-icons pointer-events-none">expand_more</span>
                             </div>
                         </div>
                     </div>
                     <div class="flex justify-end space-x-4 mt-8">
                         <button type="button" onclick="closeUserModal()"
-                                class="flex items-center px-4 py-2 border border-gray-300 rounded-xl text-gray-700 bg-white hover:bg-gray-50 transition-all duration-200">
+                            class="flex items-center px-4 py-2 border border-gray-300 rounded-xl text-gray-700 bg-white hover:bg-gray-50 transition-all duration-200">
                             <span class="material-icons mr-1 text-base">close</span>
                             Cancelar
                         </button>
                         <button type="submit"
-                                class="flex items-center px-4 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white rounded-xl transition-all duration-200 hover:shadow-lg">
+                            class="flex items-center px-4 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white rounded-xl transition-all duration-200 hover:shadow-lg">
                             <span class="material-icons mr-1 text-base">save</span>
                             Salvar
                         </button>
@@ -336,11 +356,9 @@
                 <div class="mb-4">
                     <div class="relative">
                         <span class="material-icons absolute left-3 top-2.5 text-gray-400">search</span>
-                    <input type="text" 
-                               id="history-search" 
-                           placeholder="Buscar no histórico..."
-                               class="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
-                </div>
+                        <input type="text" id="history-search" placeholder="Buscar no histórico..."
+                            class="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
+                    </div>
                 </div>
                 <div id="history-content" class="space-y-4 max-h-[60vh] overflow-y-auto">
                     <!-- O conteúdo do histórico será inserido aqui -->
@@ -350,7 +368,8 @@
     </div>
 
     <!-- Sidenav de Filtros -->
-    <div id="filter-sidenav" class="fixed right-0 top-0 h-full w-full md:w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+    <div id="filter-sidenav"
+        class="fixed right-0 top-0 h-full w-full md:w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
         <div class="flex flex-col h-full">
             <div class="flex items-center justify-between p-4 border-b">
                 <h3 class="text-lg font-semibold text-gray-800 flex items-center">
@@ -361,19 +380,21 @@
                     <span class="material-icons">close</span>
                 </button>
             </div>
-            
+
             <div class="p-4 flex-1 overflow-y-auto">
                 <div class="space-y-6">
                     <div class="form-field">
                         <label class="text-sm font-medium text-gray-700 mb-2 block">Status</label>
                         <div class="relative">
                             <div class="form-field-outline">
-                                <select id="filter-status" class="w-full h-14 px-4 pt-4 pb-1 border border-gray-300 rounded-lg bg-transparent peer focus:outline-none focus:border-[var(--color-primary)] focus:ring-0 appearance-none">
+                                <select id="filter-status"
+                                    class="w-full h-14 px-4 pt-4 pb-1 border border-gray-300 rounded-lg bg-transparent peer focus:outline-none focus:border-[var(--color-primary)] focus:ring-0 appearance-none">
                                     <option value="">Todos</option>
                                     <option value="ativo">Ativo</option>
                                     <option value="inativo">Inativo</option>
                                 </select>
-                                <label class="absolute left-4 top-4 text-gray-500 text-sm transition-all peer-focus:text-xs peer-focus:top-1.5 peer-focus:text-[var(--color-primary)] peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:top-1.5">
+                                <label
+                                    class="absolute left-4 top-4 text-gray-500 text-sm transition-all peer-focus:text-xs peer-focus:top-1.5 peer-focus:text-[var(--color-primary)] peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:top-1.5">
                                     Status
                                 </label>
                                 <span class="material-icons absolute right-4 top-4 text-gray-400 pointer-events-none">
@@ -387,14 +408,16 @@
                         <label class="text-sm font-medium text-gray-700 mb-2 block">Papel</label>
                         <div class="relative">
                             <div class="form-field-outline">
-                                <select id="filter-papel" class="w-full h-14 px-4 pt-4 pb-1 border border-gray-300 rounded-lg bg-transparent peer focus:outline-none focus:border-[var(--color-primary)] focus:ring-0 appearance-none">
+                                <select id="filter-papel"
+                                    class="w-full h-14 px-4 pt-4 pb-1 border border-gray-300 rounded-lg bg-transparent peer focus:outline-none focus:border-[var(--color-primary)] focus:ring-0 appearance-none">
                                     <option value="">Todos</option>
                                     <option value="admin">Administrador</option>
                                     <option value="coordenador">Coordenador</option>
                                     <option value="articulador">Articulador</option>
                                     <option value="colaborador">Colaborador</option>
                                 </select>
-                                <label class="absolute left-4 top-4 text-gray-500 text-sm transition-all peer-focus:text-xs peer-focus:top-1.5 peer-focus:text-[var(--color-primary)] peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:top-1.5">
+                                <label
+                                    class="absolute left-4 top-4 text-gray-500 text-sm transition-all peer-focus:text-xs peer-focus:top-1.5 peer-focus:text-[var(--color-primary)] peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:top-1.5">
                                     Papel
                                 </label>
                                 <span class="material-icons absolute right-4 top-4 text-gray-400 pointer-events-none">
@@ -405,10 +428,10 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="p-4 border-t">
-                <button onclick="aplicarFiltros()" 
-                        class="w-full flex items-center justify-center px-4 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white rounded-xl transition-all duration-200">
+                <button onclick="aplicarFiltros()"
+                    class="w-full flex items-center justify-center px-4 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white rounded-xl transition-all duration-200">
                     <span class="material-icons mr-2">check</span>
                     Aplicar Filtros
                 </button>
@@ -417,10 +440,11 @@
     </div>
 
     <!-- Overlay do Sidenav -->
-    <div id="sidenav-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="toggleFilterSidenav()"></div>
+    <div id="sidenav-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" onclick="toggleFilterSidenav()">
+    </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', async function() {
+        document.addEventListener('DOMContentLoaded', async function () {
             if (!isLoggedIn()) {
                 window.location.href = 'login.html';
                 return;
@@ -444,10 +468,10 @@
                 pageContent.remove();
                 await loadUsers();
 
-                document.getElementById('search-users').addEventListener('input', function(e) {
+                document.getElementById('search-users').addEventListener('input', function (e) {
                     const searchTerm = e.target.value.toLowerCase();
                     const rows = document.querySelectorAll('#users-table-body tr');
-                    
+
                     rows.forEach(row => {
                         const text = row.textContent.toLowerCase();
                         row.style.display = text.includes(searchTerm) ? '' : 'none';
@@ -464,9 +488,9 @@
             const title = document.getElementById('modal-title');
             const emailInput = document.getElementById('user-email');
             const emailOriginal = document.getElementById('user-email-original');
-            
+
             title.textContent = user ? 'Editar Usuário' : 'Novo Usuário';
-            
+
             if (user) {
                 document.getElementById('user-name').value = user.nome;
                 emailInput.value = user.email;
@@ -482,14 +506,14 @@
                 document.getElementById('user-password').required = true;
                 document.getElementById('user-password').placeholder = '';
             }
-            
+
             modal.classList.remove('hidden');
         }
 
         function closeUserModal() {
             document.getElementById('user-modal').classList.add('hidden');
         }
-        
+
         function openHistoryModal(user) {
             const modal = document.getElementById('history-modal');
             const content = document.getElementById('history-content');
@@ -497,7 +521,7 @@
             const noResults = document.getElementById('no-history-results');
 
             searchInput.value = '';
-            
+
             if (!user.historico || user.historico.length === 0) {
                 content.innerHTML = `
                     <div class="text-center py-8">
@@ -510,13 +534,13 @@
 
                 searchInput.onkeyup = () => {
                     const searchTerm = searchInput.value.toLowerCase();
-                    const filteredHistory = user.historico.filter(entry => 
+                    const filteredHistory = user.historico.filter(entry =>
                         entry.acao.toLowerCase().includes(searchTerm) ||
                         entry.por.toLowerCase().includes(searchTerm) ||
                         entry.data.toLowerCase().includes(searchTerm) ||
                         (entry.alteracoes && entry.alteracoes.toLowerCase().includes(searchTerm))
                     );
-                    
+
                     if (filteredHistory.length === 0) {
                         content.classList.add('hidden');
                         noResults.classList.remove('hidden');
@@ -527,13 +551,13 @@
                     }
                 };
             }
-            
+
             modal.classList.remove('hidden');
         }
 
         function renderHistorico(historico) {
             const content = document.getElementById('history-content');
-            
+
             content.innerHTML = historico.map(entry => `
                 <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors shadow-sm">
                     <div class="flex justify-between items-center mb-2">
@@ -577,7 +601,7 @@
             document.getElementById('inactive-users').textContent = users.filter(u => u.status === 'inativo').length;
             document.getElementById('admin-users').textContent = users.filter(u => u.papel === 'admin').length;
         }
-        
+
         function limparFiltros() {
             document.getElementById('search-users').value = '';
             document.getElementById('filter-status').value = '';
@@ -592,21 +616,21 @@
             const rows = document.querySelectorAll('#users-table-body tr');
             const table = document.querySelector('table');
             const noResults = document.getElementById('no-results');
-            
+
             let visibleCount = 0;
-            
+
             rows.forEach(row => {
                 const text = row.textContent.toLowerCase();
                 const status = row.querySelector('[data-status]')?.dataset.status;
                 const papel = row.querySelector('[data-papel]')?.dataset.papel;
-                
+
                 const matchSearch = text.includes(searchTerm);
                 const matchStatus = !statusFilter || status === statusFilter;
                 const matchPapel = !papelFilter || papel === papelFilter;
-                
+
                 const isVisible = matchSearch && matchStatus && matchPapel;
                 row.style.display = isVisible ? '' : 'none';
-                
+
                 if (isVisible) visibleCount++;
             });
 
@@ -622,15 +646,15 @@
         async function loadUsers() {
             const usuarios = await listarUsuarios();
             const tbody = document.getElementById('users-table-body');
-            
+
             updateStats(usuarios);
-            
+
             tbody.innerHTML = usuarios.map(usuario => {
                 const primeiraLetra = usuario.nome ? usuario.nome.charAt(0).toUpperCase() : '?';
-                const statusClasses = usuario.status === 'ativo' 
-                    ? 'bg-green-100 text-green-800 border border-green-200' 
+                const statusClasses = usuario.status === 'ativo'
+                    ? 'bg-green-100 text-green-800 border border-green-200'
                     : 'bg-red-100 text-red-800 border border-red-200';
-                
+
                 return `
                 <tr class="hover:bg-gray-50 transition-colors">
                     <td class="px-4 md:px-6 py-3 whitespace-nowrap">
@@ -742,9 +766,9 @@
             }
         }
 
-        document.getElementById('user-form').addEventListener('submit', async function(e) {
+        document.getElementById('user-form').addEventListener('submit', async function (e) {
             e.preventDefault();
-            
+
             const emailOriginal = document.getElementById('user-email-original').value;
             const dados = {
                 nome: document.getElementById('user-name').value,
@@ -752,7 +776,7 @@
                 senha: document.getElementById('user-password').value,
                 papel: document.getElementById('user-role').value
             };
-            
+
             let resultado;
             if (emailOriginal) {
                 resultado = await editarUsuario(emailOriginal, {
@@ -763,7 +787,7 @@
             } else {
                 resultado = await registrarUsuario(dados.email, dados.senha, dados.nome, dados.papel);
             }
-            
+
             if (resultado.sucesso) {
                 closeUserModal();
                 loadUsers();
@@ -775,7 +799,7 @@
         function toggleFilterSidenav() {
             const sidenav = document.getElementById('filter-sidenav');
             const overlay = document.getElementById('sidenav-overlay');
-            
+
             if (sidenav.classList.contains('translate-x-full')) {
                 sidenav.classList.remove('translate-x-full');
                 overlay.classList.remove('hidden');
@@ -793,4 +817,5 @@
         }
     </script>
 </body>
-</html> 
+
+</html>

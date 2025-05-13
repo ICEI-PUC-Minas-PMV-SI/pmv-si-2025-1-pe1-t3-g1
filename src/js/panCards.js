@@ -62,8 +62,8 @@ function initializeFilters() {
         } else if (checked[0].value === 'todos') {
             selectedText.textContent = 'Todos';
         } else {
-            selectedText.textContent = checked.length === 1 
-                ? checked[0].nextElementSibling.textContent 
+            selectedText.textContent = checked.length === 1
+                ? checked[0].nextElementSibling.textContent
                 : `${checked.length} selecionados`;
         }
     }
@@ -88,7 +88,7 @@ function initializeFilters() {
                     }
                 });
             } else if (checkbox.value === 'todos' && !checkbox.checked) {
-                const anyOtherChecked = Array.from(checkboxes).some(cb => 
+                const anyOtherChecked = Array.from(checkboxes).some(cb =>
                     cb.value !== 'todos' && cb.checked
                 );
                 if (!anyOtherChecked) {
@@ -100,7 +100,7 @@ function initializeFilters() {
                     todosCheckbox.checked = false;
                 }
             } else {
-                const anyChecked = Array.from(checkboxes).some(cb => 
+                const anyChecked = Array.from(checkboxes).some(cb =>
                     cb.value !== 'todos' && cb.checked
                 );
                 if (!anyChecked) {
@@ -110,7 +110,7 @@ function initializeFilters() {
                     }
                 }
             }
-            
+
             updateSelectedText();
             filtrarPANs();
         });
@@ -123,7 +123,7 @@ function initializeFilters() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const addButton = document.getElementById('add-pan-button');
     const panForm = document.getElementById("pan-form");
@@ -193,10 +193,10 @@ function removerPan(id) {
     try {
         const storedData = JSON.parse(localStorage.getItem("pansData")) || { pans: [] };
         const pansAtualizados = storedData.pans.filter((pan) => pan.id !== id);
-        
+
         localStorage.setItem("pansData", JSON.stringify({ pans: pansAtualizados }));
         document.dispatchEvent(new Event("panDataUpdated"));
-        
+
         renderPanCards(pansAtualizados);
         updateMonitoringCharts(pansAtualizados);
     } catch (error) {
@@ -218,7 +218,7 @@ function editarPan(id) {
 
     window.setEditMode(true);
     setModalTitle('EDIT');
-    
+
     function setFieldValue(fieldName, value) {
         const field = panForm.elements[fieldName];
         if (field) {
@@ -236,7 +236,7 @@ function editarPan(id) {
 
     panForm.setAttribute('data-tag1', pan.tag1);
     panForm.setAttribute('data-tag1-color', pan.tag1Color);
-    
+
     setFieldValue("tag1", pan.tag1);
     setFieldValue("tag1Color", pan.tag1Color);
 
@@ -244,13 +244,13 @@ function editarPan(id) {
     const tag1ColorSelect = panForm.querySelector('select[name="tag1Color"]');
 
     if (tag1Select) {
-        tag1Select.addEventListener('change', function(e) {
+        tag1Select.addEventListener('change', function (e) {
             panForm.setAttribute('data-tag1', e.target.value);
         });
     }
 
     if (tag1ColorSelect) {
-        tag1ColorSelect.addEventListener('change', function(e) {
+        tag1ColorSelect.addEventListener('change', function (e) {
             panForm.setAttribute('data-tag1-color', e.target.value);
         });
     }
@@ -314,13 +314,13 @@ function editarPan(id) {
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Custo Previsto</label>
                                     <input type="text" name="specificObjectives[][actions][][custo_previsto]" 
-                                           value="${formatCurrency(action.custo_previsto || '')}"
+                                           value="${window.formatCurrency(action.custo_previsto || '')}"
                                            class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Valor Gasto</label>
                                     <input type="text" name="specificObjectives[][actions][][valor_gasto]" 
-                                           value="${formatCurrency(action.valor_gasto || '')}"
+                                           value="${window.formatCurrency(action.valor_gasto || '')}"
                                            class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
                                 </div>
                             </div>
@@ -406,11 +406,11 @@ function editarPan(id) {
                         const custoPrevisto = actionGroup.querySelector('input[name$="[custo_previsto]"]');
                         const valorGasto = actionGroup.querySelector('input[name$="[valor_gasto]"]');
 
-                        custoPrevisto.addEventListener('input', function(e) {
-                            e.target.value = formatCurrency(e.target.value);
+                        custoPrevisto.addEventListener('input', function (e) {
+                            e.target.value = window.formatCurrency(e.target.value);
                         });
-                        valorGasto.addEventListener('input', function(e) {
-                            e.target.value = formatCurrency(e.target.value);
+                        valorGasto.addEventListener('input', function (e) {
+                            e.target.value = window.formatCurrency(e.target.value);
                         });
 
                         const removeBtn = actionGroup.querySelector(".remove-action");
@@ -421,7 +421,7 @@ function editarPan(id) {
                         initializeAddressToggle(actionGroup);
 
                         const cepInput = actionGroup.querySelector('input[name$="[cep]"]');
-                        cepInput.addEventListener('input', formatCEP);
+                        cepInput.addEventListener('input', window.formatCEP);
 
                         actionsContainer.appendChild(actionGroup);
                     });
@@ -459,8 +459,8 @@ function loadCoordinators(coordenadorId) {
     const users = window.loadFromServer('users') || [];
     const coordinatorSelect = document.getElementById('pan-coordinators');
     coordinatorSelect.innerHTML = '<option value="">Selecione um coordenador</option>';
-    const coordinators = users.filter(user => 
-        user.papel === 'coordenador' && 
+    const coordinators = users.filter(user =>
+        user.papel === 'coordenador' &&
         user.status === 'ativo'
     );
 
@@ -478,13 +478,13 @@ function loadCoordinators(coordenadorId) {
 
 function loadArticulators(selectElement) {
     const users = window.loadFromServer('users') || [];
-    const articulators = users.filter(user => 
-        user.papel === 'articulador' && 
+    const articulators = users.filter(user =>
+        user.papel === 'articulador' &&
         user.status === 'ativo'
     );
 
     selectElement.innerHTML = '<option value="">Selecione um articulador</option>';
-    
+
     articulators.forEach(articulator => {
         const option = document.createElement('option');
         option.value = articulator.id;
@@ -502,13 +502,13 @@ function renderPanCards(pans) {
     container.innerHTML = '';
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    
+
     pans.forEach(pan => {
         const isAdmin = currentUser?.papel === 'admin';
         const isCoordinator = currentUser?.papel === 'coordenador';
         const isPanCoordinator = pan.coordenador === currentUser?.id;
         const canEdit = isAdmin || (isCoordinator && isPanCoordinator);
-        
+
         const panStatus = calculatePanStatus(pan);
 
         pan.status = panStatus.status;
@@ -569,7 +569,7 @@ function renderPanCards(pans) {
                 </div>
             </div>
         `;
-        
+
         container.appendChild(panCard);
     });
 }
@@ -577,7 +577,7 @@ function renderPanCards(pans) {
 function toggleFilterSidenav() {
     const sidenav = document.getElementById('filter-sidenav');
     const isOpen = !sidenav.classList.contains('translate-x-full');
-    
+
     if (isOpen) {
         sidenav.classList.add('translate-x-full');
     } else {
@@ -600,33 +600,33 @@ function filtrarPANs() {
     const searchTerm = searchInput.value.toLowerCase().trim();
     const checkboxes = document.querySelectorAll('.status-checkbox:checked');
     const statusSelecionados = Array.from(checkboxes).map(cb => cb.value);
-    
+
     const filteredPans = allPans.filter(pan => {
         const containsSearchTerm = (text) => {
             return text && text.toLowerCase().includes(searchTerm);
         };
-        
+
         const matchesSearch = !searchTerm || [
             pan.title,
             pan.description,
             pan.tag1,
             pan.generalObjective
         ].some(containsSearchTerm) || (
-            pan.specificObjectives && pan.specificObjectives.some(obj => 
-                containsSearchTerm(obj.title) || 
-                containsSearchTerm(obj.description) ||
-                (obj.actions && obj.actions.some(action => 
-                    containsSearchTerm(action.description)
-                ))
-            )
-        );
+                pan.specificObjectives && pan.specificObjectives.some(obj =>
+                    containsSearchTerm(obj.title) ||
+                    containsSearchTerm(obj.description) ||
+                    (obj.actions && obj.actions.some(action =>
+                        containsSearchTerm(action.description)
+                    ))
+                )
+            );
 
         const panStatus = calculatePanStatus(pan).status;
         const matchesStatus = statusSelecionados.includes('todos') || statusSelecionados.includes(panStatus);
-        
+
         return matchesSearch && matchesStatus;
     });
-    
+
     renderPanCards(filteredPans);
     updateMonitoringCharts(filteredPans);
 }
@@ -640,7 +640,7 @@ function abrirDetalhesPAN(panId) {
 
     const data = JSON.parse(storedData);
     currentPan = data.pans.find(pan => pan.id === panId);
-    
+
     if (!currentPan) {
         console.error('PAN não encontrado');
         return;
@@ -674,7 +674,7 @@ function preencherConteudoModal() {
     let totalActions = 0;
     let actionsInProgress = 0;
     let completedActions = 0;
-    
+
     currentPan.specificObjectives.forEach(obj => {
         if (obj.actions) {
             obj.actions.forEach(action => {
@@ -693,7 +693,7 @@ function preencherConteudoModal() {
     const progress = totalActions > 0 ? Math.round((completedActions / totalActions) * 100) : 0;
 
     currentPan.progress = progress;
-    
+
     function getActionStatusText(total, inProgress, completed) {
         if (completed === total) {
             return `${total} ações concluídas`;
@@ -706,7 +706,7 @@ function preencherConteudoModal() {
     }
 
     const statusText = getActionStatusText(totalActions, actionsInProgress, completedActions);
-    
+
     const stepContent = document.querySelector('#modal-detalhes .step-content');
     stepContent.innerHTML = `
         <div class="step active">
@@ -781,8 +781,8 @@ function preencherConteudoModal() {
             <h3 class="text-xl font-semibold text-[var(--color-dark-green)] mb-4">Objetivos Específicos</h3>
             <div class="space-y-6">
                 ${currentPan.specificObjectives.map(obj => {
-                    const objectiveProgress = calculateObjectiveProgress(obj);
-                    return `
+        const objectiveProgress = calculateObjectiveProgress(obj);
+        return `
                     <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
                         <div class="flex justify-between items-start">
                             <div>
@@ -795,15 +795,15 @@ function preencherConteudoModal() {
                         </div>
                         <div class="pl-4 space-y-2">
                             ${obj.actions.map(action => {
-                                const canEditAction = action.canEdit;
-                                const formattedCustoPrevisto = action.custo_previsto ? new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(action.custo_previsto) : 'Não definido';
-                                const formattedValorGasto = action.valor_gasto ? new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(action.valor_gasto) : 'Não definido';
-                                
-                                return `
+            const canEditAction = action.canEdit;
+            const formattedCustoPrevisto = action.custo_previsto ? window.formatCurrency(action.custo_previsto) : 'Não definido';
+            const formattedValorGasto = action.valor_gasto ? window.formatCurrency(action.valor_gasto) : 'Não definido';
+
+            return `
                                     <div class="flex flex-col space-y-2 border-b border-gray-200 pb-2 mb-2">
                                         <div class="flex items-center justify-between">
-                                            <p class="text-sm ${getStatusClass(action.status)} flex items-center">
-                                                ${getStatusIcon(action.status)}
+                                            <p class="text-sm ${window.getStatusClass(action.status)} flex items-center">
+                                                ${window.getStatusIcon(action.status)}
                                                 ${action.description}
                                             </p>
                                             ${canEditAction ? `
@@ -827,7 +827,7 @@ function preencherConteudoModal() {
                                         </div>
                                     </div>
                                 `;
-                            }).join('')}
+        }).join('')}
                         </div>
                     </div>
                 `}).join('')}
@@ -842,7 +842,7 @@ function mostrarEtapa(etapa) {
     const dots = document.querySelectorAll('#modal-detalhes .step-dot');
     const etapaAnterior = document.getElementById('etapa-anterior');
     const proximaEtapa = document.getElementById('proxima-etapa');
-    
+
     steps.forEach((step, index) => {
         if (index === etapa) {
             step.classList.remove('hidden');
@@ -852,7 +852,7 @@ function mostrarEtapa(etapa) {
             step.classList.remove('active');
         }
     });
-    
+
     dots.forEach((dot, index) => {
         if (index === etapa) {
             dot.classList.remove('bg-gray-300');
@@ -871,15 +871,15 @@ function mostrarEtapa(etapa) {
         }
     });
 
-    if(etapa === 0) {
+    if (etapa === 0) {
         etapaAnterior.classList.add('hidden');
         proximaEtapa.classList.add('ml-auto');
     } else {
         etapaAnterior.classList.remove('hidden');
         proximaEtapa.classList.remove('ml-auto');
     }
-    
-    if(etapa === totalSteps - 1) {
+
+    if (etapa === totalSteps - 1) {
         proximaEtapa.classList.add('hidden');
     } else {
         proximaEtapa.classList.remove('hidden');
@@ -956,7 +956,7 @@ function updateMonitoringCharts(pans) {
     const overallProgress = Math.round((actionCounts.completed / totalActions) * 100) || 0;
 
     const progressRing = document.querySelector('.progress-ring');
-    const progressColor = getProgressColor(overallProgress);
+    const progressColor = window.getProgressColor(overallProgress);
     progressRing.setAttribute('data-progress', overallProgress);
     progressRing.style.background = `conic-gradient(${progressColor} ${overallProgress}%, #f3f4f6 0%)`;
     progressRing.querySelector('span').textContent = `${overallProgress}%`;
@@ -975,82 +975,33 @@ function updateMonitoringCharts(pans) {
 
     const barPrevisto = document.querySelector('.cost-value-previsto').parentElement;
     const barGasto = document.querySelector('.cost-value-gasto').parentElement;
-    
+
+    let formattedPrevisto = 'R$ 0';
+    let formattedGasto = 'R$ 0';
+
     if (costs.previsto > 0) {
         barPrevisto.style.height = '100%';
         const percentageSpent = Math.min(100, (costs.gasto / costs.previsto) * 100);
         barGasto.style.height = `${percentageSpent}%`;
-        
-        const formattedPrevisto = new Intl.NumberFormat('pt-BR', { 
-            style: 'currency', 
-            currency: 'BRL',
-            maximumFractionDigits: 0
-        }).format(costs.previsto);
 
-        const formattedGasto = new Intl.NumberFormat('pt-BR', { 
-            style: 'currency', 
-            currency: 'BRL',
-            maximumFractionDigits: 0
-        }).format(costs.gasto);
+        formattedPrevisto = window.formatCurrency(costs.previsto);
+        formattedGasto = window.formatCurrency(costs.gasto);
 
         barPrevisto.querySelector('.bar-value').textContent = formattedPrevisto;
         barGasto.querySelector('.bar-value').textContent = `${formattedGasto} (${Math.round(percentageSpent)}%)`;
     } else {
         barPrevisto.style.height = '0%';
         barGasto.style.height = '0%';
-        barPrevisto.querySelector('.bar-value').textContent = 'R$ 0';
-        barGasto.querySelector('.bar-value').textContent = 'R$ 0 (0%)';
+        barPrevisto.querySelector('.bar-value').textContent = formattedPrevisto;
+        barGasto.querySelector('.bar-value').textContent = `${formattedGasto} (0%)`;
     }
 
-    barPrevisto.title = `Custo Previsto: ${new Intl.NumberFormat('pt-BR', { 
-        style: 'currency', 
-        currency: 'BRL' 
-    }).format(costs.previsto)}`;
-    
-    barGasto.title = `Valor Gasto: ${new Intl.NumberFormat('pt-BR', { 
-        style: 'currency', 
-        currency: 'BRL' 
-    }).format(costs.gasto)}`;
+    barPrevisto.title = `Custo Previsto: ${formattedPrevisto}`;
+    barGasto.title = `Valor Gasto: ${formattedGasto}`;
 
     const totalPansElement = document.querySelector('.text-5xl.font-bold');
     if (totalPansElement) {
         totalPansElement.textContent = pans.length;
-    }
-}
-
-function getProgressColor(percentage) {
-    if (percentage >= 100) return '#22c55e';
-    if (percentage >= 70) return '#22c55e';
-    if (percentage >= 40) return '#eab308';
-    if (percentage >= 20) return '#f97316';
-    return '#ef4444';
-}
-
-function getStatusIcon(status) {
-    switch (status) {
-        case 'completed':
-            return `<svg class="w-4 h-4 mr-1 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>`;
-        case 'in_progress':
-            return `<svg class="w-4 h-4 mr-1 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>`;
-        default:
-            return `<svg class="w-4 h-4 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                    </svg>`;
-    }
-}
-
-function getStatusClass(status) {
-    switch (status) {
-        case 'completed':
-            return 'text-green-600';
-        case 'in_progress':
-            return 'text-yellow-600';
-        default:
-            return 'text-gray-600';
     }
 }
 
@@ -1116,71 +1067,15 @@ function calculatePanStatus(pan) {
     };
 }
 
-function addAction(objectiveGroup) {
-    const actionContainer = objectiveGroup.querySelector(".actions-container");
-    const newAction = document.createElement("div");
-    newAction.className = "action-group flex items-center space-x-2";
-    newAction.innerHTML = `
-        <input type="text" name="specificObjectives[][actions][][description]" 
-               placeholder="Descrição da ação" 
-               class="flex-1 border border-gray-300 rounded-md p-2">
-        <select name="specificObjectives[][actions][][articulador]" 
-                class="border border-gray-300 rounded-md p-2">
-            <option value="">Selecione um articulador</option>
-        </select>
-        <select name="specificObjectives[][actions][][status]" 
-                class="border border-gray-300 rounded-md p-2">
-            <option value="not_started">Não iniciado</option>
-            <option value="in_progress">Em progresso</option>
-            <option value="completed">Completo</option>
-        </select>
-        <button type="button" class="remove-action text-red-500 hover:text-red-700">
-            <span class="material-icons">close</span>
-        </button>
-    `;
-
-    const articulatorSelect = newAction.querySelector('select[name$="[articulador]"]');
-    loadArticulators(articulatorSelect);
-
-    const removeBtn = newAction.querySelector(".remove-action");
-    removeBtn.addEventListener("click", function () {
-        this.closest(".action-group").remove();
-    });
-
-    actionContainer.appendChild(newAction);
-}
-
 function canEditAction(action) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser) return false;
-    
+
     if (currentUser.papel === 'admin' || currentUser.papel === 'coordenador') {
         return true;
     }
-    
+
     return currentUser.papel === 'articulador' && action.articulador === currentUser.id;
-}
-
-function formatCurrency(input) {
-    let value = typeof input === 'number' ? input.toFixed(2) : input?.target?.value || input;
-
-    if (!value) return 'R$ 0,00';
-
-    value = value.toString().replace(/[^\d.-]/g, '');
-
-    const floatValue = parseFloat(value);
-    if (isNaN(floatValue)) return 'R$ 0,00';
-
-    const formatted = floatValue.toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-    });
-
-    if (input?.target) {
-        input.target.value = formatted;
-    }
-
-    return formatted;
 }
 
 function fecharModalEndereco() {
@@ -1193,9 +1088,9 @@ function abrirModalEndereco(endereco) {
     if (!endereco || typeof endereco !== 'object') {
         endereco = {};
     }
-    
+
     const modalEndereco = document.getElementById('modal-endereco');
-    
+
     document.getElementById('modal-rua').textContent = endereco.rua || 'Não informado';
     document.getElementById('modal-numero').textContent = endereco.numero || 'Não informado';
     document.getElementById('modal-bairro').textContent = endereco.bairro || 'Não informado';
@@ -1210,18 +1105,18 @@ function abrirModalEndereco(endereco) {
     if (endereco.cidade && endereco.estado) {
         const enderecoCompleto = `${endereco.rua || ''} ${endereco.numero || ''}, ${endereco.cidade}, ${endereco.estado}, Brasil`.trim();
         const encodedEndereco = encodeURIComponent(enderecoCompleto);
-        
+
         fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodedEndereco}`)
             .then(response => response.json())
             .then(data => {
                 if (data && data.length > 0) {
                     const lat = parseFloat(data[0].lat);
                     const lon = parseFloat(data[0].lon);
-                    carregarMapa(lat, lon);
+                    window.carregarMapa(lat, lon);
                 } else {
                     const cidadeEstado = `${endereco.cidade}, ${endereco.estado}, Brasil`;
                     const encodedCidadeEstado = encodeURIComponent(cidadeEstado);
-                    
+
                     return fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodedCidadeEstado}`);
                 }
             })
@@ -1230,7 +1125,7 @@ function abrirModalEndereco(endereco) {
                 if (data && data.length > 0) {
                     const lat = parseFloat(data[0].lat);
                     const lon = parseFloat(data[0].lon);
-                    carregarMapa(lat, lon);
+                    window.carregarMapa(lat, lon);
                 } else {
                     document.getElementById('map').innerHTML = `
                         <div class="flex items-center justify-center h-full text-gray-500 flex-col">
@@ -1259,36 +1154,10 @@ function abrirModalEndereco(endereco) {
     }
 }
 
-function carregarMapa(lat, lon) {
-    const mapDiv = document.getElementById('map');
-    
-    mapDiv.innerHTML = '<div class="loading-spinner"></div>';
-
-    const iframe = document.createElement('iframe');
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = 'none';
-    iframe.style.borderRadius = '0.5rem';
-    iframe.style.opacity = '0';
-    iframe.style.transition = 'opacity 0.3s ease';
-    
-    iframe.src = `https://www.openstreetmap.org/export/embed.html?bbox=${lon-0.01},${lat-0.01},${lon+0.01},${lat+0.01}&layer=mapnik&marker=${lat},${lon}`;
-    
-    iframe.onload = function() {
-        iframe.style.opacity = '1';
-        const spinner = mapDiv.querySelector('.loading-spinner');
-        if (spinner) {
-            spinner.remove();
-        }
-    };
-    
-    mapDiv.appendChild(iframe);
-}
-
-window.closeModal = function() {
+window.closeModal = function () {
     const panForm = document.getElementById("pan-form");
     const modal = document.getElementById("pan-modal");
-    
+
     if (panForm) {
         panForm.reset();
         const editingIdInput = panForm.elements["editingId"];
@@ -1296,12 +1165,12 @@ window.closeModal = function() {
             editingIdInput.value = "";
         }
     }
-    
+
     const objectivesContainer = document.getElementById("specific-objectives-container");
     if (objectivesContainer) {
         objectivesContainer.innerHTML = "";
     }
-    
+
     if (modal) {
         modal.classList.add("hidden");
         document.body.classList.remove("overflow-hidden");
@@ -1312,19 +1181,19 @@ function initializeAddressToggle(container) {
     const toggleButton = container.querySelector('.toggle-address');
     const addressFields = container.querySelector('.address-fields');
     const icon = toggleButton.querySelector('.material-icons');
-    
+
     const requiredFields = addressFields.querySelectorAll('input[required]');
-    
+
     requiredFields.forEach(field => {
         field.removeAttribute('required');
         field.dataset.wasRequired = 'true';
     });
-    
+
     if (toggleButton && addressFields) {
-        toggleButton.addEventListener('click', function() {
+        toggleButton.addEventListener('click', function () {
             addressFields.classList.toggle('hidden');
             icon.textContent = addressFields.classList.contains('hidden') ? 'expand_more' : 'expand_less';
-            
+
             requiredFields.forEach(field => {
                 if (addressFields.classList.contains('hidden')) {
                     field.removeAttribute('required');
@@ -1339,9 +1208,9 @@ function initializeAddressToggle(container) {
     const buscarCepBtn = container.querySelector('.buscar-cep');
 
     if (cepInput) {
-        cepInput.addEventListener('input', formatCEP);
+        cepInput.addEventListener('input', window.formatCEP);
 
-        cepInput.addEventListener('keypress', function(e) {
+        cepInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 buscarCepBtn.click();
@@ -1350,7 +1219,7 @@ function initializeAddressToggle(container) {
     }
 
     if (buscarCepBtn) {
-        buscarCepBtn.addEventListener('click', async function() {
+        buscarCepBtn.addEventListener('click', async function () {
             const cep = cepInput.value.replace(/\D/g, '');
 
             if (cep.length !== 8) {
@@ -1391,13 +1260,4 @@ function initializeAddressToggle(container) {
             }
         });
     }
-}
-
-function formatCEP(e) {
-    let value = e.target.value.replace(/\D/g, '');
-    if (value.length > 8) value = value.slice(0, 8);
-    if (value.length > 5) {
-        value = value.slice(0, 5) + '-' + value.slice(5);
-    }
-    e.target.value = value;
 }
