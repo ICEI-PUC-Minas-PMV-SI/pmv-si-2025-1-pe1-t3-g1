@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,8 @@
     <script src="js/panCards.js" defer></script>
     <script src="js/addPan.js" defer></script>
     <style>
-        body, html {
+        body,
+        html {
             height: 100vh;
             margin: 0;
         }
@@ -103,11 +105,12 @@
                 margin-bottom: 50px;
             }
 
-            .bar-label, .bar-value {
+            .bar-label,
+            .bar-value {
                 font-size: 0.75rem;
             }
         }
-        
+
         .step {
             display: none;
         }
@@ -151,8 +154,13 @@
         }
 
         @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
 
         .cost-chart {
@@ -365,6 +373,7 @@
     </style>
     <title>Monitoria de PAN</title>
 </head>
+
 <body>
     <div id="layout-content">
 
@@ -374,16 +383,20 @@
         <div class="main-content">
             <section class="bg-white rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl mb-8">
                 <h2 class="text-xl font-bold text-[var(--color-dark-green)] mb-6 flex items-center">
-                    <svg class="w-6 h-6 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    <svg class="w-6 h-6 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                     Gráficos de Monitoramento
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="monitoring-card">
                         <h3 class="text-base font-semibold text-[var(--color-dark-green)] mb-4 flex items-center">
-                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5M8 8v8m8-16l4 4-4 4m-4-8l4 4-4 4m-4-8l4 4-4 4"/>
+                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 8v8m-4-5v5M8 8v8m8-16l4 4-4 4m-4-8l4 4-4 4m-4-8l4 4-4 4" />
                             </svg>
                             Progresso Geral
                         </h3>
@@ -396,8 +409,10 @@
 
                     <div class="monitoring-card">
                         <h3 class="text-base font-semibold text-[var(--color-dark-green)] mb-4 flex items-center">
-                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                             </svg>
                             Status das Ações
                         </h3>
@@ -419,8 +434,10 @@
 
                     <div class="monitoring-card">
                         <h3 class="text-base font-semibold text-[var(--color-dark-green)] mb-4 flex items-center">
-                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                             </svg>
                             Total de PANs
                         </h3>
@@ -439,8 +456,10 @@
 
                     <div class="monitoring-card">
                         <h3 class="text-base font-semibold text-[var(--color-dark-green)] mb-4 flex items-center">
-                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             Custos e Gastos
                         </h3>
@@ -462,54 +481,58 @@
                 <section class="monitoring-panel">
                     <div class="flex justify-between items-center mb-8">
                         <h2 class="text-xl font-bold text-[var(--color-dark-green)] flex items-center">
-                            <svg class="w-6 h-6 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2"/>
+                            <svg class="w-6 h-6 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2" />
                             </svg>
                             Painel de PANs
                         </h2>
-                        
+
                         <div class="flex-1 max-w-xl mx-8">
                             <div class="relative">
-                                <input type="search" 
-                                       id="pan-search-input"
-                                       placeholder="Buscar PAN..." 
-                                       class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-all duration-300">
-                                <span class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                <input type="search" id="pan-search-input" placeholder="Buscar PAN..."
+                                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-all duration-300">
+                                <span
+                                    class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                                     search
                                 </span>
                             </div>
                         </div>
 
                         <div class="flex items-center gap-3">
-                            <button onclick="toggleFilterSidenav()" 
-                                    class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-all duration-200 shadow-sm hover:shadow-md">
+                            <button onclick="toggleFilterSidenav()"
+                                class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-all duration-200 shadow-sm hover:shadow-md">
                                 <span class="material-icons">filter_list</span>
                             </button>
-                            <button id="add-pan-button" class="flex items-center justify-center w-10 h-10 rounded-full bg-light-green hover:bg-[var(--color-dark-green)] text-white text-xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-400">
+                            <button id="add-pan-button"
+                                class="flex items-center justify-center w-10 h-10 rounded-full bg-light-green hover:bg-[var(--color-dark-green)] text-white text-xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-400">
                                 <span class="material-icons text-2xl">add</span>
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="pan-cards-container">
                     </div>
                 </section>
             </div>
         </div>
     </div>
-    <div id="modal-detalhes" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 overflow-hidden flex items-center justify-center p-6">
+    <div id="modal-detalhes"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 overflow-hidden flex items-center justify-center p-6">
         <div class="bg-white rounded-lg w-full max-w-4xl flex flex-col max-h-[80vh]">
             <div class="px-6 py-4 border-b border-gray-200 flex-shrink-0 rounded-t-lg">
                 <div class="flex justify-between items-center">
                     <h2 class="text-2xl font-bold text-[var(--color-dark-green)]"></h2>
                     <button onclick="fecharDetalhesPAN()" class="text-gray-400 hover:text-gray-500 transition-colors">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
             </div>
-            
+
             <div class="flex-1 overflow-y-auto px-6 py-4 min-h-0">
                 <div class="step-content">
 
@@ -518,10 +541,10 @@
 
             <div class="px-6 py-4 border-t border-gray-200 bg-white rounded-b-lg flex-shrink-0">
                 <div class="flex justify-between items-center">
-                    <button id="etapa-anterior" onclick="etapaAnterior()" 
+                    <button id="etapa-anterior" onclick="etapaAnterior()"
                         class="flex items-center text-[var(--color-dark-green)] hover:text-[var(--color-primary)] transition-colors">
                         <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                         Etapa anterior
                     </button>
@@ -530,11 +553,11 @@
 
                     </div>
 
-                    <button id="proxima-etapa" onclick="proximaEtapa()" 
+                    <button id="proxima-etapa" onclick="proximaEtapa()"
                         class="flex items-center text-[var(--color-dark-green)] hover:text-[var(--color-primary)] transition-colors">
                         Próxima etapa
                         <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </button>
                 </div>
@@ -543,19 +566,21 @@
     </div>
 
     <!-- Novo modal de endereço -->
-    <div id="modal-endereco" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[60] overflow-hidden flex items-center justify-center p-6">
+    <div id="modal-endereco"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 z-[60] overflow-hidden flex items-center justify-center p-6">
         <div class="bg-white rounded-lg w-full max-w-5xl flex flex-col max-h-[80vh]">
             <div class="px-6 py-4 border-b border-gray-200 flex-shrink-0">
                 <div class="flex justify-between items-center">
                     <h2 class="text-xl font-bold text-[var(--color-dark-green)]">Detalhes do Endereço</h2>
                     <button onclick="fecharModalEndereco()" class="text-gray-400 hover:text-gray-500 transition-colors">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
             </div>
-            
+
             <div class="p-6 flex-1 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-4">
                     <div>
@@ -590,7 +615,8 @@
         </div>
     </div>
 
-    <div id="pan-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[9999]">
+    <div id="pan-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[9999]">
         <div class="bg-white rounded-2xl shadow-2xl w-[1200px] max-h-[800px] flex flex-col">
             <div class="px-8 py-6 border-b border-gray-200">
                 <div class="flex justify-between items-center">
@@ -600,34 +626,39 @@
                     </button>
                 </div>
             </div>
-            
+
             <div class="p-8 overflow-y-auto flex-1">
                 <form id="pan-form" class="space-y-6">
                     <input type="hidden" name="editingId" value="">
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Título*</label>
-                                <input type="text" name="title" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                                <input type="text" name="title" required
+                                    class="mt-1 block w-full border border-gray-300 rounded-md p-2">
                             </div>
-                            
+
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Descrição*</label>
-                                <textarea name="description" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+                                <textarea name="description" rows="3" required
+                                    class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
                             </div>
-                            
+
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">URL da Imagem</label>
-                                <input type="text" name="image" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="img/logo-pan-exemplo.png">
+                                <input type="text" name="image"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                                    placeholder="img/logo-pan-exemplo.png">
                             </div>
                         </div>
-                        
+
                         <div class="space-y-4">
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Status do PAN*</label>
-                                    <select name="tag1" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
+                                    <select name="tag1" required
+                                        class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
                                         <option value=""></option>
                                         <option value="Não Iniciado">Não Iniciado</option>
                                         <option value="Em Execução">Em Execução</option>
@@ -638,7 +669,8 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Cor do Status*</label>
-                                    <select name="tag1Color" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
+                                    <select name="tag1Color" required
+                                        class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
                                         <option value=""></option>
                                         <option value="gray">Cinza</option>
                                         <option value="blue">Azul</option>
@@ -652,39 +684,43 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Período*</label>
-                                    <input type="text" name="period" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="2023-2028">
+                                    <input type="text" name="period" required
+                                        class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                                        placeholder="2023-2028">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Duração*</label>
-                                    <input type="text" name="duration" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="5 anos de duração">
+                                    <input type="text" name="duration" required
+                                        class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                                        placeholder="5 anos de duração">
                                 </div>
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Objetivo Geral*</label>
-                                <textarea name="generalObjective" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+                                <textarea name="generalObjective" rows="3" required
+                                    class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="mt-6">
                         <label for="pan-coordinators" class="block text-sm font-medium text-[var(--color-dark-green)]">
                             Coordenador*
                         </label>
                         <div class="relative">
-                            <select id="pan-coordinators" 
-                                    name="coordenador"
-                                    required
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent bg-white">
+                            <select id="pan-coordinators" name="coordenador" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent bg-white">
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="border-t pt-6">
                         <h4 class="text-lg font-medium text-gray-800 mb-4">Objetivos Específicos</h4>
                         <div id="specific-objectives-container" class="space-y-6">
                         </div>
-                        <button type="button" id="add-objective" class="mt-4 px-4 py-2 bg-blue-100 text-blue-600 rounded-md hover:bg-blue-200">
+                        <button type="button" id="add-objective"
+                            class="mt-4 px-4 py-2 bg-blue-100 text-blue-600 rounded-md hover:bg-blue-200">
                             + Adicionar Objetivo
                         </button>
                     </div>
@@ -693,17 +729,19 @@
 
             <div class="px-8 py-6 border-t border-gray-200">
                 <div class="flex justify-end space-x-4">
-                    <button type="button" id="cancel-form" class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                    <button type="button" id="cancel-form"
+                        class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                         Cancelar
                     </button>
-                    <button type="submit" form="pan-form" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                    <button type="submit" form="pan-form"
+                        class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
                         Salvar PAN
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <template id="objective-template">
         <div class="objective-group border rounded-lg p-6 bg-gray-50">
             <div class="flex justify-between items-center mb-4">
@@ -712,32 +750,34 @@
                     <span class="material-icons">delete</span>
                 </button>
             </div>
-            
+
             <div class="grid grid-cols-1 gap-4 mb-6">
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Título*</label>
-                    <input type="text" name="specificObjectives[][title]" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                    <input type="text" name="specificObjectives[][title]" required
+                        class="mt-1 block w-full border border-gray-300 rounded-md p-2">
                 </div>
-                
+
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Descrição*</label>
-                    <textarea name="specificObjectives[][description]" required rows="2" class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
+                    <textarea name="specificObjectives[][description]" required rows="2"
+                        class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
                 </div>
             </div>
-            
+
             <div class="actions-container space-y-6">
                 <div class="action-group bg-white rounded-lg p-4 border">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Descrição da Ação*</label>
                             <input type="text" name="specificObjectives[][actions][][description]" required
-                                   class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                                class="mt-1 block w-full border border-gray-300 rounded-md p-2">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Articulador*</label>
                             <div class="relative">
                                 <select name="specificObjectives[][actions][][articulador]" required
-                                        class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
+                                    class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
                                 </select>
                             </div>
                         </div>
@@ -747,7 +787,7 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Status*</label>
                             <select name="specificObjectives[][actions][][status]" required
-                                    class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
+                                class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white">
                                 <option value="">Selecione um status</option>
                                 <option value="not_started">Não iniciado</option>
                                 <option value="in_progress">Em progresso</option>
@@ -756,13 +796,13 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Custo Previsto</label>
-                            <input type="text" name="specificObjectives[][actions][][custo_previsto]" 
-                                   class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                            <input type="text" name="specificObjectives[][actions][][custo_previsto]"
+                                class="mt-1 block w-full border border-gray-300 rounded-md p-2">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Valor Gasto</label>
-                            <input type="text" name="specificObjectives[][actions][][valor_gasto]" 
-                                   class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                            <input type="text" name="specificObjectives[][actions][][valor_gasto]"
+                                class="mt-1 block w-full border border-gray-300 rounded-md p-2">
                         </div>
                     </div>
 
@@ -778,15 +818,15 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">CEP*</label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
-                                        <input type="text" name="specificObjectives[][actions][][endereco][cep]" required
-                                               maxlength="9"
-                                               class="flex-1 border border-gray-300 rounded-l-md p-2 focus:ring-2 focus:ring-blue-200 focus:border-blue-400 transition-all"
-                                               placeholder="00000-000">
-                                        <button type="button" 
-                                               class="buscar-cep inline-flex items-center px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-r-md hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-sm">
-                                           <span class="material-icons text-lg mr-1">search</span>
-                                           Buscar
-                                       </button>
+                                        <input type="text" name="specificObjectives[][actions][][endereco][cep]"
+                                            required maxlength="9"
+                                            class="flex-1 border border-gray-300 rounded-l-md p-2 focus:ring-2 focus:ring-blue-200 focus:border-blue-400 transition-all"
+                                            placeholder="00000-000">
+                                        <button type="button"
+                                            class="buscar-cep inline-flex items-center px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-r-md hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-sm">
+                                            <span class="material-icons text-lg mr-1">search</span>
+                                            Buscar
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -794,27 +834,27 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Rua*</label>
                                     <input type="text" name="specificObjectives[][actions][][endereco][rua]" required
-                                           class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                                        class="mt-1 block w-full border border-gray-300 rounded-md p-2">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Número</label>
-                                    <input type="text" name="specificObjectives[][actions][][endereco][numero]" 
-                                           class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                                    <input type="text" name="specificObjectives[][actions][][endereco][numero]"
+                                        class="mt-1 block w-full border border-gray-300 rounded-md p-2">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Bairro*</label>
                                     <input type="text" name="specificObjectives[][actions][][endereco][bairro]" required
-                                           class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                                        class="mt-1 block w-full border border-gray-300 rounded-md p-2">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Cidade*</label>
                                     <input type="text" name="specificObjectives[][actions][][endereco][cidade]" required
-                                           class="mt-1 block w-full border border-gray-300 rounded-md p-2" readonly>
+                                        class="mt-1 block w-full border border-gray-300 rounded-md p-2" readonly>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Estado*</label>
                                     <input type="text" name="specificObjectives[][actions][][endereco][estado]" required
-                                           class="mt-1 block w-full border border-gray-300 rounded-md p-2" readonly>
+                                        class="mt-1 block w-full border border-gray-300 rounded-md p-2" readonly>
                                 </div>
                             </div>
                         </div>
@@ -827,13 +867,14 @@
                     </div>
                 </div>
             </div>
-            
-            <button type="button" class="add-action mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
+
+            <button type="button"
+                class="add-action mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200">
                 + Adicionar Ação
             </button>
         </div>
     </template>
-    
+
     <script>
         fetch('layout.html')
             .then(response => response.text())
@@ -854,7 +895,8 @@
     </script>
 
     <!-- Sidenav de Filtros -->
-    <div id="filter-sidenav" class="fixed right-0 top-0 h-full w-full md:w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+    <div id="filter-sidenav"
+        class="fixed right-0 top-0 h-full w-full md:w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
         <div class="flex flex-col h-full">
             <div class="flex items-center justify-between p-4 border-b">
                 <h3 class="text-lg font-semibold text-[var(--color-dark-green)] flex items-center">
@@ -865,38 +907,43 @@
                     <span class="material-icons">close</span>
                 </button>
             </div>
-            
+
             <div class="p-4 space-y-4 flex-1">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Status do PAN</label>
                     <div class="relative">
-                        <button type="button" 
-                                id="status-dropdown-button"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
+                        <button type="button" id="status-dropdown-button"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent">
                             <span id="status-selected-text">Todos</span>
                             <span class="material-icons">arrow_drop_down</span>
                         </button>
-                        <div id="status-dropdown-menu" 
-                             class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg hidden">
+                        <div id="status-dropdown-menu"
+                            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg hidden">
                             <div class="p-2 space-y-2">
                                 <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
-                                    <input type="checkbox" value="todos" class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]" checked>
+                                    <input type="checkbox" value="todos"
+                                        class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]"
+                                        checked>
                                     <span class="ml-2 text-sm text-gray-700">Todos</span>
                                 </label>
                                 <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
-                                    <input type="checkbox" value="Concluído" class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
+                                    <input type="checkbox" value="Concluído"
+                                        class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
                                     <span class="ml-2 text-sm text-gray-700">Concluído</span>
                                 </label>
                                 <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
-                                    <input type="checkbox" value="Ativo" class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
+                                    <input type="checkbox" value="Ativo"
+                                        class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
                                     <span class="ml-2 text-sm text-gray-700">Ativo</span>
                                 </label>
                                 <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
-                                    <input type="checkbox" value="Parado" class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
+                                    <input type="checkbox" value="Parado"
+                                        class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
                                     <span class="ml-2 text-sm text-gray-700">Parado</span>
                                 </label>
                                 <label class="flex items-center p-2 hover:bg-gray-50 rounded cursor-pointer">
-                                    <input type="checkbox" value="Não Iniciado" class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
+                                    <input type="checkbox" value="Não Iniciado"
+                                        class="status-checkbox h-4 w-4 text-[var(--color-primary)] rounded border-gray-300 focus:ring-[var(--color-primary)]">
                                     <span class="ml-2 text-sm text-gray-700">Não Iniciado</span>
                                 </label>
                             </div>
@@ -904,10 +951,10 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="p-4 border-t">
-                <button onclick="limparFiltros()" 
-                        class="w-full py-2 px-4 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center">
+                <button onclick="limparFiltros()"
+                    class="w-full py-2 px-4 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center">
                     <span class="material-icons mr-2 text-sm">clear</span>
                     Limpar Filtros
                 </button>
@@ -915,4 +962,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,8 @@
     <script src="js/storage.js"></script>
     <script src="js/auth.js"></script>
     <style>
-        body, html {
+        body,
+        html {
             height: 100vh;
             margin: 0;
         }
@@ -97,11 +99,12 @@
                 margin-bottom: 50px;
             }
 
-            .bar-label, .bar-value {
+            .bar-label,
+            .bar-value {
                 font-size: 0.75rem;
             }
         }
-        
+
         .step {
             display: none;
         }
@@ -133,6 +136,7 @@
     </style>
     <title>Monitoria de PAN</title>
 </head>
+
 <body>
     <div id="layout-content">
 
@@ -141,17 +145,17 @@
 </body>
 <script>
     fetch('layout.html')
-    .then(response => response.text())
-    .then(html => {
-        const temp = document.createElement('div');
-        temp.innerHTML = html;
-        document.getElementById('layout-content').innerHTML = html;
-        const pageContent = document.getElementById('page-content');
-        const layoutContent = document.getElementById('content');
-        if (layoutContent) {
-            layoutContent.innerHTML = pageContent.innerHTML;
-        }
-        pageContent.remove();
-    });
+        .then(response => response.text())
+        .then(html => {
+            const temp = document.createElement('div');
+            temp.innerHTML = html;
+            document.getElementById('layout-content').innerHTML = html;
+            const pageContent = document.getElementById('page-content');
+            const layoutContent = document.getElementById('content');
+            if (layoutContent) {
+                layoutContent.innerHTML = pageContent.innerHTML;
+            }
+            pageContent.remove();
+        });
 
 </script>

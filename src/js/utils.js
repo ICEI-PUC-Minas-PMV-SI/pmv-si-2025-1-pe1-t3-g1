@@ -1,4 +1,4 @@
-window.formatCurrency = function(input) {
+window.formatCurrency = function (input) {
     let value = input?.target?.value || input;
 
     if (!value) return 'R$ 0,00';
@@ -9,19 +9,19 @@ window.formatCurrency = function(input) {
     value = (parseInt(value || '0') / 100).toFixed(2);
 
     value = value.replace('.', ',')
-               .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    
+        .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
     const formattedValue = `R$ ${isNegative ? '-' : ''}${value}`;
-    
+
     if (input?.target) {
         input.target.value = formattedValue;
     }
-    
+
     return formattedValue;
 };
 
 // Função para formatar CEP
-window.formatCEP = function(e) {
+window.formatCEP = function (e) {
     let value = e.target.value.replace(/\D/g, '');
     if (value.length > 8) value = value.slice(0, 8);
     if (value.length > 5) {
@@ -31,7 +31,7 @@ window.formatCEP = function(e) {
 };
 
 // Função para obter ícone de status
-window.getStatusIcon = function(status) {
+window.getStatusIcon = function (status) {
     switch (status) {
         case 'completed':
             return `<svg class="w-4 h-4 mr-1 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,7 +49,7 @@ window.getStatusIcon = function(status) {
 };
 
 // Função para obter classe de status
-window.getStatusClass = function(status) {
+window.getStatusClass = function (status) {
     switch (status) {
         case 'completed':
             return 'text-green-600';
@@ -61,7 +61,7 @@ window.getStatusClass = function(status) {
 };
 
 // Função para obter cor baseado no progresso
-window.getProgressColor = function(percentage) {
+window.getProgressColor = function (percentage) {
     if (percentage >= 100) return '#22c55e';
     if (percentage >= 70) return '#22c55e';
     if (percentage >= 40) return '#eab308';
@@ -70,12 +70,12 @@ window.getProgressColor = function(percentage) {
 };
 
 // Função para fechar modal
-window.closeModal = function() {
+window.closeModal = function () {
     const modal = document.querySelector('.modal:not(.hidden)');
     if (modal) {
         modal.classList.add('hidden');
         document.body.classList.remove('overflow-hidden');
-        
+
         // Reset do formulário se existir
         const panForm = document.getElementById("pan-form");
         if (panForm) {
@@ -86,7 +86,7 @@ window.closeModal = function() {
                 if (editingIdInput) {
                     editingIdInput.value = "";
                 }
-                
+
                 const objectivesContainer = document.getElementById("specific-objectives-container");
                 if (objectivesContainer) {
                     objectivesContainer.innerHTML = "";
@@ -97,9 +97,9 @@ window.closeModal = function() {
 };
 
 // Função para carregar mapa
-window.carregarMapa = function(lat, lon) {
+window.carregarMapa = function (lat, lon) {
     const mapDiv = document.getElementById('map');
-    
+
     mapDiv.innerHTML = '<div class="loading-spinner"></div>';
 
     const iframe = document.createElement('iframe');
@@ -109,28 +109,28 @@ window.carregarMapa = function(lat, lon) {
     iframe.style.borderRadius = '0.5rem';
     iframe.style.opacity = '0';
     iframe.style.transition = 'opacity 0.3s ease';
-    
-    iframe.src = `https://www.openstreetmap.org/export/embed.html?bbox=${lon-0.01},${lat-0.01},${lon+0.01},${lat+0.01}&layer=mapnik&marker=${lat},${lon}`;
-    
-    iframe.onload = function() {
+
+    iframe.src = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.01},${lat - 0.01},${lon + 0.01},${lat + 0.01}&layer=mapnik&marker=${lat},${lon}`;
+
+    iframe.onload = function () {
         iframe.style.opacity = '1';
         const spinner = mapDiv.querySelector('.loading-spinner');
         if (spinner) {
             spinner.remove();
         }
     };
-    
+
     mapDiv.appendChild(iframe);
 };
 
 // Função para inicializar toggle de endereço
-window.initializeAddressToggle = function(container) {
+window.initializeAddressToggle = function (container) {
     const toggleButton = container.querySelector('.toggle-address');
     const addressFields = container.querySelector('.address-fields');
     const icon = toggleButton.querySelector('.material-icons');
-    
+
     if (toggleButton && addressFields) {
-        toggleButton.addEventListener('click', function() {
+        toggleButton.addEventListener('click', function () {
             addressFields.classList.toggle('hidden');
             icon.textContent = addressFields.classList.contains('hidden') ? 'expand_more' : 'expand_less';
         });
@@ -142,7 +142,7 @@ window.initializeAddressToggle = function(container) {
     if (cepInput) {
         cepInput.addEventListener('input', window.formatCEP);
 
-        cepInput.addEventListener('keypress', function(e) {
+        cepInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 buscarCepBtn.click();
@@ -151,7 +151,7 @@ window.initializeAddressToggle = function(container) {
     }
 
     if (buscarCepBtn) {
-        buscarCepBtn.addEventListener('click', async function() {
+        buscarCepBtn.addEventListener('click', async function () {
             const cep = cepInput.value.replace(/\D/g, '');
 
             if (cep.length !== 8) {
@@ -194,7 +194,7 @@ window.initializeAddressToggle = function(container) {
 };
 
 // Função para carregar coordenadores
-window.loadCoordinators = function(defaultValue = null) {
+window.loadCoordinators = function (defaultValue = null) {
     try {
         const users = window.loadFromServer('users');
         if (!users) {
@@ -208,8 +208,8 @@ window.loadCoordinators = function(defaultValue = null) {
             return;
         }
 
-        const coordinators = users.filter(user => 
-            user.papel === 'coordenador' && 
+        const coordinators = users.filter(user =>
+            user.papel === 'coordenador' &&
             user.status === 'ativo'
         );
 
@@ -219,7 +219,7 @@ window.loadCoordinators = function(defaultValue = null) {
 
         const currentValue = defaultValue || coordinatorSelect.value;
         coordinatorSelect.innerHTML = '<option value="">Selecione um coordenador</option>';
-        
+
         coordinators.forEach(coordinator => {
             const option = document.createElement('option');
             option.value = coordinator.id;
@@ -239,7 +239,7 @@ window.loadCoordinators = function(defaultValue = null) {
 };
 
 // Função para carregar articuladores
-window.loadArticulators = function(selectElement) {
+window.loadArticulators = function (selectElement) {
     try {
         const users = window.loadFromServer('users');
         if (!users) {
@@ -248,8 +248,8 @@ window.loadArticulators = function(selectElement) {
         }
 
         const currentValue = selectElement.value;
-        const articulators = users.filter(user => 
-            user.papel === 'articulador' && 
+        const articulators = users.filter(user =>
+            user.papel === 'articulador' &&
             user.status === 'ativo'
         );
 
@@ -258,7 +258,7 @@ window.loadArticulators = function(selectElement) {
         }
 
         selectElement.innerHTML = '<option value="">Selecione um articulador</option>';
-    
+
         articulators.forEach(articulator => {
             const option = document.createElement('option');
             option.value = articulator.id;
@@ -274,11 +274,11 @@ window.loadArticulators = function(selectElement) {
 };
 
 // Função para adicionar ação
-window.addAction = function(objectiveGroup) {
+window.addAction = function (objectiveGroup) {
     const actionContainer = objectiveGroup.querySelector(".actions-container");
     const newAction = document.createElement("div");
     newAction.className = "action-group bg-white rounded-lg p-4 border";
-    
+
     newAction.innerHTML = `
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
@@ -392,10 +392,10 @@ window.addAction = function(objectiveGroup) {
     const custoPrevisto = newAction.querySelector('input[name$="[custo_previsto]"]');
     const valorGasto = newAction.querySelector('input[name$="[valor_gasto]"]');
 
-    custoPrevisto.addEventListener('input', function(e) {
+    custoPrevisto.addEventListener('input', function (e) {
         e.target.value = window.formatCurrency(e.target.value);
     });
-    valorGasto.addEventListener('input', function(e) {
+    valorGasto.addEventListener('input', function (e) {
         e.target.value = window.formatCurrency(e.target.value);
     });
 

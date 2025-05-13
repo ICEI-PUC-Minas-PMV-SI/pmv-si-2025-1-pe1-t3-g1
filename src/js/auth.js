@@ -75,7 +75,7 @@ function login(email, senha) {
             }
             return false;
         });
-        
+
         if (usuario) {
             const { senha, ...usuarioSemSenha } = usuario;
             localStorage.setItem('currentUser', JSON.stringify(usuarioSemSenha));
@@ -104,11 +104,11 @@ function getCurrentUser() {
 async function registrarUsuario(email, senha, nome, papel = 'colaborador') {
     const usuarios = await window.loadFromServer('users') || [];
     const usuarioAtual = getCurrentUser();
-    
+
     if (usuarios.some(u => u.email === email)) {
         return { sucesso: false, mensagem: 'Email já cadastrado' };
     }
-    
+
     const novoUsuario = {
         id: usuarios.length + 1,
         email,
@@ -124,7 +124,7 @@ async function registrarUsuario(email, senha, nome, papel = 'colaborador') {
             }
         ]
     };
-    
+
     usuarios.push(novoUsuario);
     await window.saveToServer('users', usuarios);
     return { sucesso: true, mensagem: 'Usuário criado com sucesso' };
@@ -134,23 +134,23 @@ async function editarUsuario(email, atualizacoes) {
     const usuarios = await window.loadFromServer('users') || [];
     const usuarioAtual = getCurrentUser();
     const indiceUsuario = usuarios.findIndex(u => u.email === email);
-    
+
     if (indiceUsuario === -1) {
         return { sucesso: false, mensagem: 'Usuário não encontrado' };
     }
-    
+
     const usuario = usuarios[indiceUsuario];
 
     if (email === 'master@icmbio.com') {
         return { sucesso: false, mensagem: 'O usuário master não pode ser editado' };
     }
-    
+
     const valoresAntigos = { ...usuario };
-    
+
     if (atualizacoes.nome) usuario.nome = atualizacoes.nome;
     if (atualizacoes.papel) usuario.papel = atualizacoes.papel;
     if (atualizacoes.senha) usuario.senha = btoa(atualizacoes.senha);
-    
+
     usuario.historico.push({
         data: new Date().toLocaleString('pt-BR'),
         acao: `Usuário editado por ${usuarioAtual.email}`,
@@ -158,13 +158,13 @@ async function editarUsuario(email, atualizacoes) {
         alteracoes: Object.entries(atualizacoes)
             .filter(([chave]) => chave !== 'senha')
             .map(([chave, valor]) => {
-                const nomeCampo = chave === 'nome' ? 'nome' : 
-                                chave === 'papel' ? 'papel' : chave;
+                const nomeCampo = chave === 'nome' ? 'nome' :
+                    chave === 'papel' ? 'papel' : chave;
                 return `${nomeCampo}: ${valoresAntigos[chave]} -> ${valor}`;
             })
             .join(', ')
     });
-    
+
     await window.saveToServer('users', usuarios);
 
     if (usuarioAtual.email === email) {
@@ -180,11 +180,11 @@ async function alternarStatus(email) {
     const usuarios = await window.loadFromServer('users') || [];
     const usuarioAtual = getCurrentUser();
     const indiceUsuario = usuarios.findIndex(u => u.email === email);
-    
+
     if (indiceUsuario === -1) {
         return { sucesso: false, mensagem: 'Usuário não encontrado' };
     }
-    
+
     const usuario = usuarios[indiceUsuario];
 
     if (email === 'master@icmbio.com') {
@@ -194,16 +194,16 @@ async function alternarStatus(email) {
     if (email === usuarioAtual.email) {
         return { sucesso: false, mensagem: 'Você não pode inativar sua própria conta' };
     }
-    
+
     const novoStatus = usuario.status === 'ativo' ? 'inativo' : 'ativo';
     usuario.status = novoStatus;
-    
+
     usuario.historico.push({
         data: new Date().toLocaleString('pt-BR'),
         acao: `Status alterado para ${novoStatus}`,
         por: usuarioAtual.email
     });
-    
+
     await window.saveToServer('users', usuarios);
     return { sucesso: true, mensagem: `Usuário ${novoStatus === 'ativo' ? 'ativado' : 'inativado'} com sucesso` };
 }
@@ -216,12 +216,12 @@ async function listarUsuarios() {
 function updateAuthUI() {
     const loginButton = document.getElementById('auth-button');
     const dropdownContent = document.getElementById('dropdown-content');
-    
+
     if (!loginButton || !dropdownContent) {
         setTimeout(updateAuthUI, 100);
         return;
     }
-    
+
     if (isLoggedIn()) {
         const user = getCurrentUser();
         updateAuthButton(user);
@@ -308,13 +308,13 @@ function setupDropdownListeners() {
     authButton.parentNode.replaceChild(newAuthButton, authButton);
 
     if (isLoggedIn()) {
-        newAuthButton.addEventListener('click', function(e) {
+        newAuthButton.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             dropdownContent.classList.toggle('hidden');
         });
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!dropdownContent.contains(e.target) && !newAuthButton.contains(e.target)) {
                 dropdownContent.classList.add('hidden');
             }
@@ -343,14 +343,14 @@ function canEditPan(panId) {
     return isUserAdmin() || isPanCoordinator(panId);
 }
 
-document.addEventListener('DOMContentLoaded', async function() {
-    
+document.addEventListener('DOMContentLoaded', async function () {
+
     await inicializarUsuarios();
-    
+
     updateAuthUI();
-    
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
+
+    const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
             if (mutation.addedNodes.length) {
                 const authButton = document.getElementById('auth-button');
                 const dropdownContent = document.getElementById('dropdown-content');
