@@ -1162,19 +1162,25 @@ function canEditAction(action) {
 }
 
 function formatCurrency(input) {
-    let value = input?.target?.value || input;
-    
-    if (!value) return '';
-    value = value.toString().replace(/\D/g, '');
-    value = (parseInt(value) / 100).toFixed(2);
-    value = value.replace('.', ',');
-    value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-    
+    let value = typeof input === 'number' ? input.toFixed(2) : input?.target?.value || input;
+
+    if (!value) return 'R$ 0,00';
+
+    value = value.toString().replace(/[^\d.-]/g, '');
+
+    const floatValue = parseFloat(value);
+    if (isNaN(floatValue)) return 'R$ 0,00';
+
+    const formatted = floatValue.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+
     if (input?.target) {
-        input.target.value = `R$ ${value}`;
+        input.target.value = formatted;
     }
-    
-    return `R$ ${value}`;
+
+    return formatted;
 }
 
 function fecharModalEndereco() {
