@@ -12,8 +12,6 @@
     <script src="js/storage.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/utils.js"></script>
-    <script src="js/panCards.js" defer></script>
-    <script src="js/addPan.js" defer></script>
     <style>
         body,
         html {
@@ -512,8 +510,8 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="pan-cards-container">
-                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="pan-cards-container"></div>
+                    <div id="pagination-controls" class="flex justify-center items-center space-x-2 mt-6"></div>
                 </section>
             </div>
         </div>
@@ -961,6 +959,9 @@
             </div>
         </div>
     </div>
+    <script src="js/panCards.js" defer></script>
+    <script src="js/addPan.js" defer></script>
+
 </body>
 
 </html>
