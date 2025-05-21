@@ -9,7 +9,7 @@ const usuariosIniciais = [
         historico: [
             {
                 data: new Date().toLocaleString('pt-BR'),
-                acao: 'Usuário criado como administrador master',
+                acao: 'Usuário criado como administrador',
                 por: 'sistema'
             }
         ]
@@ -17,8 +17,8 @@ const usuariosIniciais = [
     {
         id: 2,
         nome: "Coordenador",
-        email: "coordenador@email.com",
-        senha: btoa("coord123"),
+        email: "coordenador@icmbio.com",
+        senha: btoa("coordenador123"),
         papel: "coordenador",
         status: "ativo",
         historico: [
@@ -32,8 +32,8 @@ const usuariosIniciais = [
     {
         id: 3,
         nome: "Articulador",
-        email: "articulador@email.com",
-        senha: btoa("art123"),
+        email: "articulador@icmbio.com",
+        senha: btoa("articulador123"),
         papel: "articulador",
         status: "ativo",
         historico: [
