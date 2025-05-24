@@ -227,6 +227,14 @@ function editarPan(id) {
         return;
     }
 
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const isArticulator = currentUser?.papel === 'articulador';
+
+    if (isArticulator) {
+        alert("Articuladores só podem editar o status de suas ações designadas.");
+        return;
+    }
+
     window.setEditMode(true);
     setModalTitle('EDIT');
 
@@ -519,10 +527,11 @@ function renderPanCards(pans) {
     const startIdx = (currentPage - 1) * cardsPerPage;
     const paginated = pans.slice(startIdx, startIdx + cardsPerPage);
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const isAdmin = currentUser?.papel === 'admin';
+    const isCoordinator = currentUser?.papel === 'coordenador';
+    const isArticulator = currentUser?.papel === 'articulador';
 
-    paginated.forEach(pan => {
-        const isAdmin = currentUser?.papel === 'admin';
-        const isCoordinator = currentUser?.papel === 'coordenador';
+    pans.forEach(pan => {
         const isPanCoordinator = pan.coordenador === currentUser?.id;
         const canEdit = isAdmin || (isCoordinator && isPanCoordinator);
 
@@ -570,7 +579,7 @@ function renderPanCards(pans) {
                         <span class="material-icons text-base mr-1">visibility</span>
                         Ver detalhes
                     </button>              
-                    ${canEdit ? `
+                    ${!isArticulator && canEdit ? `
                         <button onclick="editarPan(${pan.id})" class="text-yellow-600 hover:text-yellow-800 text-sm font-medium transition-colors duration-300 flex items-center group">
                             <span class="material-icons text-base mr-1">edit</span>
                             Editar
@@ -695,9 +704,15 @@ function preencherConteudoModal() {
     let actionsInProgress = 0;
     let completedActions = 0;
 
-    currentPan.specificObjectives.forEach(obj => {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const isArticulator = currentUser?.papel === 'articulador';
+
+    currentPan.specificObjectives.forEach((obj, objIndex) => {
         if (obj.actions) {
-            obj.actions.forEach(action => {
+            obj.actions.forEach((action, actionIndex) => {
+                action.index = actionIndex;
+                obj.index = objIndex;
+                
                 totalActions++;
                 if (typeof action === 'object') {
                     if (action.status === 'in_progress') {
@@ -711,7 +726,6 @@ function preencherConteudoModal() {
     });
 
     const progress = totalActions > 0 ? Math.round((completedActions / totalActions) * 100) : 0;
-
     currentPan.progress = progress;
 
     function getActionStatusText(total, inProgress, completed) {
@@ -801,56 +815,58 @@ function preencherConteudoModal() {
             <h3 class="text-xl font-semibold text-[var(--color-dark-green)] mb-4">Objetivos Específicos</h3>
             <div class="space-y-6">
                 ${currentPan.specificObjectives.map(obj => {
-        const objectiveProgress = calculateObjectiveProgress(obj);
-        return `
-                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="font-semibold text-[var(--color-dark-green)] mb-2">${obj.title}</h4>
-                                <p class="text-gray-700 mb-4">${obj.description}</p>
+                    const objectiveProgress = calculateObjectiveProgress(obj);
+                    return `
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="font-semibold text-[var(--color-dark-green)] mb-2">${obj.title}</h4>
+                                    <p class="text-gray-700 mb-4">${obj.description}</p>
+                                </div>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${objectiveProgress === 100 ? 'green' : 'blue'}-100 text-${objectiveProgress === 100 ? 'green' : 'blue'}-800">
+                                    ${objectiveProgress}% Concluído
+                                </span>
                             </div>
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${objectiveProgress === 100 ? 'green' : 'blue'}-100 text-${objectiveProgress === 100 ? 'green' : 'blue'}-800">
-                                ${objectiveProgress}% Concluído
-                            </span>
-                        </div>
-                        <div class="pl-4 space-y-2">
-                            ${obj.actions.map(action => {
-            const canEditAction = action.canEdit;
-            const formattedCustoPrevisto = action.custo_previsto ? window.formatCurrency(action.custo_previsto) : 'Não definido';
-            const formattedValorGasto = action.valor_gasto ? window.formatCurrency(action.valor_gasto) : 'Não definido';
+                            <div class="pl-4 space-y-2">
+                                ${obj.actions.map(action => {
+                                    const isActionArticulator = isArticulator && action.articulador === currentUser.id;
+                                    const formattedCustoPrevisto = action.custo_previsto ? window.formatCurrency(action.custo_previsto) : 'Não definido';
+                                    const formattedValorGasto = action.valor_gasto ? window.formatCurrency(action.valor_gasto) : 'Não definido';
 
-            return `
-                                    <div class="flex flex-col space-y-2 border-b border-gray-200 pb-2 mb-2">
-                                        <div class="flex items-center justify-between">
-                                            <p class="text-sm ${window.getStatusClass(action.status)} flex items-center">
-                                                ${window.getStatusIcon(action.status)}
-                                                ${action.description}
-                                            </p>
-                                            ${canEditAction ? `
-                                                <select class="ml-2 text-sm border rounded" 
-                                                        onchange="updateActionStatus(${pan.id}, ${obj.index}, ${action.index}, this.value)">
-                                                    <option value="not_started" ${action.status === 'not_started' ? 'selected' : ''}>Não iniciado</option>
-                                                    <option value="in_progress" ${action.status === 'in_progress' ? 'selected' : ''}>Em progresso</option>
-                                                    <option value="completed" ${action.status === 'completed' ? 'selected' : ''}>Completo</option>
-                                                </select>
-                                            ` : ''}
+                                    return `
+                                        <div class="flex flex-col space-y-2 border-b border-gray-200 pb-2 mb-2">
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center">
+                                                    <p class="text-sm ${window.getStatusClass(action.status)} flex items-center">
+                                                        ${window.getStatusIcon(action.status)}
+                                                        ${action.description}
+                                                    </p>
+                                                    ${isActionArticulator ? `
+                                                        <span class="ml-2 text-xs text-green-600 font-medium">(Você é o articulador)</span>
+                                                        <button onclick="abrirEditarAcao(${currentPan.id}, ${obj.index}, ${action.index})"
+                                                                class="ml-2 text-blue-600 hover:text-blue-800">
+                                                            <span class="material-icons text-sm">edit</span>
+                                                        </button>
+                                                    ` : ''}
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center space-x-4 text-sm text-gray-600">
+                                                <span>Custo Previsto: ${formattedCustoPrevisto}</span>
+                                                <span>Valor Gasto: ${formattedValorGasto}</span>
+                                                <button type="button" 
+                                                        class="text-blue-500 hover:text-blue-700 flex items-center"
+                                                        onclick="abrirModalEndereco(${action.endereco ? JSON.stringify(action.endereco).replace(/"/g, '&quot;') : '{}'})">
+                                                    <span class="material-icons text-sm mr-1">location_on</span>
+                                                    Ver Endereço
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="flex items-center space-x-4 text-sm text-gray-600">
-                                            <span>Custo Previsto: ${formattedCustoPrevisto}</span>
-                                            <span>Valor Gasto: ${formattedValorGasto}</span>
-                                            <button type="button" 
-                                                    class="text-blue-500 hover:text-blue-700 flex items-center"
-                                                    onclick="abrirModalEndereco(${action.endereco ? JSON.stringify(action.endereco).replace(/"/g, '&quot;') : '{}'})">
-                                                <span class="material-icons text-sm mr-1">location_on</span>
-                                                Ver Endereço
-                                            </button>
-                                        </div>
-                                    </div>
-                                `;
-        }).join('')}
+                                    `;
+                                }).join('')}
+                            </div>
                         </div>
-                    </div>
-                `}).join('')}
+                    `;
+                }).join('')}
             </div>
         </div>
     `;
@@ -1280,66 +1296,197 @@ function initializeAddressToggle(container) {
             }
         });
     }
-};
-
-function renderPaginationControls(totalPages) {
-    const pagination = document.getElementById('pagination-controls');
-    if (!pagination) return;
-    pagination.innerHTML = '';
-
-    const prev = document.createElement('button');
-    prev.textContent = 'Anterior';
-    prev.disabled = currentPage === 1;
-    prev.className = 'px-3 py-1 rounded border';
-    prev.addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
-            renderPanCards(currentDisplayedPans);
-        }
-    });
-    pagination.appendChild(prev);
-
-    for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement('button');
-        btn.textContent = i;
-        btn.className = `px-3 py-1 rounded border ${i === currentPage ? 'font-bold bg-gray-200' : 'bg-white'}`;
-        // btn.addEventListener('click', () => {
-        //     currentPage = i;
-        //     renderPanCards(currentDisplayedPans);
-        // });
-        pagination.appendChild(btn);
-    }
-
-    const next = document.createElement('button');
-    next.textContent = 'Próximo';
-    next.disabled = currentPage === totalPages;
-    next.className = 'px-3 py-1 rounded border';
-    next.addEventListener('click', () => {
-        if (currentPage < totalPages) {
-            currentPage++;
-            renderPanCards(currentDisplayedPans);
-        }
-    });
-    pagination.appendChild(next);
 }
 
-function onPaginationClick(e) {
-    const pagination = document.getElementById('pagination-controls');
-    const btn = e.target.closest('button');
-    if (!btn || !pagination.contains(btn) || btn.disabled) return;
+function abrirEditarAcao(panId, objIndex, actionIndex) {
+    const pan = JSON.parse(localStorage.getItem('pansData')).pans.find(p => p.id === panId);
+    if (!pan) return;
 
-    const totalPages = Math.ceil(currentDisplayedPans.length / cardsPerPage);
-    const txt = btn.textContent.trim();
+    const action = pan.specificObjectives[objIndex].actions[actionIndex];
+    if (!action) return;
 
-    if (txt === 'Anterior' && currentPage > 1) {
-        currentPage--;
-    } else if (txt === 'Próximo' && currentPage < totalPages) {
-        currentPage++;
-    } else {
-        const num = parseInt(txt, 10);
-        if (!isNaN(num)) currentPage = num;
+    const modalHtml = `
+        <div id="modal-editar-acao" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
+            <div class="bg-white rounded-lg w-full max-w-4xl my-8">
+                <div class="flex justify-between items-center p-6 border-b">
+                    <h3 class="text-xl font-semibold text-[var(--color-dark-green)]">Editar Ação</h3>
+                    <button type="button" onclick="document.getElementById('modal-editar-acao').remove()" class="text-gray-500 hover:text-gray-700">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+                <form id="form-editar-acao" onsubmit="salvarEdicaoAcao(event, ${panId}, ${objIndex}, ${actionIndex})" class="p-6">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Descrição da Ação*</label>
+                            <input type="text" name="description" required
+                                   value="${action.description}"
+                                   class="block w-full border border-gray-300 rounded-md p-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Status*</label>
+                            <select name="status" required class="block w-full border border-gray-300 rounded-md p-2">
+                                <option value="not_started" ${action.status === 'not_started' ? 'selected' : ''}>Não iniciado</option>
+                                <option value="in_progress" ${action.status === 'in_progress' ? 'selected' : ''}>Em progresso</option>
+                                <option value="completed" ${action.status === 'completed' ? 'selected' : ''}>Completo</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Custo Previsto</label>
+                                <input type="text" name="custo_previsto"
+                                       value="${window.formatCurrency(action.custo_previsto || '')}"
+                                       class="block w-full border border-gray-300 rounded-md p-2">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Valor Gasto</label>
+                                <input type="text" name="valor_gasto"
+                                       value="${window.formatCurrency(action.valor_gasto || '')}"
+                                       class="block w-full border border-gray-300 rounded-md p-2">
+                            </div>
+                        </div>
+                        
+                        <div class="border-t pt-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-lg font-medium text-gray-700">Endereço</h4>
+                                <button type="button" class="toggle-address text-blue-500 hover:text-blue-700">
+                                    <span class="material-icons">expand_more</span>
+                                </button>
+                            </div>
+                            <div class="address-fields hidden">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">CEP*</label>
+                                        <div class="flex rounded-md shadow-sm">
+                                            <input type="text" name="specificObjectives[][actions][][endereco][cep]" 
+                                                   required maxlength="9"
+                                                   value="${action.endereco?.cep || ''}"
+                                                   class="flex-1 border border-gray-300 rounded-l-md p-2">
+                                            <button type="button" class="buscar-cep inline-flex items-center px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-r-md hover:from-blue-600 hover:to-blue-700">
+                                                <span class="material-icons text-lg mr-1">search</span>
+                                                Buscar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Rua*</label>
+                                        <input type="text" name="specificObjectives[][actions][][endereco][rua]" 
+                                               required
+                                               value="${action.endereco?.rua || ''}"
+                                               class="block w-full border border-gray-300 rounded-md p-2">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Número</label>
+                                        <input type="text" name="specificObjectives[][actions][][endereco][numero]" 
+                                               value="${action.endereco?.numero || ''}"
+                                               class="block w-full border border-gray-300 rounded-md p-2">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Bairro*</label>
+                                        <input type="text" name="specificObjectives[][actions][][endereco][bairro]" 
+                                               required
+                                               value="${action.endereco?.bairro || ''}"
+                                               class="block w-full border border-gray-300 rounded-md p-2">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Cidade*</label>
+                                        <input type="text" name="specificObjectives[][actions][][endereco][cidade]" 
+                                               required
+                                               value="${action.endereco?.cidade || ''}"
+                                               class="block w-full border border-gray-300 rounded-md p-2">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Estado*</label>
+                                        <input type="text" name="specificObjectives[][actions][][endereco][estado]" 
+                                               required
+                                               value="${action.endereco?.estado || ''}"
+                                               class="block w-full border border-gray-300 rounded-md p-2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-3 mt-6">
+                        <button type="button" 
+                                onclick="document.getElementById('modal-editar-acao').remove()"
+                                class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                            Cancelar
+                        </button>
+                        <button type="submit"
+                                class="px-4 py-2 bg-[var(--color-primary)] text-white rounded-md hover:bg-[var(--color-dark-green)]">
+                            Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+
+    const oldModal = document.getElementById('modal-editar-acao');
+    if (oldModal) oldModal.remove();
+
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+    const form = document.getElementById('form-editar-acao');
+    const custoPrevisto = form.querySelector('input[name="custo_previsto"]');
+    const valorGasto = form.querySelector('input[name="valor_gasto"]');
+
+    custoPrevisto.addEventListener('input', (e) => {
+        e.target.value = window.formatCurrency(e.target.value);
+    });
+    valorGasto.addEventListener('input', (e) => {
+        e.target.value = window.formatCurrency(e.target.value);
+    });
+
+    window.initializeAddressToggle(form);
+}
+
+async function salvarEdicaoAcao(event, panId, objIndex, actionIndex) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    try {
+        const storedData = JSON.parse(localStorage.getItem('pansData'));
+        const pan = storedData.pans.find(p => p.id === panId);
+        if (!pan) throw new Error('PAN não encontrado');
+
+        const action = pan.specificObjectives[objIndex].actions[actionIndex];
+        if (!action) throw new Error('Ação não encontrada');
+
+        action.description = formData.get('description');
+        action.status = formData.get('status');
+        action.custo_previsto = formData.get('custo_previsto').replace(/[^\d,]/g, '').replace(',', '.');
+        action.valor_gasto = formData.get('valor_gasto').replace(/[^\d,]/g, '').replace(',', '.');
+        action.endereco = {
+            cep: formData.get('cep'),
+            rua: formData.get('rua'),
+            numero: formData.get('numero'),
+            bairro: formData.get('bairro'),
+            cidade: formData.get('cidade'),
+            estado: formData.get('estado')
+        };
+
+        localStorage.setItem('pansData', JSON.stringify(storedData));
+        
+        const modalEditarAcao = document.getElementById('modal-editar-acao');
+        if (modalEditarAcao) {
+            modalEditarAcao.remove();
+        }
+
+        const modalDetalhes = document.getElementById('modal-detalhes');
+        if (modalDetalhes) {
+            modalDetalhes.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        allPans = storedData.pans;
+        renderPanCards(storedData.pans);
+        updateMonitoringCharts(storedData.pans);
+        
+    } catch (error) {
+        console.error('Erro ao salvar ação:', error);
+        alert('Erro ao salvar as alterações. Por favor, tente novamente.');
     }
-
-    console.log('navegar para página', currentPage);
-    renderPanCards(currentDisplayedPans);
 }

@@ -152,6 +152,9 @@ window.initializeAddressToggle = function (container) {
 
     if (buscarCepBtn) {
         buscarCepBtn.addEventListener('click', async function () {
+            const cepInput = container.querySelector('input[name$="[cep]"]');
+            if (!cepInput) return;
+
             const cep = cepInput.value.replace(/\D/g, '');
 
             if (cep.length !== 8) {
@@ -173,13 +176,14 @@ window.initializeAddressToggle = function (container) {
                 const cidadeInput = container.querySelector('input[name$="[cidade]"]');
                 const estadoInput = container.querySelector('input[name$="[estado]"]');
 
-                ruaInput.value = data.logradouro || '';
-                bairroInput.value = data.bairro || '';
-                cidadeInput.value = data.localidade || '';
-                estadoInput.value = data.uf || '';
+                if (ruaInput) ruaInput.value = data.logradouro || '';
+                if (bairroInput) bairroInput.value = data.bairro || '';
+                if (cidadeInput) cidadeInput.value = data.localidade || '';
+                if (estadoInput) estadoInput.value = data.uf || '';
 
-                ruaInput.readOnly = !!data.logradouro;
-                bairroInput.readOnly = !!data.bairro;
+                if (ruaInput) ruaInput.readOnly = !!data.logradouro;
+                if (bairroInput) bairroInput.readOnly = !!data.bairro;
+
                 const numeroInput = container.querySelector('input[name$="[numero]"]');
                 if (numeroInput) {
                     numeroInput.focus();
