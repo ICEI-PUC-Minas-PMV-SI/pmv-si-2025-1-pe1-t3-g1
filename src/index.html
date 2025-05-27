@@ -229,9 +229,9 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="pan-cards-container">
-                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="pan-cards-container"></div>
+                    <div id="pagination-controls" class="flex justify-center mt-6 space-x-2"></div>
                 </section>
             </div>
         </div>
@@ -286,8 +286,6 @@
         fetch('layout.html')
             .then(response => response.text())
             .then(html => {
-                const temp = document.createElement('div');
-                temp.innerHTML = html;
                 document.getElementById('layout-content').innerHTML = html;
                 const pageContent = document.getElementById('page-content');
                 const layoutContent = document.getElementById('content');
@@ -295,6 +293,9 @@
                     layoutContent.innerHTML = pageContent.innerHTML;
                 }
                 pageContent.remove();
+                if (window.initPanCardsModule) {
+                    window.initPanCardsModule();
+                }
             });
         let etapaAtual = 0;
         const totalEtapas = 3;

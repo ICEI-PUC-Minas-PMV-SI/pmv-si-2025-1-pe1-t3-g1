@@ -257,6 +257,326 @@
                     ]
                 }
             ]
+        },
+        {
+            "id": 5,
+            "title": "PAN Aves Migratórias",
+            "coordenador": 4,
+            "description": "Plano de Ação Nacional para Acompanhamento e Conservação de Aves Migratórias no Brasil.",
+            "image": "img/logo-pan-aves-migratorias.png",
+            "tag1": "Em Execução",
+            "tag1Color": "blue",
+            "period": "2024-2029",
+            "duration": "5 anos de duração",
+            "statusReason": "",
+            "statusColor": "gray",
+            "generalObjective": "Monitorar rotas migratórias e reduzir ameaças às populações de aves migratórias que passam pelo território brasileiro.",
+            "specificObjectives": [
+                {
+                    "title": "Objetivo 1",
+                    "description": "Mapear principais rotas migratórias.",
+                    "actions": [
+                        {
+                            "description": "Instalar estações de anilhagem",
+                            "status": "not_started",
+                            "articulador": 5,
+                            "endereco": {
+                                "rua": "Rua das Gaivotas",
+                                "bairro": "Lagoa",
+                                "numero": "100",
+                                "cidade": "Porto Alegre",
+                                "estado": "RS",
+                                "cep": "90010-000"
+                            },
+                            "custo_previsto": 40000.00,
+                            "valor_gasto": 0.00
+                        },
+                        {
+                            "description": "Coletar dados de GPS em aves-tag",
+                            "status": "in_progress",
+                            "articulador": 5,
+                            "endereco": {
+                                "rua": "Avenida dos Pássaros",
+                                "bairro": "Centro",
+                                "numero": "200",
+                                "cidade": "Porto Alegre",
+                                "estado": "RS",
+                                "cep": "90020-001"
+                            },
+                            "custo_previsto": 60000.00,
+                            "valor_gasto": 15000.00
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 2",
+                    "description": "Identificar e mitigar ameaças ao longo das rotas.",
+                    "actions": [
+                        {
+                            "description": "Avaliar impacto de linhas de transmissão",
+                            "status": "not_started",
+                            "articulador": 6,
+                            "endereco": {
+                                "rua": "Rodovia das Aves",
+                                "bairro": "Industrial",
+                                "numero": "500",
+                                "cidade": "Curitiba",
+                                "estado": "PR",
+                                "cep": "80010-000"
+                            },
+                            "custo_previsto": 30000.00,
+                            "valor_gasto": 0.00
+                        },
+                        {
+                            "description": "Promover campanhas de conscientização",
+                            "status": "not_started",
+                            "articulador": 6,
+                            "endereco": {
+                                "rua": "Rua da Educação",
+                                "bairro": "Universitário",
+                                "numero": "45",
+                                "cidade": "Curitiba",
+                                "estado": "PR",
+                                "cep": "80020-001"
+                            },
+                            "custo_previsto": 20000.00,
+                            "valor_gasto": 0.00
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "title": "PAN Répteis Amazônicos",
+            "coordenador": 4,
+            "description": "Plano de Ação Nacional para Proteção de Répteis Ameaçados na Região Amazônica.",
+            "image": "img/logo-pan-repteis-amazonicos.png",
+            "tag1": "Aguardando Coordenador",
+            "tag1Color": "orange",
+            "period": "2023-2028",
+            "duration": "5 anos de duração",
+            "statusReason": "",
+            "statusColor": "gray",
+            "generalObjective": "Garantir a sobrevivência de espécies de répteis ameaçados de extinção na Amazônia.",
+            "specificObjectives": [
+                {
+                    "title": "Objetivo 1",
+                    "description": "Inventariar populações de quelônios.",
+                    "actions": [
+                        {
+                            "description": "Expedições de campo em rios principais",
+                            "status": "not_started",
+                            "articulador": 7,
+                            "endereco": {
+                                "rua": "Travessa dos Rios",
+                                "bairro": "Portuária",
+                                "numero": "77",
+                                "cidade": "Manaus",
+                                "estado": "AM",
+                                "cep": "69090-000"
+                            },
+                            "custo_previsto": 50000.00,
+                            "valor_gasto": 0.00
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 2",
+                    "description": "Proteger ninhos e berçários naturais.",
+                    "actions": [
+                        {
+                            "description": "Instalar áreas de proteção nas margens",
+                            "status": "not_started",
+                            "articulador": 7,
+                            "endereco": {
+                                "rua": "Estrada do Berçário",
+                                "bairro": "Ribeirinho",
+                                "numero": "123",
+                                "cidade": "Tefé",
+                                "estado": "AM",
+                                "cep": "69560-000"
+                            },
+                            "custo_previsto": 45000.00,
+                            "valor_gasto": 0.00
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "title": "PAN Plantas Carnívoras",
+            "coordenador": 5,
+            "description": "Plano de Ação Nacional para Conservação de Plantas Carnívoras Endêmicas.",
+            "image": "img/logo-pan-plantas-carnivoras.png",
+            "tag1": "Suspenso",
+            "tag1Color": "red",
+            "period": "2021-2026",
+            "duration": "5 anos de duração",
+            "statusReason": "Aguardando atualização de protocolo de amostragem",
+            "statusColor": "red",
+            "generalObjective": "Preservar áreas de ocorrência de espécies carnívoras ameaçadas e desenvolver métodos de cultivo ex situ.",
+            "specificObjectives": [
+                {
+                    "title": "Objetivo 1",
+                    "description": "Levantamento de sítios prioritários.",
+                    "actions": [
+                        {
+                            "description": "Coleta de amostras em campos rupestres",
+                            "status": "in_progress",
+                            "articulador": 8,
+                            "endereco": {
+                                "rua": "Camino das Serras",
+                                "bairro": "Alto",
+                                "numero": "22",
+                                "cidade": "Goiânia",
+                                "estado": "GO",
+                                "cep": "74000-000"
+                            },
+                            "custo_previsto": 30000.00,
+                            "valor_gasto": 15000.00
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 2",
+                    "description": "Desenvolver protocolo de cultivo em viveiro.",
+                    "actions": [
+                        {
+                            "description": "Montar viveiro piloto",
+                            "status": "completed",
+                            "articulador": 8,
+                            "endereco": {
+                                "rua": "Rua dos Viveiros",
+                                "bairro": "Industrial",
+                                "numero": "88",
+                                "cidade": "Goiânia",
+                                "estado": "GO",
+                                "cep": "74010-001"
+                            },
+                            "custo_previsto": 25000.00,
+                            "valor_gasto": 25000.00
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "title": "PAN Insetos Polinizadores",
+            "coordenador": 6,
+            "description": "Plano de Ação Nacional para Conservação de Insetos Polinizadores Essenciais.",
+            "image": "img/logo-pan-insetos-polinizadores.png",
+            "tag1": "Em Execução",
+            "tag1Color": "blue",
+            "period": "2025-2030",
+            "duration": "5 anos de duração",
+            "statusReason": "",
+            "statusColor": "gray",
+            "generalObjective": "Proteger e ampliar habitats para abelhas, borboletas e outros polinizadores nativos.",
+            "specificObjectives": [
+                {
+                    "title": "Objetivo 1",
+                    "description": "Mapear hotspots de polinização.",
+                    "actions": [
+                        {
+                            "description": "Monitoramento com armadilhas entomológicas",
+                            "status": "not_started",
+                            "articulador": 9,
+                            "endereco": {
+                                "rua": "Rua das Flores",
+                                "bairro": "Jardim Botânico",
+                                "numero": "10",
+                                "cidade": "Rio de Janeiro",
+                                "estado": "RJ",
+                                "cep": "22460-000"
+                            },
+                            "custo_previsto": 20000.00,
+                            "valor_gasto": 0.00
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 2",
+                    "description": "Implementar corredores florísticos.",
+                    "actions": [
+                        {
+                            "description": "Plantio de espécies melíferas",
+                            "status": "not_started",
+                            "articulador": 9,
+                            "endereco": {
+                                "rua": "Avenida das Abelhas",
+                                "bairro": "Barra da Tijuca",
+                                "numero": "500",
+                                "cidade": "Rio de Janeiro",
+                                "estado": "RJ",
+                                "cep": "22640-102"
+                            },
+                            "custo_previsto": 30000.00,
+                            "valor_gasto": 0.00
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "title": "PAN Manguezais Costeiros",
+            "coordenador": 6,
+            "description": "Plano de Ação Nacional para Restauração e Conservação de Manguezais Brasileiros.",
+            "image": "img/logo-pan-manguezais.png",
+            "tag1": "Não Iniciado",
+            "tag1Color": "gray",
+            "period": "2025-2030",
+            "duration": "5 anos de duração",
+            "statusReason": "",
+            "statusColor": "gray",
+            "generalObjective": "Restaurar áreas degradadas de manguezais e fortalecer a fiscalização contra desmatamentos ilegais.",
+            "specificObjectives": [
+                {
+                    "title": "Objetivo 1",
+                    "description": "Reflorestamento em áreas críticas.",
+                    "actions": [
+                        {
+                            "description": "Distribuição de mudas de mangueiras",
+                            "status": "not_started",
+                            "articulador": 10,
+                            "endereco": {
+                                "rua": "Estrada da Costa",
+                                "bairro": "Mangueiral",
+                                "numero": "1",
+                                "cidade": "Natal",
+                                "estado": "RN",
+                                "cep": "59100-000"
+                            },
+                            "custo_previsto": 35000.00,
+                            "valor_gasto": 0.00
+                        }
+                    ]
+                },
+                {
+                    "title": "Objetivo 2",
+                    "description": "Fortalecer fiscalização e fiscalização comunitária.",
+                    "actions": [
+                        {
+                            "description": "Treinamento de guardiões locais",
+                            "status": "not_started",
+                            "articulador": 10,
+                            "endereco": {
+                                "rua": "Rua dos Pescadores",
+                                "bairro": "Centro Histórico",
+                                "numero": "10",
+                                "cidade": "Natal",
+                                "estado": "RN",
+                                "cep": "59101-000"
+                            },
+                            "custo_previsto": 25000.00,
+                            "valor_gasto": 0.00
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
