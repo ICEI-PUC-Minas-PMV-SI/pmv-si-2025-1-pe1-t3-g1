@@ -3,8 +3,9 @@
         {
             "id": 1,
             "title": "PAN Cavernas do Brasil",
+            "coordenador": 2,
             "description": "Plano de Ação Nacional para a Conservação do Patrimônio Espeleológico Brasileiro.",
-            "image": "img/logo-pan-cavernas.png",
+            "image":  "img/logo-pan-cavernas.png",
             "tag1": "Em Execução",
             "tag1Color": "blue",
             "period": "2023-2028",
@@ -19,15 +20,48 @@
                     "actions": [
                         {
                             "description": "Realizar levantamentos espeleológicos",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua das Cavernas",
+                                "bairro": "Centro",
+                                "numero": "123",
+                                "cidade": "Altamira",
+                                "estado": "PA",
+                                "cep": "68371-000"
+                            },
+                            "custo_previsto": 50000.00,
+                            "valor_gasto": 15000.00
                         },
                         {
                             "description": "Mapear áreas prioritárias",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Avenida das Grutas",
+                                "bairro": "Setor Norte",
+                                "numero": "456",
+                                "cidade": "Altamira",
+                                "estado": "PA",
+                                "cep": "68371-001"
+                            },
+                            "custo_previsto": 35000.00,
+                            "valor_gasto": 20000.00
                         },
                         {
                             "description": "Estudar a biodiversidade cavernícola",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua dos Morcegos",
+                                "bairro": "Centro",
+                                "numero": "789",
+                                "cidade": "Altamira",
+                                "estado": "PA",
+                                "cep": "68371-002"
+                            },
+                            "custo_previsto": 45000.00,
+                            "valor_gasto": 45000.00
                         }
                     ]
                 },
@@ -37,15 +71,48 @@
                     "actions": [
                         {
                             "description": "Implementar medidas de proteção",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua da Conservação",
+                                "bairro": "Jardim",
+                                "numero": "321",
+                                "cidade": "Altamira",
+                                "estado": "PA",
+                                "cep": "68371-003"
+                            },
+                            "custo_previsto": 60000.00,
+                            "valor_gasto": 0.00
                         },
                         {
                             "description": "Desenvolver protocolos de manejo",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Avenida Principal",
+                                "bairro": "Centro",
+                                "numero": "654",
+                                "cidade": "Altamira",
+                                "estado": "PA",
+                                "cep": "68371-004"
+                            },
+                            "custo_previsto": 25000.00,
+                            "valor_gasto": 12500.00
                         },
                         {
                             "description": "Monitorar impactos ambientais",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua do Monitoramento",
+                                "bairro": "Setor Sul",
+                                "numero": "987",
+                                "cidade": "Altamira",
+                                "estado": "PA",
+                                "cep": "68371-005"
+                            },
+                            "custo_previsto": 40000.00,
+                            "valor_gasto": 40000.00
                         }
                     ]
                 },
@@ -55,15 +122,48 @@
                     "actions": [
                         {
                             "description": "Desenvolver programas educativos",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua da Educação",
+                                "bairro": "Centro",
+                                "numero": "147",
+                                "cidade": "Altamira",
+                                "estado": "PA",
+                                "cep": "68371-006"
+                            },
+                            "custo_previsto": 30000.00,
+                            "valor_gasto": 0.00
                         },
                         {
                             "description": "Capacitar guias e gestores",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Avenida do Conhecimento",
+                                "bairro": "Jardim",
+                                "numero": "258",
+                                "cidade": "Altamira",
+                                "estado": "PA",
+                                "cep": "68371-007"
+                            },
+                            "custo_previsto": 35000.00,
+                            "valor_gasto": 17500.00
                         },
                         {
                             "description": "Promover o turismo sustentável",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua do Turismo",
+                                "bairro": "Centro",
+                                "numero": "369",
+                                "cidade": "Altamira",
+                                "estado": "PA",
+                                "cep": "68371-008"
+                            },
+                            "custo_previsto": 55000.00,
+                            "valor_gasto": 55000.00
                         }
                     ]
                 }
@@ -72,6 +172,7 @@
         {
             "id": 2,
             "title": "PAN Mamíferos Aquáticos",
+            "coordenador": 2,
             "description": "Plano de Ação Nacional para a Conservação dos Mamíferos Aquáticos Amazônicos.",
             "image": "img/logo-mamiferos-aquaticos.png",
             "tag1": "Aguardando Coordenador",
@@ -88,15 +189,48 @@
                     "actions": [
                         {
                             "description": "Combate à pesca incidental",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua do Porto",
+                                "bairro": "Zona Portuária",
+                                "numero": "123",
+                                "cidade": "Manaus",
+                                "estado": "AM",
+                                "cep": "69020-001"
+                            },
+                            "custo_previsto": 75000.00,
+                            "valor_gasto": 37500.00
                         },
                         {
                             "description": "Redução da poluição marinha",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Avenida do Rio",
+                                "bairro": "Centro",
+                                "numero": "456",
+                                "cidade": "Manaus",
+                                "estado": "AM",
+                                "cep": "69020-002"
+                            },
+                            "custo_previsto": 90000.00,
+                            "valor_gasto": 0.00
                         },
                         {
                             "description": "Controle do tráfego de embarcações",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua da Marina",
+                                "bairro": "Porto",
+                                "numero": "789",
+                                "cidade": "Manaus",
+                                "estado": "AM",
+                                "cep": "69020-003"
+                            },
+                            "custo_previsto": 45000.00,
+                            "valor_gasto": 45000.00
                         }
                     ]
                 },
@@ -106,15 +240,48 @@
                     "actions": [
                         {
                             "description": "Monitoramento populacional",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua da Pesquisa",
+                                "bairro": "Centro",
+                                "numero": "321",
+                                "cidade": "Manaus",
+                                "estado": "AM",
+                                "cep": "69020-004"
+                            },
+                            "custo_previsto": 85000.00,
+                            "valor_gasto": 0.00
                         },
                         {
                             "description": "Pesquisas sobre comportamento",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Avenida da Ciência",
+                                "bairro": "Distrito Industrial",
+                                "numero": "654",
+                                "cidade": "Manaus",
+                                "estado": "AM",
+                                "cep": "69020-005"
+                            },
+                            "custo_previsto": 65000.00,
+                            "valor_gasto": 32500.00
                         },
                         {
                             "description": "Estudos genéticos",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua do Laboratório",
+                                "bairro": "Aleixo",
+                                "numero": "987",
+                                "cidade": "Manaus",
+                                "estado": "AM",
+                                "cep": "69020-006"
+                            },
+                            "custo_previsto": 120000.00,
+                            "valor_gasto": 120000.00
                         }
                     ]
                 }
@@ -123,6 +290,7 @@
         {
             "id": 3,
             "title": "PAN Ararinha Azul",
+            "coordenador": 2,
             "description": "Plano de Ação Nacional para Conservação da Ararinha-azul (Cyanopsitta spixii).",
             "image": "img/logo-pan-ararinha-azul.png",
             "tag1": "Suspenso",
@@ -139,15 +307,48 @@
                     "actions": [
                         {
                             "description": "Monitoramento dos indivíduos reintroduzidos",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua das Araras",
+                                "bairro": "Centro",
+                                "numero": "123",
+                                "cidade": "Curaçá",
+                                "estado": "BA",
+                                "cep": "48930-000"
+                            },
+                            "custo_previsto": 95000.00,
+                            "valor_gasto": 47500.00
                         },
                         {
                             "description": "Avaliação de habitat para soltura",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Avenida da Caatinga",
+                                "bairro": "Rural",
+                                "numero": "456",
+                                "cidade": "Curaçá",
+                                "estado": "BA",
+                                "cep": "48930-001"
+                            },
+                            "custo_previsto": 70000.00,
+                            "valor_gasto": 0.00
                         },
                         {
                             "description": "Programa de reprodução em cativeiro",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua do Criadouro",
+                                "bairro": "Centro",
+                                "numero": "789",
+                                "cidade": "Curaçá",
+                                "estado": "BA",
+                                "cep": "48930-002"
+                            },
+                            "custo_previsto": 150000.00,
+                            "valor_gasto": 150000.00
                         }
                     ]
                 },
@@ -157,15 +358,48 @@
                     "actions": [
                         {
                             "description": "Mapeamento de áreas prioritárias",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua do Mapeamento",
+                                "bairro": "Centro",
+                                "numero": "321",
+                                "cidade": "Curaçá",
+                                "estado": "BA",
+                                "cep": "48930-003"
+                            },
+                            "custo_previsto": 45000.00,
+                            "valor_gasto": 0.00
                         },
                         {
                             "description": "Parcerias com proprietários de terras",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Avenida Rural",
+                                "bairro": "Centro",
+                                "numero": "654",
+                                "cidade": "Curaçá",
+                                "estado": "BA",
+                                "cep": "48930-004"
+                            },
+                            "custo_previsto": 30000.00,
+                            "valor_gasto": 15000.00
                         },
                         {
                             "description": "Controle de espécies invasoras",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua do Controle",
+                                "bairro": "Rural",
+                                "numero": "987",
+                                "cidade": "Curaçá",
+                                "estado": "BA",
+                                "cep": "48930-005"
+                            },
+                            "custo_previsto": 55000.00,
+                            "valor_gasto": 55000.00
                         }
                     ]
                 },
@@ -175,15 +409,48 @@
                     "actions": [
                         {
                             "description": "Campanhas contra o tráfico de animais",
-                            "status": "not_started"
+                            "status": "not_started",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua da Fiscalização",
+                                "bairro": "Centro",
+                                "numero": "147",
+                                "cidade": "Curaçá",
+                                "estado": "BA",
+                                "cep": "48930-006"
+                            },
+                            "custo_previsto": 65000.00,
+                            "valor_gasto": 0.00
                         },
                         {
                             "description": "Programa de educação ambiental",
-                            "status": "in_progress"
+                            "status": "in_progress",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Avenida da Educação",
+                                "bairro": "Centro",
+                                "numero": "258",
+                                "cidade": "Curaçá",
+                                "estado": "BA",
+                                "cep": "48930-007"
+                            },
+                            "custo_previsto": 40000.00,
+                            "valor_gasto": 20000.00
                         },
                         {
                             "description": "Fortalecimento da fiscalização",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua da Proteção",
+                                "bairro": "Centro",
+                                "numero": "369",
+                                "cidade": "Curaçá",
+                                "estado": "BA",
+                                "cep": "48930-008"
+                            },
+                            "custo_previsto": 80000.00,
+                            "valor_gasto": 80000.00
                         }
                     ]
                 }
@@ -192,6 +459,7 @@
         {
             "id": 4,
             "title": "PAN Corais",
+            "coordenador": 2,
             "description": "Plano de Ação Nacional para Conservação de Ambientes Coralíneos.",
             "image": "img/logo-pan-corais.jpeg",
             "tag1": "Finalizado",
@@ -208,15 +476,48 @@
                     "actions": [
                         {
                             "description": "Controle do turismo predatório",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua dos Corais",
+                                "bairro": "Praia",
+                                "numero": "123",
+                                "cidade": "Porto Seguro",
+                                "estado": "BA",
+                                "cep": "45810-000"
+                            },
+                            "custo_previsto": 85000.00,
+                            "valor_gasto": 85000.00
                         },
                         {
                             "description": "Redução da poluição marinha",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Avenida do Mar",
+                                "bairro": "Centro",
+                                "numero": "456",
+                                "cidade": "Porto Seguro",
+                                "estado": "BA",
+                                "cep": "45810-001"
+                            },
+                            "custo_previsto": 120000.00,
+                            "valor_gasto": 120000.00
                         },
                         {
                             "description": "Regulamentação da pesca",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua dos Pescadores",
+                                "bairro": "Porto",
+                                "numero": "789",
+                                "cidade": "Porto Seguro",
+                                "estado": "BA",
+                                "cep": "45810-002"
+                            },
+                            "custo_previsto": 45000.00,
+                            "valor_gasto": 45000.00
                         }
                     ]
                 },
@@ -226,15 +527,48 @@
                     "actions": [
                         {
                             "description": "Mapeamento completo dos recifes",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua da Pesquisa",
+                                "bairro": "Centro",
+                                "numero": "321",
+                                "cidade": "Porto Seguro",
+                                "estado": "BA",
+                                "cep": "45810-003"
+                            },
+                            "custo_previsto": 95000.00,
+                            "valor_gasto": 95000.00
                         },
                         {
                             "description": "Monitoramento contínuo",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Avenida do Monitoramento",
+                                "bairro": "Praia",
+                                "numero": "654",
+                                "cidade": "Porto Seguro",
+                                "estado": "BA",
+                                "cep": "45810-004"
+                            },
+                            "custo_previsto": 75000.00,
+                            "valor_gasto": 75000.00
                         },
                         {
                             "description": "Estudos sobre mudanças climáticas",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua do Clima",
+                                "bairro": "Centro",
+                                "numero": "987",
+                                "cidade": "Porto Seguro",
+                                "estado": "BA",
+                                "cep": "45810-005"
+                            },
+                            "custo_previsto": 110000.00,
+                            "valor_gasto": 110000.00
                         }
                     ]
                 },
@@ -244,15 +578,48 @@
                     "actions": [
                         {
                             "description": "Projeto piloto de restauração",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua da Restauração",
+                                "bairro": "Praia",
+                                "numero": "147",
+                                "cidade": "Porto Seguro",
+                                "estado": "BA",
+                                "cep": "45810-006"
+                            },
+                            "custo_previsto": 150000.00,
+                            "valor_gasto": 150000.00
                         },
                         {
                             "description": "Banco de genótipos",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Avenida da Genética",
+                                "bairro": "Centro",
+                                "numero": "258",
+                                "cidade": "Porto Seguro",
+                                "estado": "BA",
+                                "cep": "45810-007"
+                            },
+                            "custo_previsto": 85000.00,
+                            "valor_gasto": 85000.00
                         },
                         {
                             "description": "Protocolos de manejo",
-                            "status": "completed"
+                            "status": "completed",
+                            "articulador": 3,
+                            "endereco": {
+                                "rua": "Rua do Protocolo",
+                                "bairro": "Centro",
+                                "numero": "369",
+                                "cidade": "Porto Seguro",
+                                "estado": "BA",
+                                "cep": "45810-008"
+                            },
+                            "custo_previsto": 40000.00,
+                            "valor_gasto": 40000.00
                         }
                     ]
                 }

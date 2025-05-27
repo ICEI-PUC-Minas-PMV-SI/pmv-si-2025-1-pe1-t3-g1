@@ -10,7 +10,7 @@ function loadLayout() {
         .then(html => {
             const temp = document.createElement('div');
             temp.innerHTML = html;
-            
+
             const header = temp.querySelector('header');
             const footer = temp.querySelector('footer');
 
@@ -19,7 +19,7 @@ function loadLayout() {
             if (header) {
                 layoutContent.insertBefore(header, layoutContent.firstChild);
             }
-            
+
             if (footer) {
                 layoutContent.appendChild(footer);
             }
@@ -31,14 +31,14 @@ function setupLoginForm() {
     const loginForm = document.getElementById('login-form');
     const errorMessage = document.getElementById('error-message');
 
-    loginForm.addEventListener('submit', async function(e) {
+    loginForm.addEventListener('submit', async function (e) {
         e.preventDefault();
         const email = document.getElementById('email').value;
         const senha = document.getElementById('senha').value;
 
         try {
             const loginSucesso = await login(email, senha);
-            
+
             if (loginSucesso) {
                 window.location.replace('index.html');
             } else {
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentUser) {
         window.location.replace('index.html');
     }
-    
+
     setupLoginForm();
 });
 
