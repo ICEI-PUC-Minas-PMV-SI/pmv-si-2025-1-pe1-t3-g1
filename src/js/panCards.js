@@ -126,8 +126,9 @@ function initializeFilters() {
         searchInput.addEventListener('input', filtrarPANs);
     }
 }
+// document.addEventListener('DOMContentLoaded', function () {
+function initPanCardsModule () {
 
-document.addEventListener('DOMContentLoaded', function () {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const addButton = document.getElementById('add-pan-button');
     const storedData = JSON.parse(localStorage.getItem('pansData'));
@@ -177,12 +178,11 @@ document.addEventListener('DOMContentLoaded', function () {
         statusSelect.addEventListener('change', filtrarPANs);
     }
     if (pagination) {
-        document.addEventListener('click', function (e) {
-            console.log(e)
-        })
-        pagination.addEventListener('click',onPaginationClick);
+        pagination.addEventListener('click', onPaginationClick);
     }
-});
+};
+
+window.initPanCardsModule = initPanCardsModule;
 
 let currentPan = null;
 let currentStep = 0;
@@ -527,11 +527,12 @@ function renderPanCards(pans) {
     const startIdx = (currentPage - 1) * cardsPerPage;
     const paginated = pans.slice(startIdx, startIdx + cardsPerPage);
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const isAdmin = currentUser?.papel === 'admin';
-    const isCoordinator = currentUser?.papel === 'coordenador';
-    const isArticulator = currentUser?.papel === 'articulador';
 
-    pans.forEach(pan => {
+    paginated.forEach(pan => {
+        const isAdmin = currentUser?.papel === 'admin';
+        const isCoordinator = currentUser?.papel === 'coordenador';
+        const isArticulator = currentUser?.papel === 'articulador';
+
         const isPanCoordinator = pan.coordenador === currentUser?.id;
         const canEdit = isAdmin || (isCoordinator && isPanCoordinator);
 
@@ -1019,7 +1020,6 @@ function updateMonitoringCharts(pans) {
         barPrevisto.style.height = '100%';
         const percentageSpent = Math.min(100, (costs.gasto / costs.previsto) * 100);
         barGasto.style.height = `${percentageSpent}%`;
-
         formattedPrevisto = window.formatCurrency(costs.previsto);
         formattedGasto = window.formatCurrency(costs.gasto);
 
@@ -1296,6 +1296,67 @@ function initializeAddressToggle(container) {
             }
         });
     }
+};
+
+ function renderPaginationControls(totalPages) {
+   const pagination = document.getElementById('pagination-controls');
+   if (!pagination) return;
+   pagination.innerHTML = '';
+
+   const prev = document.createElement('button');
+   prev.textContent = 'Anterior';
+   prev.disabled = currentPage === 1;
+   prev.className = 'px-3 py-1 rounded border';
+   prev.addEventListener('click', () => {
+     if (currentPage > 1) {
+       currentPage--;
+       renderPanCards(currentDisplayedPans);
+     }
+   });
+   pagination.appendChild(prev);
+
+   for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.className = `px-3 py-1 rounded border ${i === currentPage ? 'font-bold bg-gray-200' : 'bg-white'}`;
+        btn.addEventListener('click', () => {
+        currentPage = i;
+        renderPanCards(currentDisplayedPans);
+        });
+        pagination.appendChild(btn);
+   }
+
+   const next = document.createElement('button');
+   next.textContent = 'Próximo';
+   next.disabled = currentPage === totalPages;
+   next.className = 'px-3 py-1 rounded border';
+   next.addEventListener('click', () => {
+     if (currentPage < totalPages) {
+       currentPage++;
+       renderPanCards(currentDisplayedPans);
+     }
+   });
+   pagination.appendChild(next);
+}
+
+function onPaginationClick(e) {
+    const pagination = document.getElementById('pagination-controls');
+    const btn = e.target.closest('button');
+    if (!btn || !pagination.contains(btn) || btn.disabled) return;
+
+    const totalPages = Math.ceil(currentDisplayedPans.length / cardsPerPage);
+    const txt = btn.textContent.trim();
+
+    if (txt === 'Anterior' && currentPage > 1) {
+        currentPage--;
+    } else if (txt === 'Próximo' && currentPage < totalPages) {
+        currentPage++;
+    } else {
+        const num = parseInt(txt, 10);
+        if (!isNaN(num)) currentPage = num;
+    }
+
+    renderPanCards(currentDisplayedPans);
 }
 
 function abrirEditarAcao(panId, objIndex, actionIndex) {

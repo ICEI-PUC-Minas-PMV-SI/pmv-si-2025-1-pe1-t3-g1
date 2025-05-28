@@ -877,8 +877,6 @@
         fetch('layout.html')
             .then(response => response.text())
             .then(html => {
-                const temp = document.createElement('div');
-                temp.innerHTML = html;
                 document.getElementById('layout-content').innerHTML = html;
                 const pageContent = document.getElementById('page-content');
                 const layoutContent = document.getElementById('content');
@@ -886,6 +884,9 @@
                     layoutContent.innerHTML = pageContent.innerHTML;
                 }
                 pageContent.remove();
+                if (window.initPanCardsModule) {
+                    window.initPanCardsModule();
+                }
             });
         let etapaAtual = 0;
         const totalEtapas = 3;
