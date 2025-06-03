@@ -6,7 +6,7 @@ const MODAL_TITLES = {
 let allPans = [];
 let currentDisplayedPans = [];
 let currentPage = 1;
-const cardsPerPage = 3;
+let cardsPerPage = 3;
 
 
 function setModalTitle(type) {
@@ -133,11 +133,21 @@ function initPanCardsModule () {
     const addButton = document.getElementById('add-pan-button');
     const storedData = JSON.parse(localStorage.getItem('pansData'));
     const pagination = document.getElementById('pagination-controls');
+    const itemsPerPageSelect = document.getElementById('items-per-page');
 
     if (addButton) {
         if (currentUser?.papel !== 'admin') {
             addButton.style.display = 'none';
         }
+    }
+
+    if (itemsPerPageSelect) {
+        itemsPerPageSelect.value = cardsPerPage;
+        itemsPerPageSelect.addEventListener('change', (e) => {
+            cardsPerPage = parseInt(e.target.value);
+            currentPage = 1;
+            renderPanCards(currentDisplayedPans);
+        });
     }
 
     if (storedData && storedData.pans) {
@@ -1298,45 +1308,91 @@ function initializeAddressToggle(container) {
     }
 };
 
- function renderPaginationControls(totalPages) {
-   const pagination = document.getElementById('pagination-controls');
-   if (!pagination) return;
-   pagination.innerHTML = '';
+function renderPaginationControls(totalPages) {
+    const pagination = document.getElementById('pagination-controls');
+    if (!pagination) return;
+    pagination.innerHTML = '';
 
-   const prev = document.createElement('button');
-   prev.textContent = 'Anterior';
-   prev.disabled = currentPage === 1;
-   prev.className = 'px-3 py-1 rounded border';
-   prev.addEventListener('click', () => {
-     if (currentPage > 1) {
-       currentPage--;
-       renderPanCards(currentDisplayedPans);
-     }
-   });
-   pagination.appendChild(prev);
+    // Botão Anterior
+    const prev = document.createElement('button');
+    prev.innerHTML = '<span class="material-icons">chevron_left</span>';
+    prev.disabled = currentPage === 1;
+    prev.className = `flex items-center justify-center px-3 py-1.5 rounded-lg border ${currentPage === 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50 hover:text-[var(--color-primary)] transition-colors'} focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-opacity-50`;
+    prev.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderPanCards(currentDisplayedPans);
+        }
+    });
+    pagination.appendChild(prev);
 
-   for (let i = 1; i <= totalPages; i++) {
+    // Números das páginas
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, startPage + 4);
+    
+    if (endPage - startPage < 4) {
+        startPage = Math.max(1, endPage - 4);
+    }
+
+    if (startPage > 1) {
+        const firstPage = document.createElement('button');
+        firstPage.textContent = '1';
+        firstPage.className = `px-3 py-1.5 rounded-lg border bg-white text-gray-700 hover:bg-gray-50 hover:text-[var(--color-primary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-opacity-50`;
+        firstPage.addEventListener('click', () => {
+            currentPage = 1;
+            renderPanCards(currentDisplayedPans);
+        });
+        pagination.appendChild(firstPage);
+
+        if (startPage > 2) {
+            const dots = document.createElement('span');
+            dots.textContent = '...';
+            dots.className = 'px-2 text-gray-500';
+            pagination.appendChild(dots);
+        }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
         const btn = document.createElement('button');
         btn.textContent = i;
-        btn.className = `px-3 py-1 rounded border ${i === currentPage ? 'font-bold bg-gray-200' : 'bg-white'}`;
+        btn.className = `px-3 py-1.5 rounded-lg border ${i === currentPage ? 'bg-[var(--color-primary)] text-white' : 'bg-white text-gray-700 hover:bg-gray-50 hover:text-[var(--color-primary)]'} transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-opacity-50`;
         btn.addEventListener('click', () => {
-        currentPage = i;
-        renderPanCards(currentDisplayedPans);
+            currentPage = i;
+            renderPanCards(currentDisplayedPans);
         });
         pagination.appendChild(btn);
-   }
+    }
 
-   const next = document.createElement('button');
-   next.textContent = 'Próximo';
-   next.disabled = currentPage === totalPages;
-   next.className = 'px-3 py-1 rounded border';
-   next.addEventListener('click', () => {
-     if (currentPage < totalPages) {
-       currentPage++;
-       renderPanCards(currentDisplayedPans);
-     }
-   });
-   pagination.appendChild(next);
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            const dots = document.createElement('span');
+            dots.textContent = '...';
+            dots.className = 'px-2 text-gray-500';
+            pagination.appendChild(dots);
+        }
+
+        const lastPage = document.createElement('button');
+        lastPage.textContent = totalPages;
+        lastPage.className = `px-3 py-1.5 rounded-lg border bg-white text-gray-700 hover:bg-gray-50 hover:text-[var(--color-primary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-opacity-50`;
+        lastPage.addEventListener('click', () => {
+            currentPage = totalPages;
+            renderPanCards(currentDisplayedPans);
+        });
+        pagination.appendChild(lastPage);
+    }
+
+    // Botão Próximo
+    const next = document.createElement('button');
+    next.innerHTML = '<span class="material-icons">chevron_right</span>';
+    next.disabled = currentPage === totalPages;
+    next.className = `flex items-center justify-center px-3 py-1.5 rounded-lg border ${currentPage === totalPages ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50 hover:text-[var(--color-primary)] transition-colors'} focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-opacity-50`;
+    next.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderPanCards(currentDisplayedPans);
+        }
+    });
+    pagination.appendChild(next);
 }
 
 function onPaginationClick(e) {
