@@ -216,10 +216,12 @@ function removerPan(id) {
         const pansAtualizados = storedData.pans.filter((pan) => pan.id !== id);
 
         localStorage.setItem("pansData", JSON.stringify({ pans: pansAtualizados }));
+        allPans = pansAtualizados;
+        currentDisplayedPans = pansAtualizados;
+        currentPage = 1;
+        renderPanCards(currentDisplayedPans);
+        updateMonitoringCharts(currentDisplayedPans);
         document.dispatchEvent(new Event("panDataUpdated"));
-
-        renderPanCards(pansAtualizados);
-        updateMonitoringCharts(pansAtualizados);
     } catch (error) {
         console.error('Erro ao remover PAN:', error);
         alert('Erro ao remover o PAN. Por favor, tente novamente.');
