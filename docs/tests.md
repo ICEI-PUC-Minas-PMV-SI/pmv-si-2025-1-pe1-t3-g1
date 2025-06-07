@@ -78,39 +78,39 @@ Preencha a tabela com o plano dos testes. Para cada Caso de Teste (CT), associe 
 
 Esta seção deve apresentar o relatório com as evidências dos testes de software realizados no sistema pela equipe, baseado no plano de testes pré-definido. Documente cada caso de teste apresentando um vídeo ou animação que comprove o funcionamento da funcionalidade. Veja os exemplos a seguir.
 
-|*Caso de Teste*                                 |*CT01 - Cadastrar novo PAN*                                         |
+|*Caso de Teste*                                 |*CT01 - Cadastrar novo PAN* |
 |---|---|
-|Requisito Associado | RF-001 - Novo PAN aparece listado na página e salvo em localStorage com todos os campos preenchidos|
+|Requisito Associado | RF-001 - Novo PAN aparece listado na página e salvo em localStorage com todos os campos preenchidos |
 |Link do vídeo do teste realizado: | https://youtu.be/pnODNN7AGhk | 
 
-|*Caso de Teste*                                 |*CT02 - Verificar controle de permissões*                                        |
+|*Caso de Teste*                                 |*CT02 - Verificar controle de permissões* |
 |---|---|
-|Requisito Associado | RF-002 - Coordenador só edita PANs onde coordenador === meu ID; articulador não vê botões de editar/excluir|
+|Requisito Associado | RF-002 - Coordenador só edita PANs onde coordenador === meu ID; articulador não vê botões de editar/excluir |
 |Link do vídeo do teste realizado: | https://youtu.be/AXzh_4H8WL4 | 
 
-|*Caso de Teste*                                 |*CT03 - Atualizar status de ações*                                        |
+|*Caso de Teste*                                 |*CT03 - Atualizar status de ações* |
 |---|---|
-|Requisito Associado | RF-003, RF-007 - Novo status persistido em localStorage e exibido corretamente na UI|
+|Requisito Associado | RF-003, RF-007 - Novo status persistido em localStorage e exibido corretamente na UI |
 |Link do vídeo do teste realizado: | https://youtu.be/NnuRVy68mtQ | 
 
-|*Caso de Teste*                                 |*CT04 - Filtrar lista de PANs*                                        |
+|*Caso de Teste*                                 |*CT04 - Filtrar lista de PANs* |
 |---|---|
-|Requisito Associado | RF-005, RF-013 - Exibem-se apenas PANs cujo título contenha “Recursos” e status “Concluído”|
+|Requisito Associado | RF-005, RF-013 - Exibem-se apenas PANs cujo título contenha “Recursos” e status “Concluído” |
 |Link do vídeo do teste realizado: | https://youtu.be/iYvQIIkdxA8 | 
 
-|*Caso de Teste*                                 |*CT05 - Visualizar painel consolidado*                                        |
+|*Caso de Teste*                                 |*CT05 - Visualizar painel consolidado* |
 |---|---|
 |Requisito Associado | RF-006 - Admin vê dados consolidados de todos os PANs; coordenador vê somente seus PANs|
 |Link do vídeo do teste realizado: | https://youtu.be/hmNNCY_fVaw | 
 
-|*Caso de Teste*                                 |*CT06 - Exportar relatórios PDF/CSV*                                        |
+|*Caso de Teste*                                 |*CT06 - Exportar relatórios PDF/CSV* |
 |---|---|
 |Requisito Associado | RF-009, RF-011 - Arquivos PDF e CSV gerados com cabeçalhos corretos e linhas correspondentes aos PANs listados|
 |Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
 
 ## Avaliação dos Testes de Software
 
-Todos os casos de testes foram atendidos. Pequenas melhorias em níveis de acesso, paginação e no projeto como um todo. O desempenho obtido com o RT foi satisfatório e compriu todos os requisitos.
+Todos os casos de testes foram atendidos. Melhorias em todos os aspectos do projeto tanto quanto responsividade da aplicação e melhorias de desempenho. O desempenho obtido com o RT foi satisfatório e compriu todos os requisitos.
 
 ## Testes de unidade automatizados (Opcional)
 
