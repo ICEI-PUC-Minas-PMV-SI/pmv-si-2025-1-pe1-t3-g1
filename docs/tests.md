@@ -106,7 +106,7 @@ Esta seção deve apresentar o relatório com as evidências dos testes de softw
 |*Caso de Teste*                                 |*CT06 - Exportar relatórios PDF/CSV* |
 |---|---|
 |Requisito Associado | RF-009, RF-011 - Arquivos PDF e CSV gerados com cabeçalhos corretos e linhas correspondentes aos PANs listados|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Link do vídeo do teste realizado: | https://youtu.be/uI27Ws_81jU | 
 
 ## Avaliação dos Testes de Software
 
