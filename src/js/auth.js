@@ -366,4 +366,19 @@ document.addEventListener('DOMContentLoaded', async function () {
         childList: true,
         subtree: true
     });
-}); 
+});
+
+// Exporta as funções
+module.exports = {
+    registrarUsuario,
+    editarUsuario,
+    alternarStatus,
+    login,
+    logout,
+    isLoggedIn,
+    getCurrentUser,
+    isUserAdmin,
+    isUserCoordinator,
+    isPanCoordinator,
+    canEditPan
+}; 

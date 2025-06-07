@@ -1609,3 +1609,28 @@ async function salvarEdicaoAcao(event, panId, objIndex, actionIndex) {
         alert('Erro ao salvar as alterações. Por favor, tente novamente.');
     }
 }
+
+// Exporta as funções
+module.exports = {
+    removerPan,
+    editarPan,
+    renderPanCards,
+    abrirAdicionarPan,
+    fecharModal,
+    initializeModalControls,
+    initializeFilters,
+    initPanCardsModule,
+    filtrarPANs,
+    abrirDetalhesPAN,
+    fecharDetalhesPAN,
+    updateMonitoringCharts,
+    calculatePanStatus,
+    canEditAction,
+    fecharModalEndereco,
+    abrirModalEndereco,
+    initializeAddressToggle,
+    renderPaginationControls,
+    onPaginationClick,
+    abrirEditarAcao,
+    salvarEdicaoAcao
+};
