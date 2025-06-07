@@ -12,6 +12,9 @@
     <script src="js/storage.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/export.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     <style>
         body,
         html {
@@ -971,6 +974,29 @@
             </div>
         </div>
     </div>
+
+    <div class="fixed bottom-20 right-6 z-50">
+    <div class="relative">
+    
+    <button onclick="toggleExportMenu()"
+        class="bg-blue-400 hover:bg-blue-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition duration-300">
+        <span class="material-icons text-3xl">file_download</span>
+    </button>
+
+    
+    <div id="export-menu"
+        class="hidden absolute right-0 bottom-16 space-y-2 bg-white shadow-lg rounded-md p-2 w-44">
+        <button onclick="baixarCSV()"
+        class="w-full text-left text-sm px-4 py-2 rounded hover:bg-gray-100 text-gray-700">
+        Exportar CSV
+        </button>
+        <button onclick="baixarPDF()"
+        class="w-full text-left text-sm px-4 py-2 rounded hover:bg-gray-100 text-gray-700">
+        Exportar PDF
+        </button>
+    </div>
+    </div>
+</div>
     <script src="js/panCards.js" defer></script>
     <script src="js/addPan.js" defer></script>
 

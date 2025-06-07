@@ -31,7 +31,7 @@ Preencha a tabela com o plano dos testes. Para cada Caso de Teste (CT), associe 
 **Requisitos associados** | RF-001
 **Resultado esperado** | Novo PAN aparece listado na página e salvo em localStorage com todos os campos preenchidos
 **Dados de entrada** | Título: “PAN Exemplo”<br> Descrição: “Descrição detalhada”<br> Período: “01/2025 a 12/2025”<br> Coordenador: ID válido<br> Objetivos/Ações: lista com 1 objetivo e 1 ação
-**Resultado obtido** | -
+**Resultado obtido** | Satisfatório
 
 **Caso de Teste** | **CT02 - Verificar controle de permissões**
  :--------------: | ------------
@@ -39,7 +39,7 @@ Preencha a tabela com o plano dos testes. Para cada Caso de Teste (CT), associe 
 **Requisitos associados** | RF-002
 **Resultado esperado** | Coordenador só edita PANs onde coordenador === meu ID; articulador não vê botões de editar/excluir
 **Dados de entrada** | Usuário A: papel “coordenador”, ID = A<br>Usuário B: papel “articulador”, ID = B
-**Resultado obtido** | -
+**Resultado obtido** | Satisfatório
 
 **Caso de Teste** | **CT03 - Atualizar status de ações**
  :--------------: | ------------
@@ -47,39 +47,31 @@ Preencha a tabela com o plano dos testes. Para cada Caso de Teste (CT), associe 
 **Requisitos associados** | RF-003, RF-007
 **Resultado esperado** | Novo status persistido em localStorage e exibido corretamente na UI
 **Dados de entrada** | PAN X com ação atribuída ao articulador<br>Status inicial: “Não iniciada”
-**Resultado obtido** | -
+**Resultado obtido** | Satisfatório
 
-**Caso de Teste** | **CT05 - Filtrar lista de PANs**
+**Caso de Teste** | **CT04 - Filtrar lista de PANs**
  :--------------: | ------------
 **Procedimento**  | 1) Acessar listagem de PANs<br> 2) Digitar “Recursos” no campo de busca<br> 3) Selecionar filtro de status “Concluído”<br> 4) Aplicar filtros
 **Requisitos associados** | RF-005, RF-013
 **Resultado esperado** | Exibem-se apenas PANs cujo título contenha “Recursos” e status “Concluído”
 **Dados de entrada** | Múltiplos PANs com títulos e status diversos<br>- Termo de busca: “Recursos”<br>- Status selecionado: “Concluído”
-**Resultado obtido** | -
+**Resultado obtido** | Satisfatório
 
-**Caso de Teste** | **CT06 - Visualizar painel consolidado**
+**Caso de Teste** | **CT05 - Visualizar painel consolidado**
  :--------------: | ------------
 **Procedimento**  | 1) Login como “admin” e acessar dashboard<br> 2) Confirmar seção “Painel Consolidado” com dados de todos os PANs<br> 3) Login como “coordenador” e acessar dashboard<br> 4) Confirmar que painel mostra apenas PANs sob sua responsabilidade
 **Requisitos associados** | RF-006
 **Resultado esperado** | Admin vê dados consolidados de todos os PANs; coordenador vê somente seus PANs
 **Dados de entrada** | Usuário admin com acesso a todos os PANs<br>- Usuário coordenador com subset de PANs
-**Resultado obtido** | -
+**Resultado obtido** | Satisfatório
 
-**Caso de Teste** | **CT07 - Exportar relatórios PDF/CSV**
+**Caso de Teste** | **CT06 - Exportar relatórios PDF/CSV**
  :--------------: | ------------
 **Procedimento**  | 1) Acessar listagem de PANs<br> 2) Clicar em “Exportar PDF” e baixar arquivo<br> 3) Clicar em “Exportar CSV” e baixar arquivo
 **Requisitos associados** | RF-009, RF-011
 **Resultado esperado** | Arquivos PDF e CSV gerados com cabeçalhos corretos e linhas correspondentes aos PANs listados
 **Dados de entrada** | Lista com pelo menos 2 PANs ativos
-**Resultado obtido** | -
-
-**Caso de Teste** | **CT08 - Notificação de vencimento de prazo**
- :--------------: | ------------
-**Procedimento**  | 1) Simular data do sistema 3 dias antes da data de término de uma ação<br>2) Acessar dashboard ou aguardar alerta via UI/alert()
-**Requisitos associados** | RF-010
-**Resultado esperado** | Notificação alerta articulador sobre vencimento de prazo e solicita atualização dos dados da ação
-**Dados de entrada** | Ação com data de término = hoje + 3 dias
-**Resultado obtido** | -
+**Resultado obtido** | Satisfatório
 
 
 ## Registro dos Testes de Software
@@ -88,18 +80,37 @@ Esta seção deve apresentar o relatório com as evidências dos testes de softw
 
 |*Caso de Teste*                                 |*CT01 - Cadastrar novo PAN*                                         |
 |---|---|
-|Requisito Associado | RF-001 - A aplicação deve permitir que os usuários criem uma conta e gerenciem seu cadastro|
-|Link do vídeo do teste realizado: | https://1drv.ms/u/s!AhD2JqpOUvJChapRtRSQ9vPzbNLwGA?e=mxZs6t| 
+|Requisito Associado | RF-001 - Novo PAN aparece listado na página e salvo em localStorage com todos os campos preenchidos|
+|Link do vídeo do teste realizado: | https://youtu.be/pnODNN7AGhk | 
 
-|*Caso de Teste*                                 |*CT02 - Criar conta parte 2*                                        |
+|*Caso de Teste*                                 |*CT02 - Verificar controle de permissões*                                        |
 |---|---|
-|Requisito Associado | RF-001 - A aplicação deve permitir que os usuários criem uma conta e gerenciem seu cadastro|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Requisito Associado | RF-002 - Coordenador só edita PANs onde coordenador === meu ID; articulador não vê botões de editar/excluir|
+|Link do vídeo do teste realizado: | https://youtu.be/AXzh_4H8WL4 | 
 
+|*Caso de Teste*                                 |*CT03 - Atualizar status de ações*                                        |
+|---|---|
+|Requisito Associado | RF-003, RF-007 - Novo status persistido em localStorage e exibido corretamente na UI|
+|Link do vídeo do teste realizado: | https://youtu.be/NnuRVy68mtQ | 
+
+|*Caso de Teste*                                 |*CT04 - Filtrar lista de PANs*                                        |
+|---|---|
+|Requisito Associado | RF-005, RF-013 - Exibem-se apenas PANs cujo título contenha “Recursos” e status “Concluído”|
+|Link do vídeo do teste realizado: | https://youtu.be/iYvQIIkdxA8 | 
+
+|*Caso de Teste*                                 |*CT05 - Visualizar painel consolidado*                                        |
+|---|---|
+|Requisito Associado | RF-006 - Admin vê dados consolidados de todos os PANs; coordenador vê somente seus PANs|
+|Link do vídeo do teste realizado: | https://youtu.be/hmNNCY_fVaw | 
+
+|*Caso de Teste*                                 |*CT06 - Exportar relatórios PDF/CSV*                                        |
+|---|---|
+|Requisito Associado | RF-009, RF-011 - Arquivos PDF e CSV gerados com cabeçalhos corretos e linhas correspondentes aos PANs listados|
+|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
 
 ## Avaliação dos Testes de Software
 
-Discorra sobre os resultados do teste. Ressaltando pontos fortes e fracos identificados na solução. Comente como o grupo pretende atacar esses pontos nas próximas iterações. Apresente as falhas detectadas e as melhorias geradas a partir dos resultados obtidos nos testes.
+Todos os casos de testes foram atendidos. Pequenas melhorias em níveis de acesso, paginação e no projeto como um todo. O desempenho obtido com o RT foi satisfatório e compriu todos os requisitos.
 
 ## Testes de unidade automatizados (Opcional)
 
