@@ -387,7 +387,7 @@
                     <svg class="w-6 h-6 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>
                     Gráficos de Monitoramento
                 </h2>
@@ -413,7 +413,7 @@
                             <svg class="w-5 h-5 mr-2 text-[var(--color-primary)]" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2" />
                             </svg>
                             Status das Ações
                         </h3>
@@ -490,7 +490,7 @@
                             Painel de PANs
                         </h2>
 
-                        <div class="flex-1 max-w-xl mx-8">
+                        <div class="flex-1 max-w-xl mx-8 hidden md:block">
                             <div class="relative">
                                 <input type="search" id="pan-search-input" placeholder="Buscar PAN..."
                                     class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-all duration-300">
@@ -513,6 +513,18 @@
                         </div>
                     </div>
 
+                    <!-- Campo de busca responsivo para mobile -->
+                    <div class="md:hidden mb-4">
+                        <div class="relative">
+                            <input type="search" id="pan-search-input-mobile" placeholder="Buscar PAN..."
+                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-all duration-300">
+                            <span
+                                class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                search
+                            </span>
+                        </div>
+                    </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="pan-cards-container"></div>
                     <div class="flex flex-col md:flex-row justify-between items-center gap-4 mt-6">
                         <div class="flex items-center gap-2">
@@ -531,11 +543,11 @@
         </div>
     </div>
     <div id="modal-detalhes"
-        class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 overflow-hidden flex items-center justify-center p-6">
-        <div class="bg-white rounded-lg w-full max-w-4xl flex flex-col max-h-[80vh]">
-            <div class="px-6 py-4 border-b border-gray-200 flex-shrink-0 rounded-t-lg">
+        class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 overflow-hidden flex items-center justify-center p-4 md:p-6">
+        <div class="bg-white rounded-lg w-full max-w-4xl flex flex-col max-h-[90vh] md:max-h-[80vh]">
+            <div class="px-4 md:px-6 py-4 border-b border-gray-200 flex-shrink-0 rounded-t-lg">
                 <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-bold text-[var(--color-dark-green)]"></h2>
+                    <h2 class="text-xl md:text-2xl font-bold text-[var(--color-dark-green)]"></h2>
                     <button onclick="fecharDetalhesPAN()" class="text-gray-400 hover:text-gray-500 transition-colors">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -545,7 +557,7 @@
                 </div>
             </div>
 
-            <div class="flex-1 overflow-y-auto px-6 py-4 min-h-0">
+            <div class="flex-1 overflow-y-auto px-4 md:px-6 py-4 min-h-0">
                 <div class="step-content">
 
                 </div>
@@ -579,9 +591,9 @@
 
     <!-- Novo modal de endereço -->
     <div id="modal-endereco"
-        class="hidden fixed inset-0 bg-black bg-opacity-50 z-[60] overflow-hidden flex items-center justify-center p-6">
-        <div class="bg-white rounded-lg w-full max-w-5xl flex flex-col max-h-[80vh]">
-            <div class="px-6 py-4 border-b border-gray-200 flex-shrink-0">
+        class="hidden fixed inset-0 bg-black bg-opacity-50 z-[60] overflow-hidden flex items-center justify-center p-4 md:p-6">
+        <div class="bg-white rounded-lg w-full max-w-5xl flex flex-col max-h-[90vh] md:max-h-[80vh]">
+            <div class="px-4 md:px-6 py-4 border-b border-gray-200 flex-shrink-0">
                 <div class="flex justify-between items-center">
                     <h2 class="text-xl font-bold text-[var(--color-dark-green)]">Detalhes do Endereço</h2>
                     <button onclick="fecharModalEndereco()" class="text-gray-400 hover:text-gray-500 transition-colors">
@@ -593,7 +605,7 @@
                 </div>
             </div>
 
-            <div class="p-6 flex-1 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-4 md:p-6 flex-1 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Rua</label>
@@ -620,7 +632,7 @@
                         <p id="modal-estado" class="mt-1 p-2 w-full bg-gray-50 border border-gray-200 rounded-md"></p>
                     </div>
                 </div>
-                <div class="h-[400px] bg-gray-100 rounded-lg relative">
+                <div class="h-[300px] md:h-[400px] bg-gray-100 rounded-lg relative">
                     <div id="map" class="w-full h-full rounded-lg"></div>
                 </div>
             </div>
@@ -979,7 +991,7 @@
     <div class="relative">
     
     <button onclick="toggleExportMenu()"
-        class="bg-blue-400 hover:bg-blue-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition duration-300">
+        class="bg-[var(--color-primary)] hover:bg-[var(--color-dark-green)] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition duration-300">
         <span class="material-icons text-3xl">file_download</span>
     </button>
 
@@ -987,11 +999,11 @@
     <div id="export-menu"
         class="hidden absolute right-0 bottom-16 space-y-2 bg-white shadow-lg rounded-md p-2 w-44">
         <button onclick="baixarCSV()"
-        class="w-full text-left text-sm px-4 py-2 rounded hover:bg-gray-100 text-gray-700">
+        class="w-full text-left text-sm px-4 py-2 rounded hover:bg-[var(--color-primary)] hover:text-white text-[var(--color-dark-green)] transition-colors">
         Exportar CSV
         </button>
         <button onclick="baixarPDF()"
-        class="w-full text-left text-sm px-4 py-2 rounded hover:bg-gray-100 text-gray-700">
+        class="w-full text-left text-sm px-4 py-2 rounded hover:bg-[var(--color-primary)] hover:text-white text-[var(--color-dark-green)] transition-colors">
         Exportar PDF
         </button>
     </div>
