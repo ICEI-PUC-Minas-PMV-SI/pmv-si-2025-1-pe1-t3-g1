@@ -81,32 +81,32 @@ Esta seção deve apresentar o relatório com as evidências dos testes de softw
 |*Caso de Teste*                                 |*CT01 - Cadastrar novo PAN*                                         |
 |---|---|
 |Requisito Associado | RF-001 - Novo PAN aparece listado na página e salvo em localStorage com todos os campos preenchidos|
-|Link do vídeo do teste realizado: | https://youtu.be/pnODNN7AGhk | 
+|Link do vídeo do teste realizado: | https://drive.google.com/file/d/1HKVODZb99jTtDa-oZNW_1dxKu6ZZUGHi/view?usp=drive_link | 
 
 |*Caso de Teste*                                 |*CT02 - Verificar controle de permissões*                                        |
 |---|---|
 |Requisito Associado | RF-002 - Coordenador só edita PANs onde coordenador === meu ID; articulador não vê botões de editar/excluir|
-|Link do vídeo do teste realizado: | https://youtu.be/AXzh_4H8WL4 | 
+|Link do vídeo do teste realizado: | https://drive.google.com/file/d/12az31euPuM7zW-EDa8H37xr4r61gRoM8/view?usp=drive_link | 
 
 |*Caso de Teste*                                 |*CT03 - Atualizar status de ações*                                        |
 |---|---|
 |Requisito Associado | RF-003, RF-007 - Novo status persistido em localStorage e exibido corretamente na UI|
-|Link do vídeo do teste realizado: | https://youtu.be/NnuRVy68mtQ | 
+|Link do vídeo do teste realizado: | https://drive.google.com/file/d/1X539L41UZrl1dXCwE_AdEVv631vW-kPA/view?usp=drive_link | 
 
 |*Caso de Teste*                                 |*CT04 - Filtrar lista de PANs*                                        |
 |---|---|
 |Requisito Associado | RF-005, RF-013 - Exibem-se apenas PANs cujo título contenha “Recursos” e status “Concluído”|
-|Link do vídeo do teste realizado: | https://youtu.be/iYvQIIkdxA8 | 
+|Link do vídeo do teste realizado: | https://drive.google.com/file/d/15lgYEwrgb8Ari3gQNhFdu8GI5yElp8GD/view?usp=drive_link | 
 
 |*Caso de Teste*                                 |*CT05 - Visualizar painel consolidado*                                        |
 |---|---|
 |Requisito Associado | RF-006 - Admin vê dados consolidados de todos os PANs; coordenador vê somente seus PANs|
-|Link do vídeo do teste realizado: | https://youtu.be/hmNNCY_fVaw | 
+|Link do vídeo do teste realizado: | https://drive.google.com/file/d/1cpG-VQzEGyLFn8AkjFWlRf1rTkdzqAXg/view?usp=drive_link | 
 
 |*Caso de Teste*                                 |*CT06 - Exportar relatórios PDF/CSV*                                        |
 |---|---|
 |Requisito Associado | RF-009, RF-011 - Arquivos PDF e CSV gerados com cabeçalhos corretos e linhas correspondentes aos PANs listados|
-|Link do vídeo do teste realizado: | https://1drv.ms/v/s!AhD2JqpOUvJChapQ8CPXL-TI_A7iVg?e=spD3Ar | 
+|Link do vídeo do teste realizado: | https://drive.google.com/file/d/1WT_rzylPYuEBE4cqZYMLFYBDMuIVh_DI/view?usp=drive_link | 
 
 ## Avaliação dos Testes de Software
 
