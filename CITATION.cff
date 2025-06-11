@@ -2,7 +2,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: Web Application Template
+title: Sistema de Monitoramento de PANs
 message: >-
   Repositório padrão para o Eixo 1 - Projeto 1: Aplicações
   Web da PUC Minas.
@@ -14,7 +14,7 @@ authors:
     affiliation: PUC Minas
   - given-names: Eduardo Henrique
     family-names: Martins Araújo
-    email: aluno@pucminas.br
+    email: eduardo.araujo.1592226@sga.pucminas.br
     affiliation: PUC Minas
   - given-names: Guilherme 
     family-names: Borges Matos Faccion
@@ -23,7 +23,7 @@ authors:
   - given-names: Hayala
     family-names: Nepomuceno Curto
     name-suffix: Prof.
-    email: hugo@pucminas.br
+    email: hayala.curto@pucminas.br
     affiliation: PUC Minas
     orcid: 'https://orcid.org/0000-0002-6193-3205'
 repository-code: >-
@@ -35,5 +35,8 @@ keywords:
   - HTML
   - CSS
   - JavaScript
-  - Template
-date-released: '2024-06-23'
+  - PAN
+  - Conservação
+  - Espécies Ameaçadas
+  - Monitoramento Ambiental
+date-released: '2025-06-10'
