@@ -29,7 +29,7 @@ authors:
 repository-code: >-
   https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-1-pe1-t3-g1
 abstract: >-
-  Sistema de monitoramento e cadastro de Planos de Ação Nacional para Conservação de Espécies Ameaçadas de Extinção (PANs)
+  Sistema de monitoramento e cadastro de Planos de Ação Nacional para Conservação de Espécies Ameaçadas de Extinção (PANs). Permitindo uma experiência simplificada e transparente 
 keywords:
   - Desenvolvimento Web
   - HTML
