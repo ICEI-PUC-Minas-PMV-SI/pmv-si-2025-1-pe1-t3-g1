@@ -126,7 +126,21 @@ function initializeFilters() {
         searchInput.addEventListener('input', filtrarPANs);
     }
 }
-// document.addEventListener('DOMContentLoaded', function () {
+
+function populateItemsPerPageSelect(totalPans) {
+    const select = document.getElementById('items-per-page');
+    if (!select) return;
+    select.innerHTML = '';
+
+    const step = 3;
+    for (let i = step; i <= totalPans; i += step) {
+        select.appendChild(new Option(i, i));
+    }
+    if (totalPans % step !== 0) {
+        select.appendChild(new Option(totalPans, totalPans));
+    }
+}
+
 function initPanCardsModule () {
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -153,6 +167,7 @@ function initPanCardsModule () {
     if (storedData && storedData.pans) {
         allPans = storedData.pans;
         currentDisplayedPans = allPans;
+        populateItemsPerPageSelect(allPans.length);
         renderPanCards(currentDisplayedPans);
         updateMonitoringCharts(currentDisplayedPans);
     }
@@ -164,6 +179,7 @@ function initPanCardsModule () {
                 allPans = data.pans;
                 currentDisplayedPans = allPans;
                 localStorage.setItem('pansData', JSON.stringify(data));
+                populateItemsPerPageSelect(allPans.length);
                 renderPanCards(currentDisplayedPans);
                 updateMonitoringCharts(currentDisplayedPans);
             }
@@ -197,10 +213,10 @@ window.initPanCardsModule = initPanCardsModule;
 let currentPan = null;
 let currentStep = 0;
 const totalSteps = 3;
-let timeoutId;
 
 document.addEventListener('panDataUpdated', () => {
     const storedData = JSON.parse(localStorage.getItem('pansData'));
+    populateItemsPerPageSelect(storedData.pans.length);
     renderPanCards(storedData.pans);
     loadCoordinators();
     initializeModalControls();
@@ -614,26 +630,26 @@ function renderPanCards(pans) {
     renderPaginationControls(totalPages);
 }
 
-function toggleFilterSidenav() {
-    const sidenav = document.getElementById('filter-sidenav');
-    const isOpen = !sidenav.classList.contains('translate-x-full');
+// function toggleFilterSidenav() {
+//     const sidenav = document.getElementById('filter-sidenav');
+//     const isOpen = !sidenav.classList.contains('translate-x-full');
 
-    if (isOpen) {
-        sidenav.classList.add('translate-x-full');
-    } else {
-        sidenav.classList.remove('translate-x-full');
-    }
-}
+//     if (isOpen) {
+//         sidenav.classList.add('translate-x-full');
+//     } else {
+//         sidenav.classList.remove('translate-x-full');
+//     }
+// }
 
-function limparFiltros() {
-    const checkboxes = document.querySelectorAll('.status-checkbox');
-    checkboxes.forEach(cb => {
-        cb.checked = cb.value === 'todos';
-    });
-    document.getElementById('status-selected-text').textContent = 'Todos';
-    document.getElementById('pan-search-input').value = '';
-    filtrarPANs();
-}
+// function limparFiltros() {
+//     const checkboxes = document.querySelectorAll('.status-checkbox');
+//     checkboxes.forEach(cb => {
+//         cb.checked = cb.value === 'todos';
+//     });
+//     document.getElementById('status-selected-text').textContent = 'Todos';
+//     document.getElementById('pan-search-input').value = '';
+//     filtrarPANs();
+// }
 
 function filtrarPANs() {
     const searchInput = document.getElementById('pan-search-input');
@@ -1610,27 +1626,28 @@ async function salvarEdicaoAcao(event, panId, objIndex, actionIndex) {
     }
 }
 
-// Exporta as funções
-module.exports = {
-    removerPan,
-    editarPan,
-    renderPanCards,
-    abrirAdicionarPan,
-    fecharModal,
-    initializeModalControls,
-    initializeFilters,
-    initPanCardsModule,
-    filtrarPANs,
-    abrirDetalhesPAN,
-    fecharDetalhesPAN,
-    updateMonitoringCharts,
-    calculatePanStatus,
-    canEditAction,
-    fecharModalEndereco,
-    abrirModalEndereco,
-    initializeAddressToggle,
-    renderPaginationControls,
-    onPaginationClick,
-    abrirEditarAcao,
-    salvarEdicaoAcao
-};
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = {
+        removerPan,
+        editarPan,
+        renderPanCards,
+        abrirAdicionarPan,
+        fecharModal,
+        initializeModalControls,
+        initializeFilters,
+        initPanCardsModule,
+        filtrarPANs,
+        abrirDetalhesPAN,
+        fecharDetalhesPAN,
+        updateMonitoringCharts,
+        calculatePanStatus,
+        canEditAction,
+        fecharModalEndereco,
+        abrirModalEndereco,
+        initializeAddressToggle,
+        renderPaginationControls,
+        onPaginationClick,
+        abrirEditarAcao,
+        salvarEdicaoAcao
+    };
+}

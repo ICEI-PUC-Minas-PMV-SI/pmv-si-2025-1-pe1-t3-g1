@@ -368,17 +368,18 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 });
 
-// Exporta as funções
-module.exports = {
-    registrarUsuario,
-    editarUsuario,
-    alternarStatus,
-    login,
-    logout,
-    isLoggedIn,
-    getCurrentUser,
-    isUserAdmin,
-    isUserCoordinator,
-    isPanCoordinator,
-    canEditPan
-}; 
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = {
+        registrarUsuario,
+        editarUsuario,
+        alternarStatus,
+        login,
+        logout,
+        isLoggedIn,
+        getCurrentUser,
+        isUserAdmin,
+        isUserCoordinator,
+        isPanCoordinator,
+        canEditPan
+    };
+}
