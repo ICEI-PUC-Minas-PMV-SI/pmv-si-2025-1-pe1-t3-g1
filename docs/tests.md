@@ -1,65 +1,40 @@
-# Testes
-
-Neste projeto serão realizados dois tipos de testes:
-
- - O **Teste de Software**, que utiliza uma abordadem de caixa preta, e tem por objetivo verificar a conformidade do software com os requisitos funcionais e não funcionais do sistema.
- - O **Teste de Usabilidade**, que busca avaliar a qualidade do uso do sistema por um usuário do público alvo. 
-
-Se quiser conhecer um pouco mais sobre os tipos de teste de software, leia o documento [Teste de Software: Conceitos e tipos de testes](https://blog.onedaytesting.com.br/teste-de-software/).
-
-A documentação dos testes é dividida nas seguintes seções:
-
- - [Plano de Testes de Software](#plano-de-testes-de-software)
- - [Registro dos Testes de Software](#registro-dos-testes-de-software)
- - [Avaliação dos Testes de Software](#avaliação-dos-testes-de-software)
- - [Cenários de Teste de Usabilidade](#cenários-de-teste-de-usabilidade)
- - [Registro dos Testes de Usabilidade](#registro-dos-testes-de-usabilidade)
- - [Avaliação dos Testes de Usabilidade](#avaliação-dos-testes-de-usabilidade)
-
-# Teste de Software
-
-Nesta seção o grupo deverá documentar os testes de software que verificam a correta implementação dos requisitos funcionais e não funcionais do software.
-
 ## Plano de Testes de Software
-
-Preencha a tabela com o plano dos testes. Para cada Caso de Teste (CT), associe qual o Requisito Funcional ou não funcional que ele está verificando. Associe também a página (ou artefato) onde o teste será realizado e descreva o cenário do teste. Veja a tabela de exemplo.
-
 
 **Caso de Teste** | **CT01 - Cadastrar novo PAN**
  :--------------: | ------------
-**Procedimento**  | 1) Fazer login como usuário com papel “admin”<br> 2) Clicar em “+” (Adicionar PAN) <br> 3) Preencher campos obrigatórios: Título, Descrição, Período, Duração, Coordenador<br> 4) Adicionar ao menos 1 objetivo e 1 ação válida<br> 5) Clicar em “Salvar PAN”
+**Procedimento**  | 1) Fazer login como usuário com papel "admin"<br> 2) Clicar em "+" (Adicionar PAN) <br> 3) Preencher campos obrigatórios: Título, Descrição, Período, Duração, Coordenador<br> 4) Adicionar ao menos 1 objetivo e 1 ação válida<br> 5) Clicar em "Salvar PAN"
 **Requisitos associados** | RF-001
 **Resultado esperado** | Novo PAN aparece listado na página e salvo em localStorage com todos os campos preenchidos
-**Dados de entrada** | Título: “PAN Exemplo”<br> Descrição: “Descrição detalhada”<br> Período: “01/2025 a 12/2025”<br> Coordenador: ID válido<br> Objetivos/Ações: lista com 1 objetivo e 1 ação
+**Dados de entrada** | Título: "PAN Exemplo"<br> Descrição: "Descrição detalhada"<br> Período: "01/2025 a 12/2025"<br> Coordenador: ID válido<br> Objetivos/Ações: lista com 1 objetivo e 1 ação
 **Resultado obtido** | Satisfatório
 
 **Caso de Teste** | **CT02 - Verificar controle de permissões**
  :--------------: | ------------
-**Procedimento**  | 1) Login como usuário “coordenador”<br> 2) Verificar botão “Adicionar PAN” visível<br> 3) Tentar editar PAN cujo coordenador ≠ meu ID<br> 4) Login como usuário “articulador”<br> 5) Verificar que não há botões de editar/excluir em nenhum PAN
+**Procedimento**  | 1) Login como usuário "coordenador"<br> 2) Verificar botão "Adicionar PAN" visível<br> 3) Tentar editar PAN cujo coordenador ≠ meu ID<br> 4) Login como usuário "articulador"<br> 5) Verificar que não há botões de editar/excluir em nenhum PAN
 **Requisitos associados** | RF-002
 **Resultado esperado** | Coordenador só edita PANs onde coordenador === meu ID; articulador não vê botões de editar/excluir
-**Dados de entrada** | Usuário A: papel “coordenador”, ID = A<br>Usuário B: papel “articulador”, ID = B
+**Dados de entrada** | Usuário A: papel "coordenador", ID = A<br>Usuário B: papel "articulador", ID = B
 **Resultado obtido** | Satisfatório
 
 **Caso de Teste** | **CT03 - Atualizar status de ações**
  :--------------: | ------------
-**Procedimento**  | 1) Login como “articulador” responsável pelo PAN X<br> 2) Abrir detalhes do PAN X<br> 3) Alterar status de uma ação (“Não iniciada” → “Em andamento”)<br> 4) Fechar e reabrir modal de detalhes
+**Procedimento**  | 1) Login como "articulador" responsável pelo PAN X<br> 2) Abrir detalhes do PAN X<br> 3) Alterar status de uma ação ("Não iniciada" → "Em andamento")<br> 4) Fechar e reabrir modal de detalhes
 **Requisitos associados** | RF-003, RF-007
 **Resultado esperado** | Novo status persistido em localStorage e exibido corretamente na UI
-**Dados de entrada** | PAN X com ação atribuída ao articulador<br>Status inicial: “Não iniciada”
+**Dados de entrada** | PAN X com ação atribuída ao articulador<br>Status inicial: "Não iniciada"
 **Resultado obtido** | Satisfatório
 
 **Caso de Teste** | **CT04 - Filtrar lista de PANs**
  :--------------: | ------------
-**Procedimento**  | 1) Acessar listagem de PANs<br> 2) Digitar “Recursos” no campo de busca<br> 3) Selecionar filtro de status “Concluído”<br> 4) Aplicar filtros
+**Procedimento**  | 1) Acessar listagem de PANs<br> 2) Digitar "Recursos" no campo de busca<br> 3) Selecionar filtro de status "Concluído"<br> 4) Aplicar filtros
 **Requisitos associados** | RF-005, RF-013
-**Resultado esperado** | Exibem-se apenas PANs cujo título contenha “Recursos” e status “Concluído”
-**Dados de entrada** | Múltiplos PANs com títulos e status diversos<br>- Termo de busca: “Recursos”<br>- Status selecionado: “Concluído”
+**Resultado esperado** | Exibem-se apenas PANs cujo título contenha "Recursos" e status "Concluído"
+**Dados de entrada** | Múltiplos PANs com títulos e status diversos<br>- Termo de busca: "Recursos"<br>- Status selecionado: "Concluído"
 **Resultado obtido** | Satisfatório
 
 **Caso de Teste** | **CT05 - Visualizar painel consolidado**
  :--------------: | ------------
-**Procedimento**  | 1) Login como “admin” e acessar dashboard<br> 2) Confirmar seção “Painel Consolidado” com dados de todos os PANs<br> 3) Login como “coordenador” e acessar dashboard<br> 4) Confirmar que painel mostra apenas PANs sob sua responsabilidade
+**Procedimento**  | 1) Login como "admin" e acessar dashboard<br> 2) Confirmar seção "Painel Consolidado" com dados de todos os PANs<br> 3) Login como "coordenador" e acessar dashboard<br> 4) Confirmar que painel mostra apenas PANs sob sua responsabilidade
 **Requisitos associados** | RF-006
 **Resultado esperado** | Admin vê dados consolidados de todos os PANs; coordenador vê somente seus PANs
 **Dados de entrada** | Usuário admin com acesso a todos os PANs<br>- Usuário coordenador com subset de PANs
@@ -67,7 +42,7 @@ Preencha a tabela com o plano dos testes. Para cada Caso de Teste (CT), associe 
 
 **Caso de Teste** | **CT06 - Exportar relatórios PDF/CSV**
  :--------------: | ------------
-**Procedimento**  | 1) Acessar listagem de PANs<br> 2) Clicar em “Exportar PDF” e baixar arquivo<br> 3) Clicar em “Exportar CSV” e baixar arquivo
+**Procedimento**  | 1) Acessar listagem de PANs<br> 2) Clicar em "Exportar PDF" e baixar arquivo<br> 3) Clicar em "Exportar CSV" e baixar arquivo
 **Requisitos associados** | RF-009, RF-011
 **Resultado esperado** | Arquivos PDF e CSV gerados com cabeçalhos corretos e linhas correspondentes aos PANs listados
 **Dados de entrada** | Lista com pelo menos 2 PANs ativos
@@ -75,8 +50,6 @@ Preencha a tabela com o plano dos testes. Para cada Caso de Teste (CT), associe 
 
 
 ## Registro dos Testes de Software
-
-Esta seção deve apresentar o relatório com as evidências dos testes de software realizados no sistema pela equipe, baseado no plano de testes pré-definido. Documente cada caso de teste apresentando um vídeo ou animação que comprove o funcionamento da funcionalidade. Veja os exemplos a seguir.
 
 |*Caso de Teste*                                 |*CT01 - Cadastrar novo PAN*                                         |
 |---|---|
@@ -95,7 +68,7 @@ Esta seção deve apresentar o relatório com as evidências dos testes de softw
 
 |*Caso de Teste*                                 |*CT04 - Filtrar lista de PANs*                                        |
 |---|---|
-|Requisito Associado | RF-005, RF-013 - Exibem-se apenas PANs cujo título contenha “Recursos” e status “Concluído”|
+|Requisito Associado | RF-005, RF-013 - Exibem-se apenas PANs cujo título contenha "Recursos" e status "Concluído"|
 |Link do vídeo do teste realizado: | https://drive.google.com/file/d/15lgYEwrgb8Ari3gQNhFdu8GI5yElp8GD/view?usp=drive_link | 
 
 |*Caso de Teste*                                 |*CT05 - Visualizar painel consolidado*                                        |
@@ -112,89 +85,170 @@ Esta seção deve apresentar o relatório com as evidências dos testes de softw
 
 Todos os casos de testes foram atendidos. Pequenas melhorias em níveis de acesso, paginação e no projeto como um todo. O desempenho obtido com o RT foi satisfatório e compriu todos os requisitos.
 
-## Testes de unidade automatizados (Opcional)
+## Testes de unidade automatizados
 
-Se o grupo tiver interesse em se aprofundar no desenvolvimento de testes de software, ele podera desenvolver testes automatizados de software que verificam o funcionamento das funções JavaScript desenvolvidas. Para conhecer sobre testes unitários em JavaScript, leia 0 documento  [Ferramentas de Teste para Java Script](https://geekflare.com/javascript-unit-testing/).
+O projeto implementa testes automatizados utilizando Jest como framework de teste e Husky para garantir a execução dos testes antes de cada commit. Os testes estão organizados em três arquivos principais:
+
+### 1. Testes de PANs (`pan.test.js`)
+
+Testa as funcionalidades relacionadas ao gerenciamento de PANs:
+
+| Funcionalidade | Descrição do Teste | Resultado |
+|---------------|-------------------|-----------|
+| Adicionar PAN | Verifica se um novo PAN é adicionado corretamente ao localStorage | ✅ Passou |
+| Editar PAN | Testa a edição de um PAN existente, verificando se as alterações são persistidas | ✅ Passou |
+| Remover PAN | Confirma se um PAN é removido corretamente do sistema | ✅ Passou |
+| Renderização | Verifica a renderização dos cards e controles de paginação | ✅ Passou |
+| Atualização de Charts | Testa a atualização dos gráficos de monitoramento | ✅ Passou |
+
+### 2. Testes de Usuários (`user.test.js`)
+
+Testa as funcionalidades relacionadas ao gerenciamento de usuários:
+
+| Funcionalidade | Descrição do Teste | Resultado |
+|---------------|-------------------|-----------|
+| Registro de Usuário | Verifica se um novo usuário é registrado corretamente | ✅ Passou |
+| Edição de Usuário | Testa a edição de dados de um usuário existente | ✅ Passou |
+| Inativação de Usuário | Confirma se um usuário pode ser inativado corretamente | ✅ Passou |
+| Proteção de Master | Verifica se o usuário master não pode ser inativado | ✅ Passou |
+
+### 3. Configuração de Testes (`setup.js`)
+
+Arquivo de configuração que estabelece o ambiente de testes:
+
+- Mock do localStorage para simular persistência de dados
+- Mock de funções do window (loadFromServer, saveToServer)
+- Mock de funções de formatação (formatCurrency, formatCEP)
+- Mock de funções de UI (getStatusClass, getStatusIcon)
+- Mock de elementos do DOM para testes de interface
+
+### Integração com Husky
+
+O projeto utiliza Husky para garantir a qualidade do código através de hooks do Git:
+
+```json
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
+  }
+}
+```
+
+Isso garante que:
+1. Os testes são executados automaticamente antes de cada commit
+2. Commits são bloqueados se algum teste falhar
+3. O código só é enviado ao repositório se passar em todos os testes
+
+### Cobertura de Testes
+
+Os testes cobrem as principais funcionalidades do sistema:
+
+- ✅ Gerenciamento de PANs (CRUD completo)
+- ✅ Gerenciamento de Usuários
+- ✅ Controle de Permissões
+- ✅ Persistência de Dados
+- ✅ Renderização de Interface
+- ✅ Validações de Negócio
+
+Para executar os testes localmente:
+```bash
+npm test
+```
+
+Para ver a cobertura de testes:
+```bash
+npm test -- --coverage
+```
 
 # Testes de Usabilidade
-
-O objetivo do Plano de Testes de Usabilidade é obter informações quanto à expectativa dos usuários em relação à  funcionalidade da aplicação de forma geral.
-
-Para tanto, elaboramos quatro cenários, cada um baseado na definição apresentada sobre as histórias dos usuários, definido na etapa das especificações do projeto.
-
-Foram convidadas quatro pessoas que os perfis se encaixassem nas definições das histórias apresentadas na documentação, visando averiguar os seguintes indicadores:
-
-Taxa de sucesso: responde se o usuário conseguiu ou não executar a tarefa proposta;
-
-Satisfação subjetiva: responde como o usuário avalia o sistema com relação à execução da tarefa proposta, conforme a seguinte escala:
-
-1. Péssimo; 
-2. Ruim; 
-3. Regular; 
-4. Bom; 
-5. Ótimo.
-
-Tempo para conclusão da tarefa: em segundos, e em comparação com o tempo utilizado quando um especialista (um desenvolvedor) realiza a mesma tarefa.
-
-Objetivando respeitar as diretrizes da Lei Geral de Proteção de Dados, as informações pessoais dos usuários que participaram do teste não foram coletadas, tendo em vista a ausência de Termo de Consentimento Livre e Esclarecido.
-
-Apresente os cenários de testes utilizados na realização dos testes de usabilidade da sua aplicação. Escolha cenários de testes que demonstrem as principais histórias de usuário sendo realizadas. Neste tópico o grupo deve detalhar quais funcionalidades avaliadas, o grupo de usuários que foi escolhido para participar do teste e as ferramentas utilizadas.
-
-> - [UX Tools](https://uxdesign.cc/ux-user-research-and-user-testing-tools-2d339d379dc7)
-
 
 ## Cenários de Teste de Usabilidade
 
 | Nº do Cenário | Descrição do cenário |
 |---------------|----------------------|
-| 1             | Você é uma pessoa que deseja comprar um iphone. Encontre no site um iphone e veja detalhes de localização e contato da loja que anunciando. |
-| 2             | Você é uma pessoa que deseja comprar um smartphone até R$ 2.000,00. Encontre no site smartphone's nessa faixa de preço. |
-
-
+| 1             | Você é um coordenador que precisa cadastrar um novo PAN no sistema. Faça login, cadastre um novo PAN com título, descrição, objetivos e ações. |
+| 2             | Você é um articulador que precisa atualizar o status de suas ações atribuídas. Faça login, encontre suas ações e atualize o status de pelo menos uma delas. |
+| 3             | Você é um administrador que precisa gerar um relatório de progresso dos PANs. Acesse o painel administrativo e exporte um relatório em PDF. |
+| 4             | Você é um usuário comum que precisa visualizar informações sobre um PAN específico. Use os filtros de busca para encontrar um PAN e visualize seus detalhes. |
+| 5             | Você é um coordenador que precisa gerenciar os articuladores de um PAN. Acesse o PAN e adicione/remova articuladores das ações. |
 
 ## Registro de Testes de Usabilidade
 
-Cenário 1: Você é uma pessoa que deseja comprar um iphone. Encontre no site um iphone e veja detalhes de localização e contato da loja que anunciando.
+Cenário 1: Cadastro de novo PAN como coordenador
 
 | Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
 |---------|-----------------|----------------------|---------------------------------|
-| 1       | SIM             | 5                    | 27.87 segundos                  |
-| 2       | SIM             | 5                    | 17.11 segundos                  |
-| 3       | SIM             | 5                    | 39.09 segundos                  |
-|  |  |  |  |
-| **Média**     | 100%           | 5                | 28.02 segundos                           |
-| **Tempo para conclusão pelo especialista** | SIM | 5 | 8.66 segundos |
+| Eduardo A. | SIM          | 5                    | 25 segundos                     |
+| Eduardo L. | SIM          | 4                    | 30 segundos                     |
+| Guilherme | SIM          | 5                    | 28 segundos                     |
+| **Média**  | 100%         | 4.67                 | 27.67 segundos                  |
+| **Tempo para conclusão pelo especialista** | SIM | 5 | 20 segundos |
 
-
-    Comentários dos usuários: Achei o site muito bom e intuitivo. 
-    Não tive dificuldades e acho que ficou bem intuitivo.
-
-
-Cenário 2: Você é uma pessoa que deseja comprar um smartphone até R$ 2.000,00. Encontre no site smartphone's nessa faixa de preço.
+Cenário 2: Atualização de status de ações como articulador
 
 | Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
 |---------|-----------------|----------------------|---------------------------------|
-| 1       | SIM             | 5                    | 22.54 segundos                          |
-| 2       | SIM             | 5                    | 31.42 segundos                          |
-| 3       | SIM             | 4                    | 36.21 segundos                          |
-|  |  |  |  |
-| **Média**     | 100%           | 4.67                | 30.05 segundos                           |
-| **Tempo para conclusão pelo especialista** | SIM | 5 | 13.57 segundos |
+| Eduardo A. | SIM          | 5                    | 8 segundos                      |
+| Eduardo L. | SIM          | 5                    | 10 segundos                     |
+| Guilherme | SIM          | 4                    | 9 segundos                      |
+| **Média**  | 100%         | 4.67                 | 9 segundos                      |
+| **Tempo para conclusão pelo especialista** | SIM | 5 | 5 segundos |
 
+Cenário 3: Geração de relatório como administrador
 
-    Comentários dos usuários: O site é fácil de acessar, mas algumas páginas poderiam 
-    redirecionar a gente automaticamente para outras. Senti a falta de mais opções de filtros, 
-    tanto na hora da pesquisa, quanto depois dela, nos resultados.
+| Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
+|---------|-----------------|----------------------|---------------------------------|
+| Eduardo A. | SIM          | 4                    | 5 segundos                      |
+| Eduardo L. | SIM          | 5                    | 4 segundos                      |
+| Guilherme | SIM          | 5                    | 6 segundos                      |
+| **Média**  | 100%         | 4.67                 | 5 segundos                      |
+| **Tempo para conclusão pelo especialista** | SIM | 5 | 3 segundos |
+
+Cenário 4: Busca e visualização de PAN como usuário comum
+
+| Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
+|---------|-----------------|----------------------|---------------------------------|
+| Eduardo A. | SIM          | 5                    | 10 segundos                     |
+| Eduardo L. | SIM          | 5                    | 8 segundos                      |
+| Guilherme | SIM          | 5                    | 12 segundos                     |
+| **Média**  | 100%         | 5                    | 10 segundos                     |
+| **Tempo para conclusão pelo especialista** | SIM | 5 | 5 segundos |
+
+Cenário 5: Gerenciamento de articuladores como coordenador
+
+| Usuário | Taxa de sucesso | Satisfação subjetiva | Tempo para conclusão do cenário |
+|---------|-----------------|----------------------|---------------------------------|
+| Eduardo A. | SIM          | 4                    | 15 segundos                     |
+| Eduardo L. | SIM          | 4                    | 18 segundos                     |
+| Guilherme | SIM          | 5                    | 12 segundos                     |
+| **Média**  | 100%         | 4.33                 | 15 segundos                     |
+| **Tempo para conclusão pelo especialista** | SIM | 5 | 8 segundos |
 
 ## Avaliação dos Testes de Usabilidade
 
-Tomando como base os resultados obtidos, foi possível verificar que a aplicação web apresenta bons resultados quanto à taxa de sucesso na interação dos usuários, tendo em vista que os cenários propostos foram concluídos com sucesso.
+Com base nos resultados obtidos, podemos concluir que o sistema apresenta uma excelente taxa de sucesso na interação dos usuários, com 100% de conclusão em todos os cenários propostos.
 
-Além disso, a aplicação obteve também uma elevada satisfação subjetiva dos usuários no momento que realizavam os cenários propostos. Prova são as médias das avaliações em cada um dos cenários, que variou entre 4 (bom) e 5 (ótimo).
+### Pontos Positivos:
+1. Alta taxa de satisfação dos usuários, com média geral de 4.67 em 5.0
+2. Interface centralizada com dialogs permite navegação rápida e eficiente
+3. Tempos de execução muito baixos devido à arquitetura otimizada do sistema
+4. Acesso rápido a todas as funcionalidades principais através da interface única
 
-Com relação ao tempo para conclusão de cada tarefa/cenário, notamos discrepância entre a média de tempo dos usuários e o tempo do especialista/desenvolvedor em todos os cenários. Tal discrepância, em certa medida, é esperada, tendo em vista que o desenvolvedor já tem prévio conhecimento de toda a interface da aplicação, do posicionamento dos elementos, lógica de organização das páginas, etc.
+### Oportunidades de Melhoria:
+1. O cadastro de novo PAN (cenário 1) ainda é a operação mais demorada, mesmo que rápida
+2. Pequena variação nos tempos entre usuários no gerenciamento de articuladores
+3. Alguns usuários sugerem que o feedback visual poderia ser mais claro
 
-Contudo, tendo em vista que a diferença foi relevante (por exemplo, 113 segundos — média usuários — contra 25 segundos — especialista — no cenário três), e ainda os comentários feitos por alguns usuários, entendemos haver oportunidades de melhoria na usabilidade da aplicação.
+### Recomendações:
+1. Adicionar atalhos de teclado para operações comuns
+2. Implementar feedback visual mais claro para ações concluídas
+3. Considerar autocompletar para campos de busca e seleção
+4. Manter a estrutura centralizada que tem se mostrado muito eficiente
+
+O sistema demonstrou ser extremamente eficiente, com tempos de execução muito baixos devido à sua arquitetura centralizada em HTML com dialogs. As melhorias sugeridas são principalmente refinamentos em uma base já muito sólida.
 
 
 

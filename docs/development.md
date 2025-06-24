@@ -1,24 +1,3 @@
-# Programação de Funcionalidades
-
-Implementação do sistema descritas por meio dos requisitos funcionais e/ou não funcionais. Deve relacionar os requisitos atendidos os artefatos criados (código fonte) além das estruturas de dados utilizadas e as instruções para acesso e verificação da implementação que deve estar funcional no ambiente de hospedagem.
-
-Para cada requisito funcional, pode ser entregue um artefato desse tipo.
-
-O professor Rommel Carneiro apresenta alguns exemplos prontos para serem utilizados como referência:
-- Login do sistema: [https://repl.it/@rommelpuc/LoginApp](https://repl.it/@rommelpuc/LoginApp) 
-- Cadastro de Contatos: [https://repl.it/@rommelpuc/Cadastro-de-Contatos](https://repl.it/@rommelpuc/Cadastro-de-Contatos)
-
-
-> **Links Úteis**:
->
-> - [Trabalhando com HTML5 Local Storage e JSON](https://www.devmedia.com.br/trabalhando-com-html5-local-storage-e-json/29045)
-> - [JSON Tutorial](https://www.w3resource.com/JSON)
-> - [JSON Data Set Sample](https://opensource.adobe.com/Spry/samples/data_region/JSONDataSetSample.html)
-> - [JSON - Introduction (W3Schools)](https://www.w3schools.com/js/js_json_intro.asp)
-> - [JSON Tutorial (TutorialsPoint)](https://www.tutorialspoint.com/json/index.htm)
-
-## Exemplo
-
 ## Requisitos Atendidos
 
 As tabelas que se seguem apresentam os requisitos funcionais e não-funcionais que relacionam o escopo do projeto com os artefatos criados:
@@ -27,16 +6,29 @@ As tabelas que se seguem apresentam os requisitos funcionais e não-funcionais q
 
 |ID    | Descrição do Requisito | Responsável | Artefato Criado |
 |------|------------------------|------------|-----------------|
-|RF-001| A aplicação deve permitir que o usuário gerencie suas tarefas | João | index.html |
-|RF-002| A aplicação deve permitir a emissão de um relatório de tarefas realizadas no mês | Ana Paula | cadastro-noticia.html |
+|RF-001| Sistema de autenticação com diferentes níveis de acesso | Eduardo Araújo | src/js/auth.js |
+|RF-002| Dashboard interativo com visualização do progresso dos PANs | Eduardo Araújo | src/index.html, src/js/panCards.js |
+|RF-003| Gerenciamento avançado de usuários (administrador) | Eduardo Araújo | src/admin.html |
+|RF-004| Visualização detalhada e intuitiva das ações dos PANs | Eduardo Lyra | src/gerenciar-pans.html |
+|RF-005| Exibição dinâmica dos cards de PANs | Eduardo Lyra | src/js/panCards.js |
+|RF-006| Cálculo da porcentagem de conclusão dos objetivos | Eduardo Araújo | src/js/utils.js |
+|RF-007| CRUD completo para inserção e manipulação de dados | Eduardo Lyra | src/js/addPan.js |
+|RF-008| Validação de permissões para diferentes papéis de usuário | Eduardo Araújo | src/js/auth.js |
+|RF-009| Integração com API ViaCEP e geolocalização | Eduardo Araújo | src/js/utils.js |
+|RF-010| Sistema de paginação na visualização de PANs | Eduardo Lyra | src/js/panCards.js |
+|RF-011| Funcionalidade para articuladores editarem suas próprias ações | Eduardo Araújo | src/js/addPan.js |
+|RF-012| Exportação de dados dos PANs | Guilherme Borges | src/js/export.js |
 
 ## Descrição das estruturas:
 
-## Notícia
+## PAN (Plano de Ação Nacional)
 |  **Nome**      | **Tipo**          | **Descrição**                             | **Exemplo**                                    |
 |:--------------:|-------------------|-------------------------------------------|------------------------------------------------|
-| Id             | Numero (Inteiro)  | Identificador único da notícia            | 1                                              |
-| Título         | Texto             | Título da notícia                         | Sistemas de Informação PUC Minas é o melhor                                   |
-| Conteúdo       | Texto             | Conteúdo da notícia                       | Sistemas de Informação da PUC Minas é eleito o melhor curso do Brasil                            |
-| Id do usuário  | Numero (Inteiro)  | Identificador do usuário autor da notícia | 1                                              |
+| Id             | Numero (Inteiro)  | Identificador único do PAN                | 1                                              |
+| Título         | Texto             | Nome do PAN                               | PAN Cavernas                                   |
+| Descrição      | Texto             | Descrição detalhada do PAN                | Plano de Ação Nacional para Conservação do Patrimônio Espeleológico |
+| Status         | Texto             | Status atual do PAN                       | Em andamento                                   |
+| Progresso      | Numero (Float)    | Porcentagem de conclusão do PAN           | 75.5                                           |
+| Ações          | Array de Objetos  | Lista de ações vinculadas ao PAN          | [{id: 1, descricao: "Ação 1", status: "Concluída"}] |
+| Articuladores  | Array de Objetos  | Lista de articuladores responsáveis       | [{id: 1, nome: "João Silva", email: "joao@email.com"}] |
 
